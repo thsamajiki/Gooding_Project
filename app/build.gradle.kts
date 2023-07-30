@@ -99,7 +99,6 @@ dependencies {
     implementation("com.google.android.exoplayer:exoplayer-core:2.19.0")
     implementation("com.google.android.exoplayer:exoplayer-dash:2.19.0")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.19.0")
-
     // Hilt
     implementation("com.google.dagger:hilt-android:2.45")
     kapt("com.google.dagger:hilt-compiler:2.45")
@@ -122,4 +121,7 @@ dependencies {
 
     // Sliding Up Panel
     implementation ("com.sothree.slidinguppanel:library:3.4.0")
+
+    // module
+    implementation(project(":app:login"))
 }
