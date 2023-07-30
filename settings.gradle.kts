@@ -17,3 +17,14 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Gooding"
 include(":app")
+include(":core")
+include(":feature")
+include(":app:login")
+include(":app:common")
+include(":feature:feed")
+include(":feature:search")
+include(":feature:record")
+include(":feature:myaccount")
+include(":core:api")
+include(":core:data")
+include(":core:model")
