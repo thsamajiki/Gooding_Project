@@ -20,6 +20,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
     }
 
     buildTypes {
@@ -103,8 +104,8 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.45")
     kapt("com.google.dagger:hilt-compiler:2.45")
 
-    // 구글 로그인 모듈
-//    implementation ("com.google.android.gms:play-services-auth:20.6.0")
+//     구글 로그인 모듈
+    implementation ("com.google.android.gms:play-services-auth:20.6.0")
 //
 //    implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
 //    implementation ("com.google.firebase:firebase-analytics-ktx")
