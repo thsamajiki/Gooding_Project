@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         // main에서 로그인 모듈의 액티비티로 이동
         Log.d("모듈 연동 테스트","메인 -> 로그인 모듈 시도")
-        val intent = Intent(this@MainActivity,LoginActivity::class.java)
+        val intent = Intent(this@MainActivity, LoginActivity::class.java)
         startActivity(intent)
     }
 }
