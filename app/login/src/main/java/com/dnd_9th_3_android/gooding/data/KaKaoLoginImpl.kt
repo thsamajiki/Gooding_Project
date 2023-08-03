@@ -9,15 +9,40 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
+import com.kakao.sdk.user.model.AccessTokenInfo
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
+    override fun initCallback(
+        error: Throwable?,
+        token: OAuthToken?,
+        context: Context,
+        loginCallback: (String?) -> Unit
+    ) {
+        if (error != null){
+            toastMessage(context,"카카오 계정 로그인 실패 $error")
+            Log.d("카카오톡 앱 로그인 실패",error.toString())
+        }else if (token != null){
+            toastMessage(context,"카카오 계정 로그인 성공")
+            // 확인
+            toastMessage(context,token.toString())
+            Log.e("token",token.toString())
+            loginCallback(token.accessToken)
+            // user info
+            getUserInfo(context, loginCallback = {
+                // 확인
+                toastMessage(context,it.toString())
+                Log.e("Login! user info ",it.toString())
+            })
+        }
+    }
+
     override fun toastMessage(context:Context,message:String) {
         Toast.makeText(context,message, Toast.LENGTH_SHORT).show()
     }
 
-    override fun kaKaoLogin(context:Context,callback : (OAuthToken?, Throwable?)  -> Unit,loginCallback: (String) -> Unit) {
+    override fun kaKaoLogin(context:Context,callback : (OAuthToken?, Throwable?)  -> Unit,loginCallback: (String?) -> Unit) {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)){ //앱 설치 상태
             UserApiClient.instance.loginWithKakaoTalk(context){ token, error ->
                 if (error != null){
@@ -67,15 +92,17 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
         return check
     }
 
-    override fun getUserInfo(context: Context,loginCallback: (String) -> Unit) {
+    override fun getUserInfo(context: Context,loginCallback: (AccessTokenInfo?) -> Unit) {
         UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
             if (error != null){
+                loginCallback(null)
                 toastMessage(context,"토큰 정보 불러오기 실패:$error")
             }
             else if (tokenInfo != null){
-                loginCallback("$tokenInfo") // 로그인 정보와 만료 기간 전송
+                loginCallback(tokenInfo) // 로그인 정보와 만료 기간 전송
             }
             else {
+                loginCallback(null)
                 toastMessage(context,"토큰 정보 불러오기 실패 error")
             }
         }

@@ -1,23 +1,23 @@
 package com.dnd_9th_3_android.gooding
 
-import android.content.ContentValues.TAG
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import com.dnd_9th_3_android.gooding.data.KaKaoLoginImpl
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
+import com.dnd_9th_3_android.gooding.api.LoginRetrofitUtil
+import com.dnd_9th_3_android.gooding.data.GoogleLoginInterface
 import com.dnd_9th_3_android.gooding.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
-import com.kakao.sdk.auth.AuthApiClient
+import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.model.ClientError
-import com.kakao.sdk.common.model.ClientErrorCause
-import com.kakao.sdk.common.model.KakaoSdkError
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -26,33 +26,86 @@ class LoginActivity : AppCompatActivity() {
     private var _binding : ActivityLoginBinding? = null
     private val binding get() = _binding!!
     @Inject lateinit var kaKaoLogin : KaKaoLoginInterface
+    @Inject lateinit var googleLogin : GoogleLoginInterface
+    // firebase
+    private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var firebaseAuth: FirebaseAuth
 
+
+    // kakao callback
     private val callback : (OAuthToken?,Throwable?) -> Unit = { token, error->
-        if (error != null){
-            kaKaoLogin.toastMessage(this@LoginActivity,"카카오 계정 로그인 실패 $error")
-        }else if (token != null){
-            kaKaoLogin.toastMessage(this@LoginActivity,"카카오 계정 로그인 성공 $error")
-            Log.d("token",token.toString())
-            kaKaoLogin.getUserInfo(this@LoginActivity, loginCallback = {
-                Log.d("Login! user info ",it)
-            })
-        }
+        kaKaoLogin.initCallback(error,token,this@LoginActivity, loginCallback = {
+            if (it!=null){
+                LoginRetrofitUtil.loginApiService.loginKaKao(it).enqueue(
+                    object : Callback<String> {
+                        override fun onResponse(
+                            call: Call<String>,
+                            response: Response<String>
+                        ) {
+                            if (response.isSuccessful){
+                                Log.d("is sucess!",response.body().toString())
+                            }else{
+                                Log.d("error",response.errorBody().toString())
+                            }
+                        }
+
+                        override fun onFailure(call: Call<String>, t: Throwable) {
+                            Log.d("fail..","not info")
+                        }
+
+                    })
+            }
+        })
     }
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding  = ActivityLoginBinding.inflate(this@LoginActivity.layoutInflater)
         setContentView(binding.root)
-        // 모듈 + 카카오 해쉬 키 발급
-        Log.d("모듈 연동 테스트","메인 -> 로그인 모듈 완료")
-        Log.d(TAG, "keyhash : ${Utility.getKeyHash(this)}")
+
+        // init firebase
+        firebaseAuth = FirebaseAuth.getInstance()
+        launcher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
+                googleLogin.setLauncher(this@LoginActivity,result,firebaseAuth, loginCallback = {
+                    Log.d("Login google access token :",it.toString())
+                })
+            })
 
         // kakao login button
         binding.kakaoLogin.setOnClickListener {
             if (!kaKaoLogin.checkLogin()){
                 kaKaoLogin.kaKaoLogin(this@LoginActivity,callback, loginCallback = {
-                    Log.d("Login! ",it)
+                    Log.d("Login kakao access token :",it.toString())
+                    if (it!=null) {
+                        LoginRetrofitUtil.loginApiService.loginKaKao(it).enqueue(
+                            object : Callback<String> {
+                                override fun onResponse(
+                                    call: Call<String>,
+                                    response: Response<String>
+                                ) {
+                                    if (response.isSuccessful){
+                                        Log.d("is sucess!",response.body().toString())
+                                    }else{
+                                        Log.d("error",response.errorBody().toString())
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<String>, t: Throwable) {
+                                    Log.d("fail..","not info")
+                                }
+
+                            })
+                    }
                 })
             }
         }
+
+        // google login button
+        binding.googleLogin.setOnClickListener {
+            googleLogin.login(this@LoginActivity, getString(R.string.server_client_id), launcher)
+        }
     }
+
 }
