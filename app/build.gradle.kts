@@ -4,7 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-//    id("com.google.gms.google-services")
+
 //    id("com.google.firebase.crashlytics")
 }
 
@@ -18,9 +18,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -54,6 +52,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.firebase:firebase-auth-ktx:21.0.3")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -81,7 +80,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.14.2")
     kapt("com.github.bumptech.glide:compiler:4.14.2")
 
-    // Retrofit2
+    //Retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:okhttp:4.10.0")
@@ -105,13 +104,13 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.45")
 
 //     구글 로그인 모듈
-    implementation ("com.google.android.gms:play-services-auth:20.6.0")
+//    implementation ("com.google.android.gms:play-services-auth:20.6.0")
 //
 //    implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
 //    implementation ("com.google.firebase:firebase-analytics-ktx")
 //    implementation ("com.google.firebase:firebase-crashlytics-ktx")
 //    implementation ("com.google.firebase:firebase-messaging-ktx")
-//    implementation ("com.google.firebase:firebase-auth-ktx")
+    implementation ("com.google.firebase:firebase-auth-ktx")
 
     // 카카오 로그인 모듈
     implementation("com.kakao.sdk:v2-user:2.14.0")
@@ -125,4 +124,5 @@ dependencies {
 
     // module
     implementation(project(":app:login"))
+    implementation(project(":core:api"))
 }
