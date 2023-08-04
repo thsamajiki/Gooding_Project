@@ -8,10 +8,11 @@ import android.util.Log
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.dnd_9th_3_android.gooding.api.LoginRetrofitUtil
+import com.dnd_9th_3_android.gooding.api.RetrofitUtil
 import com.dnd_9th_3_android.gooding.data.GoogleLoginInterface
 import com.dnd_9th_3_android.gooding.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
+import com.dnd_9th_3_android.gooding.model.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.model.OAuthToken
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,20 +37,21 @@ class LoginActivity : AppCompatActivity() {
     private val callback : (OAuthToken?,Throwable?) -> Unit = { token, error->
         kaKaoLogin.initCallback(error,token,this@LoginActivity, loginCallback = {
             if (it!=null){
-                LoginRetrofitUtil.loginApiService.loginKaKao(it).enqueue(
-                    object : Callback<String> {
+                RetrofitUtil.LoginApiService.loginKaKao(it).enqueue(
+                    object : Callback<AccessToken> {
                         override fun onResponse(
-                            call: Call<String>,
-                            response: Response<String>
+                            call: Call<AccessToken>,
+                            response: Response<AccessToken>
                         ) {
                             if (response.isSuccessful){
-                                Log.d("is sucess!",response.body().toString())
+                                Log.d("is sucess!",response.body()!!.accessToken)
+                                loginUser(response.body()!!.accessToken)
                             }else{
-                                Log.d("error",response.errorBody().toString())
+                                Log.d("error",response.errorBody()?.string()!!)
                             }
                         }
 
-                        override fun onFailure(call: Call<String>, t: Throwable) {
+                        override fun onFailure(call: Call<AccessToken>, t: Throwable) {
                             Log.d("fail..","not info")
                         }
 
@@ -69,7 +71,28 @@ class LoginActivity : AppCompatActivity() {
         launcher = registerForActivityResult(
             ActivityResultContracts.StartActivityForResult(), ActivityResultCallback { result ->
                 googleLogin.setLauncher(this@LoginActivity,result,firebaseAuth, loginCallback = {
-                    Log.d("Login google access token :",it.toString())
+                    if (it!=null) {
+                        RetrofitUtil.LoginApiService.loginGoogle(it).enqueue(
+                            object : Callback<AccessToken>{
+                                override fun onResponse(
+                                    call: Call<AccessToken>,
+                                    response: Response<AccessToken>
+                                ) {
+                                    if (response.isSuccessful){
+                                        Log.d("is sucess!",response.body()!!.accessToken)
+                                        loginUser(response.body()!!.accessToken)
+                                    }else{
+                                        Log.d("error",response.errorBody()?.string()!!)
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<AccessToken>, t: Throwable) {
+                                    Log.d("fail..","not info")
+                                }
+
+                            }
+                        )
+                    }
                 })
             })
 
@@ -77,26 +100,8 @@ class LoginActivity : AppCompatActivity() {
         binding.kakaoLogin.setOnClickListener {
             if (!kaKaoLogin.checkLogin()){
                 kaKaoLogin.kaKaoLogin(this@LoginActivity,callback, loginCallback = {
-                    Log.d("Login kakao access token :",it.toString())
-                    if (it!=null) {
-                        LoginRetrofitUtil.loginApiService.loginKaKao(it).enqueue(
-                            object : Callback<String> {
-                                override fun onResponse(
-                                    call: Call<String>,
-                                    response: Response<String>
-                                ) {
-                                    if (response.isSuccessful){
-                                        Log.d("is sucess!",response.body().toString())
-                                    }else{
-                                        Log.d("error",response.errorBody().toString())
-                                    }
-                                }
-
-                                override fun onFailure(call: Call<String>, t: Throwable) {
-                                    Log.d("fail..","not info")
-                                }
-
-                            })
+                    if (it==null){ //사용자 의도로 로그인 취소
+                        /// do
                     }
                 })
             }
@@ -106,6 +111,12 @@ class LoginActivity : AppCompatActivity() {
         binding.googleLogin.setOnClickListener {
             googleLogin.login(this@LoginActivity, getString(R.string.server_client_id), launcher)
         }
+    }
+
+    private fun loginUser(token:String){
+        RetrofitUtil.setUserToken(token)
+        val intent = Intent(applicationContext,MainActivity::class.java)
+        startActivity(intent)
     }
 
 }

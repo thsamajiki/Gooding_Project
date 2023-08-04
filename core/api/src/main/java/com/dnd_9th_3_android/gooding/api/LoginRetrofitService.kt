@@ -1,20 +1,18 @@
 package com.dnd_9th_3_android.gooding.api
 
+import com.dnd_9th_3_android.gooding.model.AccessToken
 import retrofit2.Call
-import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.POST
 import retrofit2.http.Query
-
 interface LoginRetrofitService {
     // for kakao login access token
     @GET("oauth/kakao")
     fun loginKaKao(
-        @Query("code")code : String,
-    ) : Call<String>
+        @Query("accessToken")code : String,
+    ) : Call<AccessToken>
     // for google login access token
     @GET("oauth/google")
     fun loginGoogle(
         @Query("code")code : String,
-    ) : Call<String>
+    ) : Call<AccessToken>
 }

@@ -21,20 +21,12 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
         loginCallback: (String?) -> Unit
     ) {
         if (error != null){
-            toastMessage(context,"카카오 계정 로그인 실패 $error")
-            Log.d("카카오톡 앱 로그인 실패",error.toString())
+            toastMessage(context,"카카오 로그인 실패 $error")
+            loginCallback(null)
         }else if (token != null){
-            toastMessage(context,"카카오 계정 로그인 성공")
-            // 확인
-            toastMessage(context,token.toString())
+            // 로그인 성공
             Log.e("token",token.toString())
             loginCallback(token.accessToken)
-            // user info
-            getUserInfo(context, loginCallback = {
-                // 확인
-                toastMessage(context,it.toString())
-                Log.e("Login! user info ",it.toString())
-            })
         }
     }
 
@@ -51,18 +43,15 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
                     // 사용자가 카카오톡 설치 후 디바이스 권한 요청 화면에서 로그인 취소의 경우
                     // 의도적 로그인 취소로 판단. 카카오 계정으로 로그인 시도 없이 로그인 취소 처리 (아무런 동작 x)
                     if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
+                        loginCallback(null)
                         return@loginWithKakaoTalk
                     }
 
-                    // 카카오 계정으로 로그인 시도
+                    // 앱설치 -> 접근 오류 -> 카카오 계정으로 로그인 시도
                     UserApiClient.instance.loginWithKakaoAccount(context, callback =  callback)
-
-                // 로그인 성공
-                } else if (token != null){
-                    loginCallback(token.accessToken)
                 }
             }
-        } else { //앱 비설치 상태
+        } else { //앱 비설치 상태 -> 카카오 계정으로 로그인 시도
             UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
         }
     }
@@ -93,18 +82,18 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
     }
 
     override fun getUserInfo(context: Context,loginCallback: (AccessTokenInfo?) -> Unit) {
-        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
-            if (error != null){
-                loginCallback(null)
-                toastMessage(context,"토큰 정보 불러오기 실패:$error")
-            }
-            else if (tokenInfo != null){
-                loginCallback(tokenInfo) // 로그인 정보와 만료 기간 전송
-            }
-            else {
-                loginCallback(null)
-                toastMessage(context,"토큰 정보 불러오기 실패 error")
-            }
-        }
+//        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
+//            if (error != null){
+//                loginCallback(null)
+//                toastMessage(context,"토큰 정보 불러오기 실패:$error")
+//            }
+//            else if (tokenInfo != null){
+//                loginCallback(tokenInfo) // 로그인 정보와 만료 기간 전송
+//            }
+//            else {
+//                loginCallback(null)
+//                toastMessage(context,"토큰 정보 불러오기 실패 error")
+//            }
+//        }
     }
 }

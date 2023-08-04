@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.dnd_9th_3_android.gooding"
+    namespace = "com.dnd_9th_3_android.gooding.feature.feed"
     compileSdk = 33
 
     defaultConfig {
