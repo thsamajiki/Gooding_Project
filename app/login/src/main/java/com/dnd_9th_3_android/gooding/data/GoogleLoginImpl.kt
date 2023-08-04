@@ -9,7 +9,6 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.dnd_9th_3_android.gooding.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
@@ -22,9 +21,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface{
+class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface {
     override fun toastMessage(context: Context, message: String) {
-        Toast.makeText(context,message,Toast.LENGTH_SHORT)
+        Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
     }
 
     override fun setLauncher(
@@ -33,10 +32,9 @@ class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface{
         firebaseAuth: FirebaseAuth,
         loginCallback: (String?) -> Unit
     ) {
-        Log.e(ContentValues.TAG, "resultCode : ${result.resultCode}")
-        Log.e(ContentValues.TAG, "result : $result")
-        var tokenId:String? = null
-        var email = ""
+        var tokenId: String?
+        var email: String
+
         if (result.resultCode == AppCompatActivity.RESULT_OK) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(result.data)
             try {
@@ -44,8 +42,7 @@ class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface{
                     tokenId = account.idToken
                     if (tokenId != null && tokenId != "") {
                         val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
-                        firebaseAuth.signInWithCredential(credential)
-                            .addOnCompleteListener {
+                        firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
                                 if (firebaseAuth.currentUser != null) {
                                     val user: FirebaseUser = firebaseAuth.currentUser!!
                                     email = user.email.toString()
@@ -58,7 +55,6 @@ class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface{
                                     } else {
                                         toastMessage(context,"null token")
                                         Log.e(ContentValues.TAG, "googleSignInToken이 null")
-
                                         loginCallback(null)
                                     }
                                 }

@@ -5,10 +5,10 @@ import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.model.AccessTokenInfo
 
 interface KaKaoLoginInterface {
-    // callback init
-    fun initCallback(error:Throwable?,token:OAuthToken?,context: Context,loginCallback:(String?)->Unit)
     // message
     fun toastMessage(context: Context, message:String)
+    // callback init
+    fun initCallback(error:Throwable?,token:OAuthToken?,context: Context,loginCallback:(String?)->Unit)
     // 카카오톡 앱으로 로그인
     fun kaKaoLogin(context:Context,callback : (OAuthToken?, Throwable?)  -> Unit,loginCallback:(String?)->Unit)
     // 현재 로그인 상태 확인

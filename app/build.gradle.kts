@@ -125,4 +125,5 @@ dependencies {
     // module
     implementation(project(":app:login"))
     implementation(project(":core:api"))
+    implementation(project(":core:model"))
 }
