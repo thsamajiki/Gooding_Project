@@ -36,7 +36,7 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
 
     override fun kaKaoLogin(context:Context,callback : (OAuthToken?, Throwable?)  -> Unit,loginCallback: (String?) -> Unit) {
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)){ //앱 설치 상태
-            UserApiClient.instance.loginWithKakaoTalk(context){ token, error ->
+            UserApiClient.instance.loginWithKakaoTalk(context){ _, error ->
                 if (error != null){
                     Log.d("카카오톡 앱 로그인 실패",error.toString())
 
