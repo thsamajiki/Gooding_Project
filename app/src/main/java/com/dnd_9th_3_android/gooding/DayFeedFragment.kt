@@ -11,7 +11,8 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.tooling.preview.Preview
 import com.dnd_9th_3_android.gooding.databinding.FragmentDayFeedBinding
 import com.dnd_9th_3_android.gooding.feed.FeedScreen
-import com.dnd_9th_3_android.gooding.feed.ui.theme.GoodingTheme
+import com.dnd_9th_3_android.gooding.ui.theme.GoodingTheme
+
 
 class DayFeedFragment : Fragment() {
     private var _binding : FragmentDayFeedBinding? = null
