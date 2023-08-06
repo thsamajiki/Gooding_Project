@@ -7,13 +7,9 @@ android {
     compileSdk = 34
 
     defaultConfig {
-
         minSdk = 24
         targetSdk = 34
-
-
         consumerProguardFiles("consumer-rules.pro")
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
@@ -73,5 +69,8 @@ dependencies {
     implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
     // image ui
     implementation ("io.coil-kt:coil-compose:1.3.2")
+    // tab + pager
+    implementation("com.google.accompanist:accompanist-pager:0.20.1")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
 
 }

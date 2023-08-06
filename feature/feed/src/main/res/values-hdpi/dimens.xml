@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <!-- tab -->
+    <dimen name="selected_icon_size">5dp</dimen>
+    <dimen name="margin_tab_10">18dp</dimen>
+    <dimen name="margin_tab">18dp</dimen>
+    <dimen name="top_space">36dp</dimen>
+    <dimen name="tab_height">56dp</dimen>
+    <dimen name="tab_width">150dp</dimen>
+</resources>
