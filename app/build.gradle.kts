@@ -4,10 +4,8 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-
 //    id("com.google.firebase.crashlytics")
 }
-
 android {
     namespace = "com.dnd_9th_3_android.gooding"
     compileSdk = 34
@@ -19,6 +17,9 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary = true
+        }
     }
 
     buildTypes {
@@ -37,13 +38,26 @@ android {
     buildFeatures {
         viewBinding = true
         dataBinding = true
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
     kotlinOptions {
         jvmTarget = "11"
+    }
+
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    buildFeatures {
+        compose = true
     }
 }
 
@@ -53,6 +67,7 @@ dependencies {
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth-ktx:21.0.3")
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -122,8 +137,22 @@ dependencies {
     // Sliding Up Panel
     implementation ("com.sothree.slidinguppanel:library:3.4.0")
 
+    // compose
+    val composeVersion = "1.2.0"
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    // image ui
+    implementation ("io.coil-kt:coil-compose:1.3.2")
+    // activity + compose
+    implementation("androidx.activity:activity-compose: $composeVersion")
+
     // module
     implementation(project(":app:login"))
     implementation(project(":core:api"))
     implementation(project(":core:model"))
+    implementation(project(":feature:feed"))
 }
