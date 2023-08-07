@@ -37,8 +37,6 @@ android {
         jvmTarget = "1.8"
     }
     buildFeatures {
-        viewBinding = true
-        dataBinding = true
         compose = true
     }
     packagingOptions {
@@ -73,4 +71,7 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:0.20.1")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
 
+    // module
+    implementation(project(":core:model"))
+    implementation(project(":core:data"))
 }

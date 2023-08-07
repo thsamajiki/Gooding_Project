@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.feature.feed.R
+import com.dnd_9th_3_android.gooding.feed.item.OneFeedItem
 
 // 메인 피드 - now
 @Composable
@@ -18,6 +20,6 @@ fun NowScreen() {
             .fillMaxHeight()
             .background(colorResource(id = R.color.type1))
     ) {
-
+        OneFeedItem(SampleFeedData.sampleFeedList[0])
     }
 }

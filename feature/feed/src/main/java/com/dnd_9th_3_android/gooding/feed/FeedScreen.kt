@@ -26,7 +26,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.pagerTabIndicatorOffset
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
-
+private val pages = listOf("NOW", "추천")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FeedScreen() {
@@ -34,7 +34,6 @@ fun FeedScreen() {
         // 페이지 상태 지정
         val pageState = rememberPagerState()
         val coroutineScope = rememberCoroutineScope()
-        val pages = listOf("NOW", "추천")
         HorizontalPager(
             count = pages.size,
             state = pageState,
