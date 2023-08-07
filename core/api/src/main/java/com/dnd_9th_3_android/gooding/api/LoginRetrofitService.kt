@@ -8,11 +8,12 @@ interface LoginRetrofitService {
     // for kakao login access token
     @GET("oauth/kakao")
     fun loginKaKao(
-        @Query("accessToken")code : String,
+        @Query("accessToken")accessToken : String,
     ) : Call<AccessToken>
+
     // for google login access token
     @GET("oauth/google")
     fun loginGoogle(
-        @Query("code")code : String,
+        @Query("idToken")idToken : String,
     ) : Call<AccessToken>
 }
