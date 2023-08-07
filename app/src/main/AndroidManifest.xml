@@ -51,6 +51,8 @@
                     android:scheme="kakaoa244014544b5323246b6853ca1d8ca93" />
             </intent-filter>
         </activity>
+        <activity android:name=".GalleryActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

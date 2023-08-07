@@ -1,6 +1,5 @@
 package com.dnd_9th_3_android.gooding
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -19,6 +18,10 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setContentView(view)
 
         setupBottomNavigationView()
+
+        if (savedInstanceState == null) {
+            binding.bottomNavMain.selectedItemId = R.id.menu_feed
+        }
     }
 
     private fun setupBottomNavigationView() {
@@ -36,34 +39,28 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
 
         when (item.itemId) {
-            R.id.menu_day_feed -> {
-                val dayFeedFragment = supportFragmentManager.fragments.find { it is DayFeedFragment }
-                if (dayFeedFragment != null) {
-                    supportFragmentManager.beginTransaction().show(dayFeedFragment).commit()
+            R.id.menu_feed -> {
+                val feedFragment = supportFragmentManager.fragments.find { it is FeedFragment }
+                if (feedFragment != null) {
+                    supportFragmentManager.beginTransaction().show(feedFragment).commit()
                 } else {
                     supportFragmentManager.beginTransaction()
-                        .add(binding.fcvMain.id, DayFeedFragment.newInstance())
+                        .add(binding.fcvMain.id, FeedFragment.newInstance())
                         .commit()
                 }
             }
             R.id.menu_record -> {
-                val recordFragment = supportFragmentManager.fragments.find { it is RecordFragment }
-                if (recordFragment != null) {
-                    supportFragmentManager.beginTransaction().show(recordFragment).commit()
+                val intent = GalleryActivity.getIntent(this@MainActivity)
+                startActivity(intent)
+            }
+            R.id.menu_my_gooding -> {
+                val myGoodingFragment = supportFragmentManager.fragments.find { it is MyGoodingFragment }
+                if (myGoodingFragment != null) {
+                    supportFragmentManager.beginTransaction().show(myGoodingFragment).commit()
                 } else {
                     supportFragmentManager.beginTransaction()
-                        .add(binding.fcvMain.id, RecordFragment.newInstance()
-                    ).commit()
-                }
-            }
-            R.id.menu_my_page -> {
-                val myPageFragment = supportFragmentManager.fragments.find { it is MyPageFragment }
-                if (myPageFragment != null) {
-                    supportFragmentManager.beginTransaction().show(myPageFragment).commit()
-                } else {
-                supportFragmentManager.beginTransaction()
-                    .add(binding.fcvMain.id, MyPageFragment.newInstance()
-                    ).commit()
+                        .add(binding.fcvMain.id, MyGoodingFragment.newInstance())
+                        .commit()
                 }
             }
         }
