@@ -2,6 +2,10 @@
 <resources>
     <color name="primaryColor">#3CEFA3</color>
     <color name="secondaryColor">#FF59D0</color>
+    <color name="tertiaryColor">#282932</color>
+    <color name="primaryBackgroundColor">#1C1D27</color>
+    <color name="unactivatedColor">#A4A6AA</color>
+    <color name="unactivatedBackgroundColor">#3E4049</color>
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
