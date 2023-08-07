@@ -4,8 +4,8 @@
     <string name="server_client_id">1025089687385-2jeq6l8c296ekcdecjg76i0382a4j0fg.apps.googleusercontent.com</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="day_feed">데이 피드</string>
+    <string name="feed">피드</string>
     <string name="record">기록</string>
-    <string name="my_page">마이페이지</string>
+    <string name="my_gooding">나의 굳잉</string>
 
 </resources>
