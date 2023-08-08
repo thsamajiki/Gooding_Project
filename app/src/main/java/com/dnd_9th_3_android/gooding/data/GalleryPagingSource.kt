@@ -18,6 +18,7 @@ class GalleryPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GalleryImageData> {
         val page = params.key ?: FIRST_PAGE
         val data = galleryLocalDataSource.getAllImages(page)
+//        val data = galleryLocalDataSource.fetchGalleryImages(params.loadSize, page*params.loadSize)
 //        val endOfPaginationReached = (data.size ?: 0) == 0
 //
 //        val prevKey = if (pageNumber == FIRST_PAGE) null else pageNumber - 1
