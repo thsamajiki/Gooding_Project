@@ -68,6 +68,7 @@ class GalleryActivity : AppCompatActivity() {
     }
 
     private fun initView() {
+        viewModel.getGalleryImages()
         initRecyclerView(binding.rvGalleryImage)
     }
 
@@ -105,7 +106,6 @@ class GalleryActivity : AppCompatActivity() {
                             Toast.makeText(this@GalleryActivity, "이미지 목록을 불러오는 데 실패했습니다.", Toast.LENGTH_SHORT).show()
                         }
                         is GalleryViewModel.UiState.Idle -> {}
-                        else -> {}
                     }
                 }
             }

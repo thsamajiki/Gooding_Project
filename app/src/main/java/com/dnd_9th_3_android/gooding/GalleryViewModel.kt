@@ -34,7 +34,11 @@ class GalleryViewModel @Inject constructor(
     private val _imageList = MutableLiveData<PagingData<GalleryImageData>>()
     val imageList: LiveData<PagingData<GalleryImageData>> = _imageList
 
-    suspend fun getGalleryImages() {
+    init {
+        getGalleryImages()
+    }
+
+    fun getGalleryImages() {
         viewModelScope.launch {
             kotlin.runCatching {
                 galleryRepository.getGalleryPagingList()
@@ -43,6 +47,12 @@ class GalleryViewModel @Inject constructor(
                         _imageList.value = it
                     }
             }
+                .onSuccess {
+                    _uiState.value = UiState.GetGalleryImageListSuccess
+                }
+                .onFailure {
+                    _uiState.value = UiState.GetGalleryImageListFailed
+                }
         }
     }
 
@@ -58,9 +68,5 @@ class GalleryViewModel @Inject constructor(
 //            .apply {
 //                removeAt(position)
 //            }
-    }
-
-    companion object {
-        fun newInstance() = GalleryActivity()
     }
 }

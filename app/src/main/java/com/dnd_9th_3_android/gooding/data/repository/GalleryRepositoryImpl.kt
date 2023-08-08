@@ -15,7 +15,7 @@ class GalleryRepositoryImpl @Inject constructor(
     private val galleryLocalDataSource: GalleryLocalDataSource
 ): GalleryRepository {
 
-    override suspend fun getGalleryPagingList(): Flow<PagingData<GalleryImageData>> {
+    override fun getGalleryPagingList(): Flow<PagingData<GalleryImageData>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
