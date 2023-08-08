@@ -10,13 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import com.dnd_9th_3_android.gooding.feature.feed.R
 
+// 메인 피드  - 추천
 @Composable
-fun NowScreen() {
+fun RecommendScreen() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(colorResource(id = R.color.type1))
+            .background(colorResource(id = R.color.type2))
     ) {
 
     }

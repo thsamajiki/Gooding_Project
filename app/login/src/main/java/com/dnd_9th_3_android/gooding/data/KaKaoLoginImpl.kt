@@ -82,18 +82,18 @@ class KaKaoLoginImpl @Inject constructor() : KaKaoLoginInterface {
     }
 
     override fun getUserInfo(context: Context,loginCallback: (AccessTokenInfo?) -> Unit) {
-//        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
-//            if (error != null){
-//                loginCallback(null)
-//                toastMessage(context,"토큰 정보 불러오기 실패:$error")
-//            }
-//            else if (tokenInfo != null){
-//                loginCallback(tokenInfo) // 로그인 정보와 만료 기간 전송
-//            }
-//            else {
-//                loginCallback(null)
-//                toastMessage(context,"토큰 정보 불러오기 실패 error")
-//            }
-//        }
+        UserApiClient.instance.accessTokenInfo{ tokenInfo, error ->
+            if (error != null){
+                loginCallback(null)
+                toastMessage(context,"토큰 정보 불러오기 실패:$error")
+            }
+            else if (tokenInfo != null){
+                loginCallback(tokenInfo) // 로그인 정보와 만료 기간 전송
+            }
+            else {
+                loginCallback(null)
+                toastMessage(context,"토큰 정보 불러오기 실패 error")
+            }
+        }
     }
 }

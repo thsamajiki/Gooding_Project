@@ -4,6 +4,7 @@
     <dimen name="selected_icon_size">5dp</dimen>
     <dimen name="margin_tab_10">18dp</dimen>
     <dimen name="margin_tab">18dp</dimen>
+    <dimen name="user_image_size">34dp</dimen>
     <dimen name="top_space">36dp</dimen>
     <dimen name="tab_height">56dp</dimen>
     <dimen name="tab_width">150dp</dimen>

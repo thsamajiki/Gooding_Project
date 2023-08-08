@@ -7,19 +7,19 @@ import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import javax.inject.Inject
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface {
     override fun toastMessage(context: Context, message: String) {
@@ -42,6 +42,7 @@ class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface {
                     tokenId = account.idToken
                     if (tokenId != null && tokenId != "") {
                         val credential: AuthCredential = GoogleAuthProvider.getCredential(account.idToken, null)
+
                         firebaseAuth.signInWithCredential(credential).addOnCompleteListener {
                                 if (firebaseAuth.currentUser != null) {
                                     val user: FirebaseUser = firebaseAuth.currentUser!!
