@@ -1,7 +1,10 @@
 package com.dnd_9th_3_android.gooding.data.model
 
 import android.net.Uri
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class GalleryImageData(
     val uri: Uri,
     val name: String,
@@ -12,4 +15,4 @@ data class GalleryImageData(
     val size: Long,
     val width: Int,
     val height: Int
-)
+): Parcelable
