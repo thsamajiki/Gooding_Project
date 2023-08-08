@@ -5,5 +5,5 @@ import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
 import kotlinx.coroutines.flow.Flow
 
 interface GalleryRepository {
-    suspend fun getGalleryPagingList(): Flow<PagingData<GalleryImageData>>
+    fun getGalleryPagingList(): Flow<PagingData<GalleryImageData>>
 }

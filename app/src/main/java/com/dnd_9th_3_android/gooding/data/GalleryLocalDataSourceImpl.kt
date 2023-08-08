@@ -19,7 +19,7 @@ class GalleryLocalDataSourceImpl @Inject constructor(
 
     private val resolver: ContentResolver? = context.contentResolver
 
-    override suspend fun getAllImages(
+    override fun getAllImages(
         page: Int
     ): List<GalleryImageData> {
         val galleryImageList = mutableListOf<GalleryImageData>()
