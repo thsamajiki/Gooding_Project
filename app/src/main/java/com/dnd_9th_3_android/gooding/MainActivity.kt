@@ -1,8 +1,11 @@
 package com.dnd_9th_3_android.gooding
 
+import android.Manifest
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationBarView
 
@@ -44,27 +47,75 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 if (feedFragment != null) {
                     supportFragmentManager.beginTransaction().show(feedFragment).commit()
                 } else {
-                    supportFragmentManager.beginTransaction()
+                    val transaction = supportFragmentManager.beginTransaction()
                         .add(binding.fcvMain.id, FeedFragment.newInstance())
-                        .commit()
+
+                    transaction.addToBackStack(null)
+                    transaction.commit()
                 }
             }
             R.id.menu_record -> {
-                val intent = GalleryActivity.getIntent(this@MainActivity)
-                startActivity(intent)
+//                val intent = GalleryActivity.getIntent(this@MainActivity)
+//                startActivity(intent)
+                if (checkStoragePermission()) {
+                    val intent = GalleryActivity.getIntent(this@MainActivity)
+                    startActivity(intent)
+                }
             }
             R.id.menu_my_gooding -> {
                 val myGoodingFragment = supportFragmentManager.fragments.find { it is MyGoodingFragment }
                 if (myGoodingFragment != null) {
                     supportFragmentManager.beginTransaction().show(myGoodingFragment).commit()
                 } else {
-                    supportFragmentManager.beginTransaction()
+                    val transaction = supportFragmentManager.beginTransaction()
                         .add(binding.fcvMain.id, MyGoodingFragment.newInstance())
-                        .commit()
+
+                    transaction.addToBackStack(null )
+                    transaction.commit()
                 }
             }
         }
 
         return true
+    }
+
+    private fun checkStoragePermission(): Boolean {
+        val readPermission = Manifest.permission.READ_EXTERNAL_STORAGE
+        val writePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+
+        return if (ActivityCompat.checkSelfPermission(
+                this,
+                readPermission
+            ) == PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                writePermission
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            true
+        } else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(readPermission, writePermission),
+                PERMISSION_REQ_CODE
+            )
+            false
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String?>,
+        grantResults: IntArray,
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            val intent = GalleryActivity.getIntent(this@MainActivity)
+            startActivity(intent)
+        }
+    }
+
+    companion object {
+        const val PERMISSION_REQ_CODE = 1010
     }
 }
