@@ -137,8 +137,8 @@ class GalleryActivity : AppCompatActivity() {
         }
 
         binding.tvNextStep.setOnClickListener {
-//            val intent = Record01Activity.getIntent(this@GalleryActivity)
-//            startActivity(intent)
+            val intent = Record01Activity.getIntent(this@GalleryActivity)
+            startActivity(intent)
         }
     }
 
