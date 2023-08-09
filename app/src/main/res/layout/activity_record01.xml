@@ -192,6 +192,7 @@
                 app:layout_constraintTop_toBottomOf="@id/layout_date_goodie_day">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_edit_date_goodie_day"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
@@ -230,6 +231,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_place_goodie_day">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/text_edit_place_goodie_day"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:maxLines="1"
