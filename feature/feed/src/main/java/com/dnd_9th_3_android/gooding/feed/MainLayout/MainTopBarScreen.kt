@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun MainTopLayer (
+fun MainTopBarScreen (
     pageState: PagerState,
     coroutineScope: CoroutineScope,
     pages : List<String>
