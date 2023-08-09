@@ -50,7 +50,6 @@ class GoogleLoginImpl @Inject constructor() : GoogleLoginInterface {
                                     Log.e(ContentValues.TAG, "email : $email")
                                     val googleSignInToken = account.idToken ?: ""
                                     if (googleSignInToken != "") {
-                                        toastMessage(context,googleSignInToken)
                                         Log.e(ContentValues.TAG, "googleSignInToken : $googleSignInToken")
                                         loginCallback(googleSignInToken)
                                     } else {

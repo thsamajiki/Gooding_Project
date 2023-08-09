@@ -145,6 +145,9 @@ dependencies {
     implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
     implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    // compose view model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+
     // image ui
     implementation ("io.coil-kt:coil-compose:1.3.2")
     // activity + compose

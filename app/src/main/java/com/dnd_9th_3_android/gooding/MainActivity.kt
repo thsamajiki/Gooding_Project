@@ -5,13 +5,14 @@ import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
+import com.dnd_9th_3_android.gooding.viewModel.MainFeedViewModel
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

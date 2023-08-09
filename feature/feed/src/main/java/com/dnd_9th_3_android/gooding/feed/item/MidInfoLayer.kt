@@ -2,10 +2,7 @@ package com.dnd_9th_3_android.gooding.feed.item
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
@@ -15,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.feed.R
 
 @Composable
@@ -31,21 +29,24 @@ fun MidInfoLayer(
             start=18.dp, end = 18.dp
         )
     ) {
+        // location Info
         Row(
-            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
-                .padding(5.dp)
                 .background(Color.Gray, RoundedCornerShape(8.dp))
+                .padding(8.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.baseline_location_on_24), contentDescription =null 
+                painter = painterResource(id = R.drawable.baseline_location_on_24), contentDescription =null,
+                modifier = Modifier.size(20.dp)
             )
             Spacer(modifier = Modifier.width(3.dp))
-            Text(text = location, color = Color.White)
+            Text(text = location, color = Color.White, fontSize = 10.sp)
         }
 
         Divider(modifier = Modifier.weight(1f))
 
+        // save button
         Image(painter = painterResource(id = R.drawable.baseline_bookmark_24), contentDescription = null)
     }
     

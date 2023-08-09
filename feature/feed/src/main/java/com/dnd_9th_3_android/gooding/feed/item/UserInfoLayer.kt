@@ -57,7 +57,12 @@ fun UserInfoLayer(userInfo:UserInfo,uploadTime : String) {
             fontSize = 10.sp,
             modifier = Modifier
                 .background(Color.Black, RoundedCornerShape(20.dp))
-                .padding(5.dp)
+                .padding(
+                    start = 10.dp,
+                    end = 10.dp,
+                    top = 5.dp,
+                    bottom = 5.dp
+                )
         )
 
     }

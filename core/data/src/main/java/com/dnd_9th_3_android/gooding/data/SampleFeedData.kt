@@ -17,6 +17,19 @@ object SampleFeedData {
                 "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"
             )
 
+        ),
+        Feed(
+            "나의 두번째 굳이데이 기록",
+            "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
+            30,
+            "광안리 해수욕장",
+            listOf("https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel"),
+            "15분 전",
+            UserInfo(
+                "jiyoung_5386",
+                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"
+            )
+
         )
     )
 }
