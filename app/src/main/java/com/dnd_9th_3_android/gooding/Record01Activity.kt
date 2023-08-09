@@ -62,6 +62,12 @@ class Record01Activity : AppCompatActivity() {
             }
         }
 
+        binding.textLayoutDateGoodieDay.setOnClickListener {
+            binding.textEditContentGoodieDay.clearFocus()
+            val bottomSheetDatePicker = BottomSheetDatePicker.newInstance()
+            bottomSheetDatePicker.show(supportFragmentManager, bottomSheetDatePicker.tag)
+        }
+
         binding.btnNextStep.setOnClickListener {
             val intent = Record02Activity.getIntent(this@Record01Activity)
             startActivity(intent)

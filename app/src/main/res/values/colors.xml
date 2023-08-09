@@ -6,6 +6,7 @@
     <color name="quaternaryColor">#75777B</color>
     <color name="primaryBackgroundColor">#1C1D27</color>
     <color name="secondBackgroundColor">#575860</color>
+    <color name="activatedColor">#8AF4C0</color>
     <color name="unactivatedColor">#A4A6AA</color>
     <color name="unactivatedBackgroundColor">#3E4049</color>
 
