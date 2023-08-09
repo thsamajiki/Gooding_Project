@@ -4,4 +4,5 @@ import java.io.Serializable
 
 data class AccessToken(
     val accessToken : String,
+    val oauthId : String,
 ): Serializable

@@ -45,6 +45,7 @@ class LoginActivity : AppCompatActivity() {
                         ) {
                             if (response.isSuccessful){
                                 Log.d("is sucess!",response.body()!!.accessToken)
+                                Log.d("aouth",response.body()!!.oauthId)
                                 loginUser(response.body()!!.accessToken)
                             }else{
                                 Log.d("error",response.errorBody()?.string()!!)
@@ -80,6 +81,7 @@ class LoginActivity : AppCompatActivity() {
                                 ) {
                                     if (response.isSuccessful){
                                         Log.d("is sucess!",response.body()!!.accessToken)
+                                        Log.d("aouth",response.body()!!.oauthId)
                                         loginUser(response.body()!!.accessToken)
                                     }else{
                                         Log.d("error",response.errorBody()?.string()!!)
