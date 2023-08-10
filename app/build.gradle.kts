@@ -158,4 +158,5 @@ dependencies {
     implementation(project(":core:api"))
     implementation(project(":core:model"))
     implementation(project(":feature:feed"))
+    implementation(project(":feature:myaccount"))
 }

@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -44,4 +48,22 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:2.45")
+    kapt("com.google.dagger:hilt-compiler:2.45")
+
+    // compose
+    val composeVersion = "1.2.0"
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    // compose view model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    // image ui
+    implementation ("io.coil-kt:coil-compose:1.3.2")
+
 }
