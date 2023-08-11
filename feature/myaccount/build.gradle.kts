@@ -9,17 +9,20 @@ plugins {
 
 android {
     namespace = "com.dnd_9th_3_android.gooding.feature.my"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
 
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
 
         consumerProguardFiles("consumer-rules.pro")
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        compose = true
     }
 
     buildTypes {
@@ -32,11 +35,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 }
 
@@ -63,7 +69,13 @@ dependencies {
     implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
     // compose view model
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    // compose navi
+    implementation("androidx.navigation:navigation-compose:2.4.1")
+
     // image ui
     implementation ("io.coil-kt:coil-compose:1.3.2")
 
+    // module
+    implementation(project(":core:model"))
+    implementation(project(":core:data"))
 }

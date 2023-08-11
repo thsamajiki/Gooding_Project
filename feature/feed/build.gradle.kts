@@ -36,7 +36,7 @@ android {
         kotlinCompilerExtensionVersion = "1.4.0"
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
     buildFeatures {
         compose = true
