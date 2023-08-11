@@ -12,10 +12,7 @@ object SampleFeedData {
             "광안리 해수욕장",
             listOf("https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"),
             "5분 전",
-            UserInfo(
-                "jiyoung_5386",
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"
-            )
+            SampleUserData.sampleUserData[0]
 
         ),
         Feed(
@@ -25,10 +22,7 @@ object SampleFeedData {
             "광안리 해수욕장",
             listOf("https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel"),
             "15분 전",
-            UserInfo(
-                "jiyoung_5386",
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"
-            )
+            SampleUserData.sampleUserData[1]
 
         )
     )
