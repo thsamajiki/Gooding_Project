@@ -9,10 +9,12 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
 import com.dnd_9th_3_android.gooding.viewModel.MainFeedViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
+    lateinit var bottomNavi : BottomNavigationView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         setContentView(view)
 
         setupBottomNavigationView()
-
+        bottomNavi = binding.bottomNavMain // invisibility 하기 위함
         if (savedInstanceState == null) {
             binding.bottomNavMain.selectedItemId = R.id.menu_feed
         }

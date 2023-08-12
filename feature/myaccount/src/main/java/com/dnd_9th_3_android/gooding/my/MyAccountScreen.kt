@@ -9,10 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.dnd_9th_3_android.gooding.my.navi.NavigationGraph
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // just nav controller view
 @Composable
-fun MyAccountScreen() {
+fun MyAccountScreen(bottomNavi : BottomNavigationView) {
     val navController = rememberNavController()
-    NavigationGraph(navController)
+    NavigationGraph(navController,bottomNavi)
 }

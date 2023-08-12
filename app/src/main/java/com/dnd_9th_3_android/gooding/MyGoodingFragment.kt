@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,11 @@ import com.dnd_9th_3_android.gooding.ui.theme.GoodingTheme
 class MyGoodingFragment : Fragment() {
     private var _binding : FragmentMyGoodingBinding? = null
     private val binding get() = _binding!!
+    lateinit var mainActivity: MainActivity
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        mainActivity = context as MainActivity
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -23,7 +29,7 @@ class MyGoodingFragment : Fragment() {
             setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
             setContent {
                 GoodingTheme {
-                    MyAccountScreen()
+                    MyAccountScreen(mainActivity.bottomNavi)
                 }
             }
         }
@@ -37,4 +43,5 @@ class MyGoodingFragment : Fragment() {
     companion object {
         fun newInstance() = MyGoodingFragment()
     }
+
 }
