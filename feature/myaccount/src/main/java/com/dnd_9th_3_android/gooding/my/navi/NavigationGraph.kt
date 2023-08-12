@@ -9,17 +9,19 @@ import androidx.navigation.compose.composable
 import com.dnd_9th_3_android.gooding.my.MyAccountScreen
 import com.dnd_9th_3_android.gooding.my.mainLayout.MyScreen
 import com.dnd_9th_3_android.gooding.my.mainLayout.SettingScreen
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 @Composable
 fun NavigationGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    bottomNavi : BottomNavigationView
 ){
     NavHost(
         navController = navController,
         startDestination = "myScreen"
     ){
-        composable("myScreen"){ MyScreen(navController) }
-        composable("settingScreen"){SettingScreen()}
+        composable("myScreen"){ MyScreen(navController,bottomNavi) }
+        composable("settingScreen"){SettingScreen(navController,bottomNavi)}
     }
 }
