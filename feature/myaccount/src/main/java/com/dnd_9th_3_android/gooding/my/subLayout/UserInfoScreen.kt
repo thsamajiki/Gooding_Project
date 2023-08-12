@@ -2,7 +2,6 @@ package com.dnd_9th_3_android.gooding.my.subLayout
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.dimensionResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
@@ -19,10 +18,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.my.contentLayout.BoxText
 
+// user info
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun UserInfoScreen(
@@ -45,6 +44,7 @@ fun UserInfoScreen(
             ),
         verticalAlignment = Alignment.CenterVertically
     ) {
+        // user image
         Image(
             painter = painter,
             contentDescription = null,
@@ -55,12 +55,14 @@ fun UserInfoScreen(
                 .border(dimensionResource(id = R.dimen.border_size), Color.White, CircleShape)
         )
         Spacer(modifier =Modifier.width(dimensionResource(id = R.dimen.padding_10)))
+        // user name
         Text(
             text =  userInfo.name,
-            fontSize = dimensionResource(id = R.dimen.profile_name_text).value.sp,
+            fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
             color = Color.White
         )
         Spacer(modifier = Modifier.weight(1f))
+        // 프로필 수정 menu
         BoxText(
             borderColor = colorResource(id = R.color.blue_gray),
             borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),

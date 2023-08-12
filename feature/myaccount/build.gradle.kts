@@ -74,7 +74,9 @@ dependencies {
 
     // image ui
     implementation ("io.coil-kt:coil-compose:1.3.2")
-
+    // tab + pager
+    implementation("com.google.accompanist:accompanist-pager:0.20.1")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
     // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))

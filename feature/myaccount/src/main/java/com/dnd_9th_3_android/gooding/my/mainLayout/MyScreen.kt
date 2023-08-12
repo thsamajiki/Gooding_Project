@@ -2,6 +2,7 @@ package com.dnd_9th_3_android.gooding.my.mainLayout
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,6 +22,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.dnd_9th_3_android.gooding.data.SampleUserData
 import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.my.subLayout.BottomTabScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.LevelScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.TopMenuScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.UserInfoScreen
@@ -37,8 +39,8 @@ fun MyScreen(
     var scrolledY = 0f
     var previousOffset = 0
     LazyColumn(
-        Modifier.fillMaxSize(),
-        lazyState
+        modifier = Modifier.fillMaxSize(),
+        state = lazyState
     ) {
         item {
             Column(
@@ -47,6 +49,9 @@ fun MyScreen(
                         scrolledY += lazyState.firstVisibleItemScrollOffset - previousOffset
                         translationY = scrolledY * 0.5f
                         previousOffset = lazyState.firstVisibleItemScrollOffset
+                        Log.d("flewjlfew 1",scrolledY.toString())
+                        Log.d("flewjlfew 2",translationY.toString())
+                        Log.d("flewjlfew 3",previousOffset.toString())
                     }
                     .wrapContentHeight()
                     .fillMaxWidth()
@@ -62,6 +67,9 @@ fun MyScreen(
             }
         }
 
+        item {
+            BottomTabScreen(lazyState)
+        }
     }
 
 

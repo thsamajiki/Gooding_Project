@@ -28,7 +28,7 @@ import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
+// my main top menu
 @SuppressLint("RestrictedApi")
 @Composable
 fun TopMenuScreen(
