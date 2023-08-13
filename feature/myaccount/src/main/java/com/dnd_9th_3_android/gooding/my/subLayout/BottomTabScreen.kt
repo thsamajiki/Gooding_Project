@@ -83,7 +83,6 @@ fun BottomTabScreen(
         HorizontalPager(
             count = pages.size,
             state = pageState,
-            modifier = Modifier
         ) {page ->
             when (page){
                 0 -> TimeLineScreen()

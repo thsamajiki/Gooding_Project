@@ -10,8 +10,10 @@
     <!--level-->
     <dimen name="text_12">12sp</dimen>
     <dimen name="border_size">1dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_6">6dp</dimen>
+    <dimen name="corner_4">4dp</dimen>
     <dimen name="corner_6">6dp</dimen>
     <dimen name="level_image_w">166dp</dimen>
     <dimen name="level_image_h">147dp</dimen>

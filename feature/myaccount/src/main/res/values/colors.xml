@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="secondary_1">#3CEFA3</color>
+    <color name="for_grada_1">#FF59D0</color>
     <color name="box_strok_color">#3CEFA3</color>
     <color name="blue_gray">#3E4049</color>
     <color name="back_blue_gray">#1A3CEFA3</color>

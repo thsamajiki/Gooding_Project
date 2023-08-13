@@ -66,7 +66,7 @@ fun UserInfoScreen(
         Spacer(modifier = Modifier.weight(1f))
         // 프로필 수정 menu
         BoxText(
-            colorResource(id = R.color.blue_gray),
+            listOf(colorResource(id = R.color.blue_gray),colorResource(id = R.color.blue_gray)),
             RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
             colorResource(id = R.color.blue_gray),
             "프로필 수정",

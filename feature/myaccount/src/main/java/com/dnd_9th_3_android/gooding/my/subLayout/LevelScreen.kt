@@ -34,12 +34,12 @@ fun LevelScreen(
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_16)))
 
         BoxText(
-            colorResource(id = R.color.secondary_1),
+            listOf(colorResource(id = R.color.for_grada_1),colorResource(id = R.color.secondary_1)),
             RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
-            colorResource(id = R.color.back_blue_gray),
+            Color.Transparent,
             levelText,
             dimensionResource(id = R.dimen.text_12).value.sp,
-            colorResource(id = R.color.secondary_1),
+            Color.White,
         )
 
     }
