@@ -10,8 +10,10 @@
     <!--level-->
     <dimen name="text_12">12sp</dimen>
     <dimen name="border_size">1dp</dimen>
+    <dimen name="padding_8">8dp</dimen>
     <dimen name="padding_10">10dp</dimen>
     <dimen name="padding_6">6dp</dimen>
+    <dimen name="corner_4">4dp</dimen>
     <dimen name="corner_6">6dp</dimen>
     <dimen name="level_image_w">166dp</dimen>
     <dimen name="level_image_h">147dp</dimen>
@@ -22,8 +24,14 @@
     <dimen name="profile_image_size">36dp</dimen>
     <dimen name="text_16_sp">16sp</dimen>
     <!--tab-->
+    <dimen name="text_w_1">54dp</dimen>
+    <dimen name="text_h">18dp</dimen>
+    <dimen name="text_w_2">77dp</dimen>
     <dimen name="border_size_2">2dp</dimen>
+    <dimen name="arrow_size">24dp</dimen>
     <dimen name="padding_33">33dp</dimen>
+    <dimen name="padding_34">34dp</dimen>
+    <dimen name="padding_15">15dp</dimen>
     <dimen name="padding_18">18dp</dimen>
     <dimen name="tab_width">350dp</dimen>
     <dimen name="text_width">80dp</dimen>

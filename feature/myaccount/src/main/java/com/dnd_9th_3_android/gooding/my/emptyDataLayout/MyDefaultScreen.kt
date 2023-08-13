@@ -1,8 +1,11 @@
 package com.dnd_9th_3_android.gooding.my.mainLayout
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 
 @Composable
-fun MyDefaultScreen() {
-
+fun DefaultTimeLineScreen() {
+    Column {
+        
+    }
 }

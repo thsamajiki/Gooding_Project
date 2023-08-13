@@ -14,6 +14,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.pagerTabIndicatorOffset
@@ -56,7 +57,8 @@ fun TabTopScreen(
                     Text(
                         text = title,
                         fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                        fontWeight = FontWeight.Bold,
+                        fontFamily = pretendard
+
                     )
                 },
                 selected = pageState.currentPage == index,
