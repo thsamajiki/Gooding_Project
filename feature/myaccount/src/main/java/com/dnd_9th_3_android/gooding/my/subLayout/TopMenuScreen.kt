@@ -20,12 +20,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // my main top menu
@@ -45,7 +48,7 @@ fun TopMenuScreen(
             modifier = Modifier.align(Alignment.Center),
             color = Color.White,
             fontSize = dimensionResource(R.dimen.main_text_sp).value.sp,
-            fontWeight = FontWeight.Bold
+            fontFamily = pretendard
         )
         Image(
             painter = painterResource(id = R.drawable.settings),

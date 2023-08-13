@@ -39,7 +39,7 @@ fun LevelScreen(
             colorResource(id = R.color.back_blue_gray),
             levelText,
             dimensionResource(id = R.dimen.text_12).value.sp,
-            colorResource(id = R.color.secondary_1)
+            colorResource(id = R.color.secondary_1),
         )
 
     }
