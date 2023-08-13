@@ -76,6 +76,12 @@ dependencies {
     // tab + pager
     implementation("com.google.accompanist:accompanist-pager:0.20.1")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
+    // compose slide
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha09")
+    // coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
+
+
     // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))

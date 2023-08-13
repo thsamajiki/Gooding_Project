@@ -45,7 +45,7 @@ fun BottomTabScreen(
     ) {
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_33)))
         // button : 축소
-        if (!isVisibleTop){
+        if (isVisibleTop){
             Box(
                 modifier = Modifier
                     .size(dimensionResource(id = R.dimen.arrow_size))
