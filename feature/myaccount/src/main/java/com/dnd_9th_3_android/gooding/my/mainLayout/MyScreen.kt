@@ -1,25 +1,16 @@
 package com.dnd_9th_3_android.gooding.my.mainLayout
 
-import android.content.Context
-import android.content.ContextWrapper
-import android.util.Log
-import androidx.activity.ComponentActivity
+import android.view.View
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.rememberScrollableState
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.currentCompositionLocalContext
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.dnd_9th_3_android.gooding.data.SampleUserData
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.my.subLayout.BottomTabScreen
@@ -28,56 +19,65 @@ import com.dnd_9th_3_android.gooding.my.subLayout.TopMenuScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.UserInfoScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-
 @Composable
-fun MyScreen(
-    navController : NavController,
-    bottomNavi : BottomNavigationView
+fun NewMyScreen(
+    navController: NavController,
+    bottomNavi: BottomNavigationView
 ) {
-    val lazyState = rememberLazyListState()
-    // y축 스크롤
-    var scrolledY = 0f
-    var previousOffset = 0
-    LazyColumn(
-        modifier = Modifier.fillMaxSize(),
-        state = lazyState
+    var offset by remember { mutableStateOf(0f) }
+    var isVisibleTop by remember { mutableStateOf(true) }
+    Column(
+        modifier = Modifier.fillMaxSize()
     ) {
-        item {
+        if (isVisibleTop) {
             Column(
-                modifier = Modifier
-                    .graphicsLayer {
-                        scrolledY += lazyState.firstVisibleItemScrollOffset - previousOffset
-                        translationY = scrolledY * 0.5f
-                        previousOffset = lazyState.firstVisibleItemScrollOffset
-                        Log.d("flewjlfew 1",scrolledY.toString())
-                        Log.d("flewjlfew 2",translationY.toString())
-                        Log.d("flewjlfew 3",previousOffset.toString())
+                modifier = Modifier.graphicsLayer {
+                    if (offset<0f) {
+                        translationY = offset * 0.5f
                     }
-                    .wrapContentHeight()
-                    .fillMaxWidth()
+                }
             ) {
-                // main content
-
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_margin)))
-                TopMenuScreen(navController,bottomNavi)
-                LevelScreen(painterResource(id = R.drawable.level_icon), "LV1.초보 낭만러")
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_28)))
+                // main content (top menu)
+                Spacer(modifier = Modifier.height(dimensionResource(id = com.dnd_9th_3_android.gooding.feature.my.R.dimen.top_margin)))
+                TopMenuScreen(navController, bottomNavi)
+                LevelScreen(
+                    painterResource(id = R.drawable.level_icon),
+                    "LV1.초보 낭만러"
+                )
+                Spacer(modifier = Modifier.height(dimensionResource(id = com.dnd_9th_3_android.gooding.feature.my.R.dimen.padding_28)))
                 UserInfoScreen(userInfo = SampleUserData.sampleUserData[0])
-                Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
+                Spacer(modifier = Modifier.height(dimensionResource(id = com.dnd_9th_3_android.gooding.feature.my.R.dimen.padding_24)))
             }
         }
 
-        item {
-            BottomTabScreen(lazyState)
+        Box(
+            modifier = Modifier
+                .graphicsLayer {
+                    if (isVisibleTop) {
+                        if (offset < 0f) {
+                            translationY = offset * 0.5f
+                        }
+                    }
+                    if (offset < -2500f) {
+                        isVisibleTop = false
+                        bottomNavi.visibility = View.GONE
+                    }
+                }
+                .scrollable(
+                    orientation = Orientation.Vertical,
+                    state = rememberScrollableState { delta ->
+                        offset += delta
+                        delta
+                    }
+                )
+            ,
+        ) {
+            BottomTabScreen(isVisibleTop, setMaxScreen = {
+                isVisibleTop = true
+                bottomNavi.visibility = View.VISIBLE
+                offset = 0f
+            })
         }
     }
 
-
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewMyScreen(){
-    MyScreen(rememberNavController(),BottomNavigationView(LocalContext.current))
 }
