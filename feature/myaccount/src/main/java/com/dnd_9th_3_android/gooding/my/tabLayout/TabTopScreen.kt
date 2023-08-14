@@ -10,14 +10,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.pagerTabIndicatorOffset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -63,7 +61,7 @@ fun TabTopScreen(
                 },
                 selected = pageState.currentPage == index,
                 selectedContentColor = Color.White,
-                unselectedContentColor = colorResource(id = R.color.unselect_tab),
+                unselectedContentColor = colorResource(id = R.color.blue_gray_3),
                 onClick = {
                     coroutineScope.launch {
                         pageState.scrollToPage(index)

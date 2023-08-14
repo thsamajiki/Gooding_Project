@@ -1,13 +1,10 @@
 package com.dnd_9th_3_android.gooding.my.tabLayout
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dnd_9th_3_android.gooding.feature.my.R
@@ -15,25 +12,39 @@ import com.dnd_9th_3_android.gooding.my.contentLayout.poppins
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import com.dnd_9th_3_android.gooding.my.mainLayout.DefaultTimeLineScreen
+import com.dnd_9th_3_android.gooding.my.selectMonth.SelectMonthBottomSheet
 
 @Composable
 fun TimeLineScreen(
     todayViewModel: TodayViewModel = viewModel()
 ) {
+    // is monthPicker view?
+    var showSelectView by remember {
+        mutableStateOf(false)
+    }
+    if (showSelectView){
+        SelectMonthBottomSheet(todayViewModel =todayViewModel,onClose = {
+            showSelectView = false
+        })
+    }
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_20)))
+        // select month
         Row(
-            Modifier.clickable {
-
-            }
+            Modifier
+                .clickable {
+                    showSelectView = true
+                }
         ){
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
             Text(
-                text = "${todayViewModel.currentYear}.${todayViewModel.currentMonth}",
+                text = "${todayViewModel.todayYear}.${todayViewModel.todayMonth}",
                 fontFamily = poppins,
                 fontSize = dimensionResource(id = R.dimen.main_text_sp).value.sp,
                 color = Color.White
@@ -51,5 +62,7 @@ fun TimeLineScreen(
                 )
             }
         }
+        // no user record
+        DefaultTimeLineScreen()
     }
 }

@@ -34,6 +34,8 @@ fun BoxText(
     text: String,
     fontSize: TextUnit,
     fontColor: Color,
+    hoPadding : Dp,
+    verPadding : Dp
 ) {
     Box(
         contentAlignment = Alignment.Center,
@@ -59,10 +61,10 @@ fun BoxText(
             fontFamily = pretendard,
             modifier = Modifier
                 .padding(
-                    start = dimensionResource(id = R.dimen.padding_10),
-                    end = dimensionResource(id = R.dimen.padding_10),
-                    top = dimensionResource(id = R.dimen.padding_8),
-                    bottom = dimensionResource(id = R.dimen.padding_8)
+                    start = verPadding,
+                    end = verPadding,
+                    top = hoPadding,
+                    bottom = hoPadding
                 )
         )
     }

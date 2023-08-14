@@ -72,6 +72,8 @@ fun UserInfoScreen(
             "프로필 수정",
             dimensionResource(id = R.dimen.text_12).value.sp,
             Color.White,
+            dimensionResource(id = R.dimen.padding_8),
+            dimensionResource(id = R.dimen.padding_10)
         )
     }
 }

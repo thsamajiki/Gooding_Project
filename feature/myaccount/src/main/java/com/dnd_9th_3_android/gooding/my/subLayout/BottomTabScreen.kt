@@ -24,7 +24,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 private val pages = listOf("타임라인","저장")
 @OptIn(ExperimentalPagerApi::class)
