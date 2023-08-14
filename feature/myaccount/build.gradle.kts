@@ -48,7 +48,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.core:core-ktx:1.10.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     testImplementation("junit:junit:4.13.2")
@@ -76,6 +76,13 @@ dependencies {
     // tab + pager
     implementation("com.google.accompanist:accompanist-pager:0.20.1")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
+    // compose slide
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha09")
+    // coroutines
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
+
+    // bottom sheet
+    implementation ("com.holix.android:bottomsheetdialog-compose:$composeVersion")
     // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))
