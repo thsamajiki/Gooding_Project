@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.my.tabLayout
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -29,6 +30,13 @@ fun TimeLineScreen(
     }
     if (showSelectView){
         SelectMonthBottomSheet(todayViewModel =todayViewModel,onClose = {
+            todayViewModel.monthPicker.apply {
+                if (!this.isChange){
+                    this.resetData()
+                }else{
+                    this.isChange = false
+                }
+            }
             showSelectView = false
         })
     }
@@ -45,7 +53,7 @@ fun TimeLineScreen(
         ){
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
             Text(
-                text = "${todayViewModel.todayYear}.${todayViewModel.todayMonth}",
+                text = todayViewModel.monthPicker.monthDataList[todayViewModel.monthPicker.currentPickIndex].keyDate,
                 fontFamily = poppins,
                 fontSize = dimensionResource(id = R.dimen.main_text_sp).value.sp,
                 color = Color.White

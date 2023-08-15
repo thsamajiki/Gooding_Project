@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.my.selectMonth
 
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,17 +17,22 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.model.month.MonthData
+import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 
 @Composable
 fun ItemMonthData(
-    monthData: MonthData
+    monthData : MonthData,
+    onclick : (MonthData) -> Unit
 ) {
-    val colorState =
-        if (monthData.isSelected) {
-            colorResource(id = R.color.secondary_1)
-        }else{
-            Color.White
-        }
+//
+//    val changeColor by remember {
+//        mutableStateOf(monthData.isSelected)
+//    }
+    val colorState by  animateColorAsState(
+        if (monthData.isSelected) colorResource(id = R.color.secondary_1)
+        else colorResource(id = R.color.blue_gray_3)
+    )
+
     Box(
         modifier = Modifier
             .padding(
@@ -36,7 +42,7 @@ fun ItemMonthData(
             .wrapContentHeight()
             .fillMaxWidth()
             .clickable {
-
+                onclick(monthData)
             }
     ){
         Text(

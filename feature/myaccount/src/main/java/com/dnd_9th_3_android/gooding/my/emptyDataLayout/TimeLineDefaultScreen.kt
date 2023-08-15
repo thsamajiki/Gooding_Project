@@ -38,33 +38,19 @@ fun DefaultTimeLineScreen() {
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_12)))
         //record button
         Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .border(
-                    width = dimensionResource(id = R.dimen.border_size),
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
-                    color = colorResource(id = R.color.blue_gray_3)
-                )
-                .background(
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
-                    color = Color.Transparent
-                )
-                .clickable {
-                    // go record activity
-                }
-                .fillMaxWidth()
-                .wrapContentHeight()
-        ) {
-            Text(
+            modifier = Modifier.clickable {
+                //go record activity
+            }
+        ){
+            BoxText(
+                borderColor = listOf(colorResource(id = R.color.blue_gray_3),colorResource(id = R.color.blue_gray_3)),
+                borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
+                borderBackground = Color.Transparent ,
                 text = "기록하기",
                 fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                color = Color.White,
-                fontFamily = pretendard,
-                modifier = Modifier
-                    .padding(
-                        top = dimensionResource(id = R.dimen.padding_11_5),
-                        bottom = dimensionResource(id = R.dimen.padding_11_5)
-                    )
+                fontColor = Color.White ,
+                hoPadding = dimensionResource(id = R.dimen.padding_11_5),
+                verPadding = dimensionResource(id = R.dimen.zero)
             )
         }
     }
