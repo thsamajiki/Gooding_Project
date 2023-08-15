@@ -70,7 +70,9 @@ dependencies {
     // compose view model
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
     // compose navi
-    implementation("androidx.navigation:navigation-compose:2.4.1")
+    implementation ("androidx.fragment:fragment-ktx:1.5.4")
+    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
     // image ui
     implementation ("io.coil-kt:coil-compose:1.3.2")
     // tab + pager

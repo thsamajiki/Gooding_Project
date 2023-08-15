@@ -1,5 +1,6 @@
-package com.dnd_9th_3_android.gooding.model
+package com.dnd_9th_3_android.gooding.model.feed
 
+import com.dnd_9th_3_android.gooding.model.user.UserInfo
 import java.io.Serializable
 
 data class Feed(

@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.rememberImagePainter
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
-import com.dnd_9th_3_android.gooding.model.Feed
+import com.dnd_9th_3_android.gooding.model.feed.Feed
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.CircularProgressIndicator
@@ -19,7 +19,7 @@ import com.dnd_9th_3_android.gooding.feature.feed.R
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun OneFeedItem(feed:Feed) {
+fun OneFeedItem(feed: Feed) {
     val painter = rememberImagePainter(
         data = feed.urlList[0],
         builder = {

@@ -39,7 +39,10 @@ fun BottomTabScreen(
         modifier = Modifier
             .background(
                 color = colorResource(id = R.color.tab_background),
-                RoundedCornerShape(dimensionResource(id = R.dimen.padding_24))
+                RoundedCornerShape(
+                    topStart = dimensionResource(id = R.dimen.padding_24),
+                    topEnd = dimensionResource(id = R.dimen.padding_24)
+                )
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

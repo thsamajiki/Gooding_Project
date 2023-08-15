@@ -1,12 +1,12 @@
 package com.dnd_9th_3_android.gooding.my.selectMonth
 
+import android.util.Log
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -18,19 +18,33 @@ import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialogProperties
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.Observer
+import com.dnd_9th_3_android.gooding.model.month.MonthData
+import com.dnd_9th_3_android.gooding.my.contentLayout.BoxText
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
 fun SelectMonthBottomSheet(
     todayViewModel : TodayViewModel,
     onClose : () -> Unit
 ) {
+    val listState = rememberLazyListState()
+    val coroutineScope = rememberCoroutineScope()
+    var click by remember{
+        mutableStateOf(false)
+    }
     BottomSheetDialog(
         onDismissRequest = {
-
+            onClose()
         },
         properties = BottomSheetDialogProperties(
             dismissOnBackPress = true,
@@ -41,7 +55,10 @@ fun SelectMonthBottomSheet(
             modifier = Modifier
                 .background(
                     color = colorResource(id = R.color.blue_gray_6),
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.padding_24)),
+                    shape = RoundedCornerShape(
+                        topStart = dimensionResource(id = R.dimen.padding_24),
+                        topEnd = dimensionResource(id = R.dimen.padding_24)
+                    ),
                 )
                 .padding(dimensionResource(id = R.dimen.padding_18))
                 .wrapContentHeight()
@@ -78,25 +95,58 @@ fun SelectMonthBottomSheet(
             LazyColumn(
                 modifier = Modifier
                     .height(dimensionResource(id = R.dimen.size_144))
+                    .fillMaxWidth(),
+                state = listState
             ){
-                var year = todayViewModel.todayYear
-                var month = todayViewModel.todayMonth
-                items(100){
-                    // 현재선택 달 == 현재 뷰인 경우
-                    val isSelected = todayViewModel.currentYear == year && todayViewModel.currentMonth==month
-                    ItemMonthData(
-                        year = year,
-                        month = month,
-                        isSelected = isSelected
-                    )
-                    if (month == 1){
-                        year -= 1
-                        month = 12
-                    }else{
-                        month -=1
+                todayViewModel.monthPicker.let{ monthPicker->
+                    items(monthPicker.getListData()){data->
+                        monthPicker.selectedIndex.let {
+                            if (it>0){
+                                coroutineScope.launch { listState.animateScrollToItem(it-1) }
+                            }
+                        }
+                        ItemMonthData(data, onclick = { pick ->
+                            // 데이터 수정 요청
+                            monthPicker.fixPicData(pick)
+                            click = true
+                        })
+                    }
+                    // 클릭 감지 후 데이터 리셋
+                    if (click){
+                        itemsIndexed(monthPicker.getListData()){ _,_-> }
+                        click = false
                     }
                 }
             }
+
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_18)))
+
+            // 완료 -> is change true
+            Box(
+                modifier = Modifier.clickable {
+                    todayViewModel.monthPicker.apply {
+                        isChange = true
+                        setCurrentPickData()
+                    }
+                    onClose()
+                }
+            ) {
+                BoxText(
+                    borderColor = listOf(
+                        colorResource(id = R.color.blue_gray_7),
+                        colorResource(id = R.color.blue_gray_7)
+                    ),
+                    borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_8)),
+                    borderBackground = colorResource(id = R.color.secondary_1),
+                    text = "선택 완료",
+                    fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
+                    fontColor = colorResource(id = R.color.blue_gray_7),
+                    hoPadding = dimensionResource(id = R.dimen.padding_11_5),
+                    verPadding = dimensionResource(id = R.dimen.zero)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_10)))
         }
     }
 }

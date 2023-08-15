@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.my.tabLayout
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
@@ -15,12 +16,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.dnd_9th_3_android.gooding.my.mainLayout.DefaultTimeLineScreen
 import com.dnd_9th_3_android.gooding.my.selectMonth.SelectMonthBottomSheet
 
 @Composable
 fun TimeLineScreen(
-    todayViewModel: TodayViewModel = viewModel()
+    todayViewModel: TodayViewModel = hiltViewModel()
 ) {
     // is monthPicker view?
     var showSelectView by remember {
@@ -28,6 +30,13 @@ fun TimeLineScreen(
     }
     if (showSelectView){
         SelectMonthBottomSheet(todayViewModel =todayViewModel,onClose = {
+            todayViewModel.monthPicker.apply {
+                if (!this.isChange){
+                    this.resetData()
+                }else{
+                    this.isChange = false
+                }
+            }
             showSelectView = false
         })
     }
@@ -44,7 +53,7 @@ fun TimeLineScreen(
         ){
             Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
             Text(
-                text = "${todayViewModel.todayYear}.${todayViewModel.todayMonth}",
+                text = todayViewModel.monthPicker.monthDataList[todayViewModel.monthPicker.currentPickIndex].keyDate,
                 fontFamily = poppins,
                 fontSize = dimensionResource(id = R.dimen.main_text_sp).value.sp,
                 color = Color.White

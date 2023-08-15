@@ -1,6 +1,6 @@
 package com.dnd_9th_3_android.gooding.api
 
-import com.dnd_9th_3_android.gooding.model.AccessToken
+import com.dnd_9th_3_android.gooding.model.user.AccessToken
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
