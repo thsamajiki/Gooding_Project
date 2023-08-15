@@ -15,12 +15,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.dnd_9th_3_android.gooding.my.mainLayout.DefaultTimeLineScreen
 import com.dnd_9th_3_android.gooding.my.selectMonth.SelectMonthBottomSheet
 
 @Composable
 fun TimeLineScreen(
-    todayViewModel: TodayViewModel = viewModel()
+    todayViewModel: TodayViewModel = hiltViewModel()
 ) {
     // is monthPicker view?
     var showSelectView by remember {

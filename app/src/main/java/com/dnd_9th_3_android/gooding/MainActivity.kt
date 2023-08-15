@@ -4,14 +4,19 @@ import android.Manifest
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
+import com.dnd_9th_3_android.gooding.my.selectMonth.data.MonthPickerInterface
 import com.dnd_9th_3_android.gooding.viewModel.MainFeedViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
     lateinit var bottomNavi : BottomNavigationView

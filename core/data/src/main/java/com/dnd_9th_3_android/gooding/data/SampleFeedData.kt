@@ -1,7 +1,6 @@
 package com.dnd_9th_3_android.gooding.data
 
-import com.dnd_9th_3_android.gooding.model.Feed
-import com.dnd_9th_3_android.gooding.model.UserInfo
+import com.dnd_9th_3_android.gooding.model.feed.Feed
 
 object SampleFeedData {
     val sampleFeedList = listOf(

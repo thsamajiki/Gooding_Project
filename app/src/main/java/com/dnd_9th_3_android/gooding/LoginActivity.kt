@@ -12,7 +12,7 @@ import com.dnd_9th_3_android.gooding.api.RetrofitUtil
 import com.dnd_9th_3_android.gooding.data.GoogleLoginInterface
 import com.dnd_9th_3_android.gooding.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
-import com.dnd_9th_3_android.gooding.model.AccessToken
+import com.dnd_9th_3_android.gooding.model.user.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.model.OAuthToken
 import dagger.hilt.android.AndroidEntryPoint

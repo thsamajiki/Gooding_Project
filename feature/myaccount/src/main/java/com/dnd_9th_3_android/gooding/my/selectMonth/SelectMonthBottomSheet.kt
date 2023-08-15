@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -18,9 +17,9 @@ import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialogProperties
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 
 @Composable
@@ -30,7 +29,7 @@ fun SelectMonthBottomSheet(
 ) {
     BottomSheetDialog(
         onDismissRequest = {
-
+            onClose()
         },
         properties = BottomSheetDialogProperties(
             dismissOnBackPress = true,
@@ -41,7 +40,10 @@ fun SelectMonthBottomSheet(
             modifier = Modifier
                 .background(
                     color = colorResource(id = R.color.blue_gray_6),
-                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.padding_24)),
+                    shape = RoundedCornerShape(
+                        topStart = dimensionResource(id = R.dimen.padding_24),
+                        topEnd = dimensionResource(id = R.dimen.padding_24)
+                    ),
                 )
                 .padding(dimensionResource(id = R.dimen.padding_18))
                 .wrapContentHeight()
@@ -78,23 +80,10 @@ fun SelectMonthBottomSheet(
             LazyColumn(
                 modifier = Modifier
                     .height(dimensionResource(id = R.dimen.size_144))
+                    .fillMaxWidth()
             ){
-                var year = todayViewModel.todayYear
-                var month = todayViewModel.todayMonth
-                items(100){
-                    // 현재선택 달 == 현재 뷰인 경우
-                    val isSelected = todayViewModel.currentYear == year && todayViewModel.currentMonth==month
-                    ItemMonthData(
-                        year = year,
-                        month = month,
-                        isSelected = isSelected
-                    )
-                    if (month == 1){
-                        year -= 1
-                        month = 12
-                    }else{
-                        month -=1
-                    }
+                items(todayViewModel.monthPicker.getListData()){data->
+                    ItemMonthData(data)
                 }
             }
         }

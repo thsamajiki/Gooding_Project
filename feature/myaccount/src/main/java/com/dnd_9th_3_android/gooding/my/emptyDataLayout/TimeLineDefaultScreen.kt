@@ -1,6 +1,7 @@
 package com.dnd_9th_3_android.gooding.my.mainLayout
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,6 +9,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
@@ -33,23 +36,35 @@ fun DefaultTimeLineScreen() {
             color = colorResource(id = R.color.blue_gray_3)
         )
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_12)))
+        //record button
         Box(
+            contentAlignment = Alignment.Center,
             modifier = Modifier
-                .wrapContentWidth()
-                .wrapContentHeight()
+                .border(
+                    width = dimensionResource(id = R.dimen.border_size),
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
+                    color = colorResource(id = R.color.blue_gray_3)
+                )
+                .background(
+                    shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
+                    color = Color.Transparent
+                )
                 .clickable {
                     // go record activity
                 }
+                .fillMaxWidth()
+                .wrapContentHeight()
         ) {
-            BoxText(
-                borderColor = listOf(colorResource(id = R.color.blue_gray_3),colorResource(id = R.color.blue_gray_3)),
-                borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
-                borderBackground = Color.Transparent,
+            Text(
                 text = "기록하기",
                 fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                fontColor = Color.White,
-                hoPadding = dimensionResource(id = R.dimen.padding_11_5),
-                verPadding = dimensionResource(id = R.dimen.padding_134_5)
+                color = Color.White,
+                fontFamily = pretendard,
+                modifier = Modifier
+                    .padding(
+                        top = dimensionResource(id = R.dimen.padding_11_5),
+                        bottom = dimensionResource(id = R.dimen.padding_11_5)
+                    )
             )
         }
     }

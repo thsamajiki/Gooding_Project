@@ -3,7 +3,7 @@ package com.dnd_9th_3_android.gooding.feed.item
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import coil.compose.rememberImagePainter
-import com.dnd_9th_3_android.gooding.model.UserInfo
+import com.dnd_9th_3_android.gooding.model.user.UserInfo
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -24,7 +24,7 @@ import com.dnd_9th_3_android.gooding.feature.feed.R
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun UserInfoLayer(userInfo:UserInfo,uploadTime : String) {
+fun UserInfoLayer(userInfo: UserInfo, uploadTime : String) {
     val painter = rememberImagePainter(
         data = userInfo.profile,
         builder = {

@@ -3,7 +3,7 @@ package com.dnd_9th_3_android.gooding.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.dnd_9th_3_android.gooding.model.Feed
+import com.dnd_9th_3_android.gooding.model.feed.Feed
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
