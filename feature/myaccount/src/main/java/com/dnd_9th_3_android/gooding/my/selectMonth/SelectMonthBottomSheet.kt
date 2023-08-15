@@ -113,7 +113,7 @@ fun SelectMonthBottomSheet(
                     }
                     // 클릭 감지 후 데이터 리셋
                     if (click){
-                        itemsIndexed(monthPicker.getListData()){ _,_-> }
+//                        itemsIndexed(monthPicker.getListData()){ _,_-> }
                         click = false
                     }
                 }

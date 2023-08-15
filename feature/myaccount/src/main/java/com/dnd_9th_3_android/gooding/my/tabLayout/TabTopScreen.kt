@@ -36,8 +36,8 @@ fun TabTopScreen(
             Box(
                 Modifier
                     .background(Color.Transparent)
-                    .tabIndicatorOffset(tabPositions[pageState.currentPage]),
-                contentAlignment = Alignment.BottomCenter
+                    .tabIndicatorOffset(tabPositions[pageState.currentPage])
+                , contentAlignment = Alignment.BottomCenter
             ){
                 // line indicator
                 Divider(

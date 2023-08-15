@@ -12,10 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.dnd_9th_3_android.gooding.my.emptyDataLayout.SaveFeedDefaultScreen
 
 @Composable
 fun SaveFeedScreen() {
-    Text(text = "피드",
-        modifier = Modifier.padding(top = 700.dp)
-    )
+    // no save data
+    SaveFeedDefaultScreen()
 }
