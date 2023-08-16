@@ -24,10 +24,7 @@ fun DefaultTimeLineScreen() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .padding(dimensionResource(id = R.dimen.padding_18))
             .fillMaxSize(),
-
-
     ) {
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_2)))
         Text(

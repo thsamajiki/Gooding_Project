@@ -15,14 +15,16 @@ import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
 fun SaveFeedDefaultScreen() {
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize()
     ){
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_80)))
         Text(
             text = "내 취향의 굳이데이 기록을 모아보세요.",
             fontSize = dimensionResource(id = R.dimen.text_14_sp).value.sp,
             fontFamily = pretendard,
-            color = colorResource(id = R.color.blue_gray_3)
+            color = colorResource(id = R.color.blue_gray_3),
+            modifier = Modifier.wrapContentSize()
         )
     }
 }

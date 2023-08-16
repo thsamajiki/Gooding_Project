@@ -46,7 +46,7 @@ fun BottomTabScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_33)))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_18)))
         // button : 축소
         if (isVisibleTop){
             Box(
@@ -69,7 +69,7 @@ fun BottomTabScreen(
         }
         // tab selector
         Row {
-            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_8)))
             TabTopScreen(
                 pageState = pageState,
                 coroutineScope = coroutineScope,

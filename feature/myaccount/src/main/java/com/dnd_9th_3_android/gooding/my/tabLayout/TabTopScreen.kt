@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
@@ -32,6 +33,7 @@ fun TabTopScreen(
         selectedTabIndex = pageState.currentPage,
         divider = {},
         edgePadding = 0.dp,
+        modifier = Modifier.wrapContentWidth(),
         indicator = { tabPositions ->
             Box(
                 Modifier
@@ -41,22 +43,28 @@ fun TabTopScreen(
             ){
                 // line indicator
                 Divider(
-                    modifier = Modifier
+                    modifier = if (pageState.currentPage==0) Modifier
                         .background(Color.White)
                         .height(dimensionResource(id = R.dimen.border_size_2))
+                        .width(dimensionResource(id = R.dimen.tab_75))
+                else Modifier
+                        .background(Color.White)
+                        .height(dimensionResource(id = R.dimen.border_size_2))
+                        .width(dimensionResource(id = R.dimen.tab_48))
                 )
             }
 
-        },
+        }
     ) {
+
         pages.forEachIndexed { index, title ->
             Tab(
                 text = {
                     Text(
                         text = title,
                         fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                        fontFamily = pretendard
-
+                        fontFamily = pretendard,
+                        modifier = Modifier.wrapContentSize()
                     )
                 },
                 selected = pageState.currentPage == index,
@@ -71,4 +79,34 @@ fun TabTopScreen(
         }
     }
 
+}
+
+@OptIn(ExperimentalPagerApi::class)
+@Composable
+fun TabView(
+    title : String,
+    pageState : PagerState,
+    index : Int,
+    coroutineScope : CoroutineScope,
+    width : Dp
+){
+    Tab(
+        modifier = Modifier
+            .width(width),
+        text = {
+            Text(
+                text = title,
+                fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
+                fontFamily = pretendard
+            )
+        },
+        selected = pageState.currentPage  == index,
+        selectedContentColor = Color.White,
+        unselectedContentColor = colorResource(id = R.color.blue_gray_3),
+        onClick = {
+            coroutineScope.launch {
+                pageState.scrollToPage(index)
+            }
+        }
+    )
 }

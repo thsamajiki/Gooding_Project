@@ -41,7 +41,7 @@ fun TopMenuScreen(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(dimensionResource(R.dimen.top_size)),
+            .wrapContentHeight(),
     ){
         Text(
             text = "마이 굳잉",

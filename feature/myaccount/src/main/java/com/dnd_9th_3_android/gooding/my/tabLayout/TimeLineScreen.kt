@@ -40,18 +40,21 @@ fun TimeLineScreen(
             showSelectView = false
         })
     }
+    // month picker view
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(dimensionResource(id = R.dimen.padding_18))
     ) {
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_20)))
-        // select month
+        // select month view
         Row(
             Modifier
                 .clickable {
                     showSelectView = true
                 }
+                .wrapContentSize()
         ){
-            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.border_size)))
             Text(
                 text = todayViewModel.monthPicker.monthDataList[todayViewModel.monthPicker.currentPickIndex].keyDate,
                 fontFamily = poppins,
@@ -71,6 +74,7 @@ fun TimeLineScreen(
                 )
             }
         }
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_23)))
         // no user record
         DefaultTimeLineScreen()
     }

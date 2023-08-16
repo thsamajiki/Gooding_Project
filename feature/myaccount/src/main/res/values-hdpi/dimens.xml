@@ -2,9 +2,10 @@
 <resources>
     <!-- top -->
     <dimen name="top_size">56dp</dimen>
-    <dimen name="top_margin">36dp</dimen>
+    <dimen name="top_margin">53dp</dimen>
     <dimen name="padding_16">16dp</dimen>
     <dimen name="padding_24">24dp</dimen>
+    <dimen name="padding_21">21dp</dimen>
     <dimen name="main_text_sp">18sp</dimen>
     <dimen name="icon_size">30dp</dimen>
     <!--level-->
@@ -21,11 +22,13 @@
     <!--profile-->
     <dimen name="top_margin_profile">30dp</dimen>
     <dimen name="padding_20">20dp</dimen>
+    <dimen name="padding_23">23dp</dimen>
     <dimen name="padding_28">28dp</dimen>
     <dimen name="profile_image_size">36dp</dimen>
     <dimen name="text_16_sp">16sp</dimen>
     <!--tab-->
-
+    <dimen name="tab_75">75dp</dimen>
+    <dimen name="tab_48">48dp</dimen>
     <dimen name="text_w_1">54dp</dimen>
     <dimen name="text_h">18dp</dimen>
     <dimen name="text_w_2">77dp</dimen>
@@ -33,10 +36,11 @@
     <dimen name="arrow_size">24dp</dimen>
     <dimen name="padding_33">33dp</dimen>
     <dimen name="padding_34">34dp</dimen>
+    <dimen name="padding_36">36dp</dimen>
     <dimen name="padding_15">15dp</dimen>
     <dimen name="padding_18">18dp</dimen>
     <dimen name="tab_width">350dp</dimen>
-    <dimen name="start_height">401dp</dimen>
+    <dimen name="start_height">200dp</dimen>
     <dimen name="text_width">80dp</dimen>
     <!--content-->
     <dimen name="zero">0dp</dimen>
