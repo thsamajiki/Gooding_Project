@@ -1,5 +1,7 @@
 package com.dnd_9th_3_android.gooding.my.itemFeed
 
+import android.media.ThumbnailUtils
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -11,13 +13,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
+import androidx.core.net.toUri
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
+import com.dnd_9th_3_android.gooding.data.SampleFeedData
+import com.dnd_9th_3_android.gooding.data.video.CheckUrl
+import com.dnd_9th_3_android.gooding.data.video.VideoThumbnailUtil
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
 
@@ -27,11 +34,14 @@ fun CenterFeedLayout(
     location : String,
     imageList : List<String>,
 ) {
-    val painter = rememberImagePainter(
+    // is video check
+    val painter = if (CheckUrl.isVideo(imageList[0])) rememberImagePainter(
+        data = SampleFeedData.sampleThumb[1],
+        builder = { crossfade(true) }
+    )
+    else rememberImagePainter(
         data = imageList[0],
-        builder = {
-            crossfade(true)
-        }
+        builder = { crossfade(true) }
     )
     // location
     Row(
@@ -60,7 +70,8 @@ fun CenterFeedLayout(
             modifier = Modifier
                 .height(dimensionResource(id = R.dimen.image_h))
                 .width(dimensionResource(id = R.dimen.image_w)),
-            shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_4))
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_4)),
+            backgroundColor = Color.Transparent
 
         ){
             Image(
@@ -77,7 +88,10 @@ fun CenterFeedLayout(
                 modifier = Modifier
                     .align(Alignment.Bottom)
                     .wrapContentSize(),
-                text = "+${imageList.size - 1}"
+                text = "+${imageList.size - 1}",
+                color = colorResource(id = R.color.blue_gray_3),
+                fontSize = dimensionResource(id = R.dimen.text_12).value.sp,
+                fontFamily = pretendardBold
             )
         }
     }

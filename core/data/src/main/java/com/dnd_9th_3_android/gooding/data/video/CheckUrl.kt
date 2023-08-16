@@ -3,8 +3,7 @@ package com.dnd_9th_3_android.gooding.data.video
 import android.util.Log
 
 object CheckUrl {
-    fun isVideo(url : String?): Boolean?{
-        if(url=="" || url==null) return null
+    fun isVideo(url : String): Boolean{
         val lastIndex = url.lastIndexOf('.')
         val extension: String = url.substring(lastIndex+1)
         Log.d("extension : ",extension.toString())

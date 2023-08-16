@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.dnd_9th_3_android.gooding.feature.feed.R
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
@@ -24,17 +25,12 @@ fun MainTopBarScreen (
     coroutineScope: CoroutineScope,
     pages : List<String>
 ) {
-    Row(
-        Modifier
-        .padding(
-            start= dimensionResource(id = R.dimen.margin_tab),
-            end= dimensionResource(id = R.dimen.margin_tab),
-            top = dimensionResource(id = R.dimen.top_space)
-        )) {
-        TabRow(
+        ScrollableTabRow(
             backgroundColor = Color.Transparent,
             selectedTabIndex = pageState.currentPage,
             divider = {},
+            edgePadding = 0.dp,
+            modifier = Modifier.width(200.dp),
             indicator = {tabPositions->
                 Box(
                     Modifier
@@ -50,14 +46,11 @@ fun MainTopBarScreen (
                             .size(dimensionResource(id = R.dimen.selected_icon_size))
                     )
                 }
-            },
-            modifier = Modifier
-                .width(dimensionResource(id = R.dimen.tab_width))
-                .height(dimensionResource(id = R.dimen.tab_height))
+            }
         ) {
             pages.forEachIndexed { index, title ->
                 Tab(
-                    text = { Text(text = title) },
+                    text = { Text(text = title, modifier = Modifier.wrapContentSize()) },
                     selected = pageState.currentPage == index,
                     selectedContentColor = Color.White,
                     unselectedContentColor = Color.DarkGray,
@@ -69,17 +62,4 @@ fun MainTopBarScreen (
                 )
             }
         }
-        Spacer(modifier = Modifier.weight(1f))
-        IconButton(
-            onClick = {
-                // go search fragment
-            }
-        ) {
-            Icon(
-                painter = painterResource(id = R.drawable.baseline_search_24),
-                tint = Color.White,
-                contentDescription = ""
-            )
-        }
-    }
 }

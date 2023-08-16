@@ -6,36 +6,43 @@ import coil.compose.rememberImagePainter
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.model.feed.Feed
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
+import com.dnd_9th_3_android.gooding.data.video.CheckUrl
 import com.dnd_9th_3_android.gooding.feature.feed.R
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun OneFeedItem(feed: Feed) {
-    val painter = rememberImagePainter(
-        data = feed.urlList[0],
-        builder = {
-            crossfade(true)
-        }
+    // is video check
+    val painter = if (CheckUrl.isVideo(feed.urlList[0])) rememberImagePainter(
+        data = SampleFeedData.sampleThumb[1],
+        builder = { crossfade(true) }
     )
+    else rememberImagePainter(
+        data = feed.urlList[0],
+        builder = { crossfade(true) }
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Transparent)
 
-    Box(modifier = Modifier
-        .fillMaxHeight()
-        .fillMaxWidth()){
+    ){
         Image(
-            painter = painter,
-            contentDescription = "",
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth(),
+            painter = painter, contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
             contentScale = ContentScale.Crop
         )
         // loading state
@@ -45,7 +52,6 @@ fun OneFeedItem(feed: Feed) {
             }
             else ->{}
         }
-
         // in feed content
         Column {
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_space)))

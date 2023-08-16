@@ -8,4 +8,5 @@
     <dimen name="top_space">36dp</dimen>
     <dimen name="tab_height">56dp</dimen>
     <dimen name="tab_width">150dp</dimen>
+    <dimen name="size_24">24dp</dimen>
 </resources>
