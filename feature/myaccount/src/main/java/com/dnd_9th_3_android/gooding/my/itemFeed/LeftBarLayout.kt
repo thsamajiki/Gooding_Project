@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import com.dnd_9th_3_android.gooding.feature.my.R
 
 
@@ -34,7 +35,7 @@ fun LeftBarLayout(
         // padding 제외하고 1 weight
         Divider(
             modifier = Modifier
-                .weight(1f)
+                .height(503.dp)
                 .width(dimensionResource(id = R.dimen.border_size_2))
                 .background(
                     color = colorResource(id = R.color.blue_gray_4),

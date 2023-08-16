@@ -34,7 +34,6 @@ object TimeDataChanger {
         calendar.set(
             uploadTimeStamp[0].toInt(),uploadTimeStamp[1].toInt()-1,uploadTimeStamp[2].toInt()
         )
-        Log.d("12412",calendar.time.toString())
 
         val day = when(calendar.get(Calendar.DAY_OF_WEEK)){
             1-> "일"

@@ -4,8 +4,7 @@ import com.dnd_9th_3_android.gooding.model.feed.Feed
 
 object SampleFeedData {
     val sampleThumb = listOf(
-        "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel",
-        "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"
+        "https://media.w3.org/2010/05/sintel/poster.png",
     )
     val sampleFeedList = listOf(
         Feed(
@@ -14,7 +13,7 @@ object SampleFeedData {
             10,
             "광안리 해수욕장",
             listOf(
-                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+                "https://media.w3.org/2010/05/sintel/trailer.mp4",
                 "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen",
                 "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
             ),

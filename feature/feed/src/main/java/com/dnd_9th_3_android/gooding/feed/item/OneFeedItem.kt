@@ -27,7 +27,7 @@ import com.dnd_9th_3_android.gooding.feature.feed.R
 fun OneFeedItem(feed: Feed) {
     // is video check
     val painter = if (CheckUrl.isVideo(feed.urlList[0])) rememberImagePainter(
-        data = SampleFeedData.sampleThumb[1],
+        data = SampleFeedData.sampleThumb[0],
         builder = { crossfade(true) }
     )
     else rememberImagePainter(
