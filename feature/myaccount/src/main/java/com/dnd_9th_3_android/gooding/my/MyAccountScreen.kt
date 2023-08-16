@@ -1,6 +1,8 @@
 package com.dnd_9th_3_android.gooding.my
 
 import android.util.Log
+import android.view.View
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +20,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 fun MyAccountScreen(
     bottomNavi : BottomNavigationView,
 ) {
+    // 뒤로가기 동작 제어
+    BackHandler(enabled = true, onBack = {})
+
     val navController = rememberNavController()
     NavigationGraph(navController,bottomNavi)
 }

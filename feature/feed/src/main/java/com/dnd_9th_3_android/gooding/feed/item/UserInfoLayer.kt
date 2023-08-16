@@ -19,6 +19,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
+import com.dnd_9th_3_android.gooding.data.transform.TimeDataChanger
 import com.dnd_9th_3_android.gooding.feature.feed.R
 
 
@@ -48,7 +49,7 @@ fun UserInfoLayer(userInfo: UserInfo, uploadTime : String) {
         Spacer(modifier = Modifier.width(8.dp))
         Column {
             Text(text = userInfo.name,color = Color.White,)
-            Text(text = uploadTime,color = Color.White,)
+            Text(text = TimeDataChanger.getLastText(uploadTime),color = Color.White,)
         }
         Spacer(modifier = Modifier.width(8.dp))
         Text(

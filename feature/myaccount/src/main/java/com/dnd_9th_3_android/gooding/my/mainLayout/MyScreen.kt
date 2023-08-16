@@ -104,6 +104,7 @@ fun MyScreen(
                 )
                 .nestedScroll(nestedScrollConnection)
         ) {
+            // swipe progress
             val computedProgress by remember {
                 derivedStateOf {
                     if (swipingState.progress.to == SwipingStates.COLLAPSED){
@@ -113,7 +114,7 @@ fun MyScreen(
                     }
                 }
             }
-
+            // motion layout - constrain layout
             MotionLayout(
                 modifier = Modifier.fillMaxSize(),
                 start = ConstraintSet{
@@ -154,6 +155,7 @@ fun MyScreen(
                 },
                 progress = computedProgress
             ) {
+                // id - header view
                 Column(
                     modifier = Modifier
                         .layoutId("header")
@@ -163,6 +165,7 @@ fun MyScreen(
                     // main content (top menu)
                     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_margin)))
                     TopMenuScreen(navController, bottomNavi)
+                    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_36)))
                     LevelScreen(
                         painterResource(id = R.drawable.level_icon),
                         "LV1.초보 낭만러"
@@ -171,6 +174,7 @@ fun MyScreen(
                     UserInfoScreen(userInfo = SampleUserData.sampleUserData[0])
                     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
                 }
+                // id - body view
                 Box(
                     modifier = Modifier
                         .layoutId("body")

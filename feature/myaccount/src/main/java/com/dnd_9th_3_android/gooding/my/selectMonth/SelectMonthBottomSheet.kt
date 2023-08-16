@@ -1,7 +1,5 @@
 package com.dnd_9th_3_android.gooding.my.selectMonth
 
-import android.util.Log
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -13,23 +11,18 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialogProperties
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.lifecycle.Observer
-import com.dnd_9th_3_android.gooding.model.month.MonthData
 import com.dnd_9th_3_android.gooding.my.contentLayout.BoxText
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
@@ -72,7 +65,7 @@ fun SelectMonthBottomSheet(
                 Text(
                     text = "월 선택하기",
                     color = Color.White,
-                    fontFamily = pretendard,
+                    fontFamily = pretendardBold,
                     fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -113,7 +106,7 @@ fun SelectMonthBottomSheet(
                     }
                     // 클릭 감지 후 데이터 리셋
                     if (click){
-                        itemsIndexed(monthPicker.getListData()){ _,_-> }
+//                        itemsIndexed(monthPicker.getListData()){ _,_-> }
                         click = false
                     }
                 }

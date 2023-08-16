@@ -22,9 +22,8 @@ fun LevelScreen(
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth().wrapContentHeight()
     ) {
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
         Image(
             painter = painter, contentDescription = null,
             modifier = Modifier
@@ -40,7 +39,7 @@ fun LevelScreen(
             levelText,
             dimensionResource(id = R.dimen.text_12).value.sp,
             Color.White,
-            dimensionResource(id = R.dimen.padding_8),
+            dimensionResource(id = R.dimen.padding_6),
             dimensionResource(id = R.dimen.padding_10)
         )
 
