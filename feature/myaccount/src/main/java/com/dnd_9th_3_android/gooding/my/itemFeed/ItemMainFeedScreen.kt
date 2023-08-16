@@ -19,26 +19,9 @@ import com.dnd_9th_3_android.gooding.model.feed.Feed
 
 @Composable
 fun ItemMainFeedScreen(
-    feed : Feed
+    feed : Feed,
+    onDeleteView : (Boolean) -> Unit
 ) {
-    // is delete view?
-    var showDeleteView by remember {
-        mutableStateOf(false)
-    }
-    // 수정 필요
-//    if (showDeleteView) {
-//        DeleteFeedBottomSheet(
-//            0,
-//            onDelete = {
-//                       // delete feed/ //
-//            },
-//            onClose = {
-//                showDeleteView = false
-//            },
-//        )
-//
-//    }
-
     Row(
         Modifier
             .fillMaxWidth()
@@ -59,7 +42,7 @@ fun ItemMainFeedScreen(
         ) {
             TopInfoLayout(timeData = feed.uploadTime, onDelete = {
                 // delete feed
-                showDeleteView = true
+                onDeleteView(true)
             })
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_15)))
             CenterFeedLayout(location = feed.location, imageList = feed.urlList)
@@ -77,5 +60,5 @@ fun ItemMainFeedScreen(
 @Preview
 @Composable
 fun PreviewItemFeed(){
-    ItemMainFeedScreen(SampleFeedData.sampleFeedList[0])
+    ItemMainFeedScreen(SampleFeedData.sampleFeedList[0], onDeleteView = {})
 }
