@@ -4,6 +4,7 @@
     <dimen name="top_size">56dp</dimen>
     <dimen name="top_margin">53dp</dimen>
     <dimen name="padding_16">16dp</dimen>
+    <dimen name="padding_17">17dp</dimen>
     <dimen name="padding_24">24dp</dimen>
     <dimen name="padding_21">21dp</dimen>
     <dimen name="main_text_sp">18sp</dimen>
@@ -50,5 +51,14 @@
     <dimen name="padding_12">12dp</dimen>
     <dimen name="padding_80">80dp</dimen>
     <dimen name="padding_11_5">11.5dp</dimen>
-
+    <!--feed-->
+    <dimen name="size_26">26dp</dimen>
+    <dimen name="padding_14">14dp</dimen>
+    <dimen name="padding_4">4dp</dimen>
+    <dimen name="padding_11">11dp</dimen>
+    <dimen name="corner_20">20dp</dimen>
+    <dimen name="image_h">333dp</dimen>
+    <dimen name="image_w">218dp</dimen>
+    <dimen name="text_w_content">268dp</dimen>
+    <dimen name="padding_5_5">5.5dp</dimen>
 </resources>

@@ -1,13 +1,11 @@
-package com.dnd_9th_3_android.gooding.my.tabLayout
+package com.dnd_9th_3_android.gooding.my.mainTabLayout
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.my.contentLayout.poppins
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel

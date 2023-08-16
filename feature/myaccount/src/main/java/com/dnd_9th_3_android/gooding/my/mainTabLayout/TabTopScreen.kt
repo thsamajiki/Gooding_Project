@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.my.tabLayout
+package com.dnd_9th_3_android.gooding.my.mainTabLayout
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
@@ -63,7 +63,7 @@ fun TabTopScreen(
                     Text(
                         text = title,
                         fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                        fontFamily = pretendard,
+                        fontFamily = pretendardBold,
                         modifier = Modifier.wrapContentSize()
                     )
                 },
@@ -97,7 +97,7 @@ fun TabView(
             Text(
                 text = title,
                 fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-                fontFamily = pretendard
+                fontFamily = pretendardBold
             )
         },
         selected = pageState.currentPage  == index,

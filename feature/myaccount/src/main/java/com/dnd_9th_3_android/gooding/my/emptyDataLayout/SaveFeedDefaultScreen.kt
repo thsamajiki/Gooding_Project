@@ -9,7 +9,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
 
 @Composable
 fun SaveFeedDefaultScreen() {
@@ -22,7 +22,7 @@ fun SaveFeedDefaultScreen() {
         Text(
             text = "내 취향의 굳이데이 기록을 모아보세요.",
             fontSize = dimensionResource(id = R.dimen.text_14_sp).value.sp,
-            fontFamily = pretendard,
+            fontFamily = pretendardBold,
             color = colorResource(id = R.color.blue_gray_3),
             modifier = Modifier.wrapContentSize()
         )

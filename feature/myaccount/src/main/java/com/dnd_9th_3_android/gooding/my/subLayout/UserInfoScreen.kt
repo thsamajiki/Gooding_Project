@@ -20,7 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.my.contentLayout.BoxText
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendard
+import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
 
 // user info
 @OptIn(ExperimentalCoilApi::class)
@@ -61,7 +61,7 @@ fun UserInfoScreen(
             text =  userInfo.name,
             fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
             color = Color.White,
-            fontFamily = pretendard
+            fontFamily = pretendardBold
         )
         Spacer(modifier = Modifier.weight(1f))
         // 프로필 수정 menu

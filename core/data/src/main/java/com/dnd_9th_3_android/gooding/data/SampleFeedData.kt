@@ -10,7 +10,7 @@ object SampleFeedData {
             10,
             "광안리 해수욕장",
             listOf("https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen"),
-            "2023-08-14T14:49:09.230Z",
+            "2023-01-14T14:49:09.230Z",
             SampleUserData.sampleUserData[0]
 
         ),
@@ -20,7 +20,7 @@ object SampleFeedData {
             30,
             "광안리 해수욕장",
             listOf("https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel"),
-            "2023-08-15T14:49:09.230Z",
+            "2023-12-15T14:49:09.230Z",
             SampleUserData.sampleUserData[1]
 
         )
