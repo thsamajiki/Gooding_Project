@@ -22,7 +22,7 @@ fun DefaultTimeLineScreen() {
         modifier = Modifier
             .fillMaxSize(),
     ) {
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_2)))
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_20)))
         Text(
             text = "이번달의 첫번째 굳이데이 기록을 남겨보세요.",
             fontSize = dimensionResource(id = R.dimen.text_14_sp).value.sp,

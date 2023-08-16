@@ -32,7 +32,7 @@ fun BottomFeedLayout(
     )
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_4)))
     Text(
-        text = subject,
+        text = content,
         fontSize = dimensionResource(id = R.dimen.text_12).value.sp,
         fontFamily = pretendardRegular,
         color = Color.White,
@@ -47,6 +47,7 @@ fun BottomFeedLayout(
         modifier = Modifier
             .wrapContentSize()
             .clickable {
+                onMoreInfo()
                 // go detail
             }
     ){

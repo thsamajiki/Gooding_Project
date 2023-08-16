@@ -2,10 +2,16 @@ package com.dnd_9th_3_android.gooding.my.itemFeed
 
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -50,13 +56,19 @@ fun CenterFeedLayout(
     Row(
         modifier = Modifier.wrapContentSize()
     ) {
-        Image(
+        Card(
             modifier = Modifier
                 .height(dimensionResource(id = R.dimen.image_h))
                 .width(dimensionResource(id = R.dimen.image_w)),
-            painter = painter,
-            contentDescription = null
-        )
+            shape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_4))
+
+        ){
+            Image(
+                painter = painter, contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop
+            )
+        }
 
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_11)))
         // 이미지 여러장인 경우 이미지 테스트 등록

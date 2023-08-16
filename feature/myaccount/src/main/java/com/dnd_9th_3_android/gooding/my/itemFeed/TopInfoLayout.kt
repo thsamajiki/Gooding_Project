@@ -46,7 +46,7 @@ fun TopInfoLayout(
         ){
             BoxText(
                 borderColor = listOf(colorResource(id = R.color.blue_gray_3),colorResource(id = R.color.blue_gray_3)),
-                borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.border_size)),
+                borderShape = RoundedCornerShape(dimensionResource(id = R.dimen.corner_6)),
                 borderBackground = Color.Transparent,
                 text = "삭제",
                 fontSize = dimensionResource(id = R.dimen.text_12).value.sp,
