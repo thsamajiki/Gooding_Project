@@ -29,9 +29,7 @@ fun FeedScreen() {
         HorizontalPager(
             count = pages.size,
             state = hoPageState,
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxSize()
         ) { page ->
             when (page) {
                 0 -> NowScreen(hoPageState)

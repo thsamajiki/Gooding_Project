@@ -19,6 +19,6 @@ fun NowScreen(
         // 피드 페이저
         TabFeedPager()
         // 고정 화면
-        FixedAreaScreen(hoPageState = hoPageState )
+        FixedAreaScreen(hoPageState = hoPageState)
     }
 }
