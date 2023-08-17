@@ -25,44 +25,17 @@ private val pages = listOf("NOW", "추천")
 fun FeedScreen() {
     Box {
         // 페이지 상태 지정 ( now - 추천 가로 페이징 )
-        val pageState = rememberPagerState()
-        val coroutineScope = rememberCoroutineScope()
+        val hoPageState = rememberPagerState()
         HorizontalPager(
             count = pages.size,
-            state = pageState,
+            state = hoPageState,
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth()
         ) { page ->
             when (page) {
-                0 -> NowScreen()
+                0 -> NowScreen(hoPageState)
                 else -> RecommendScreen()
-            }
-        }
-        // top Layout
-        Row(
-            Modifier
-                .padding(
-                    start = dimensionResource(id = R.dimen.margin_tab),
-                    end = dimensionResource(id = R.dimen.margin_tab),
-                    top = dimensionResource(id = R.dimen.top_space)
-                ),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            MainTopBarScreen(pageState, coroutineScope, pages)
-            Spacer(modifier = Modifier.weight(1f))
-            Box(
-                Modifier
-                    .size(dimensionResource(id = R.dimen.size_24))
-                    .clickable {
-                        // go search fragment
-                    }
-            ){
-                Image(
-                    painterResource(id = R.drawable.baseline_search_24),
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
-                )
             }
         }
     }
