@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.my.contentLayout
+package com.dnd_9th_3_android.gooding.data.contentLayout
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -15,8 +15,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import com.dnd_9th_3_android.gooding.feature.my.R
-
+import com.dnd_9th_3_android.gooding.core.data.R
 @Composable
 fun BoxText(
     borderColor: List<Color>,

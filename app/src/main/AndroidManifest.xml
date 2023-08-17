@@ -37,7 +37,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="8986a97c6664ef9f2c..." /> <!-- kakao 로그인 액티비티 -->
+            android:value="a244014544b5323246b6853ca1d8ca93" /> <!-- kakao 로그인 액티비티 -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

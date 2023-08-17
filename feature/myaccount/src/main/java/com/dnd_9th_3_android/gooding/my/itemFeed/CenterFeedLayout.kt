@@ -29,8 +29,8 @@ import com.dnd_9th_3_android.gooding.data.video.CheckUrl
 import com.dnd_9th_3_android.gooding.data.video.VideoDataChanger
 import com.dnd_9th_3_android.gooding.data.video.VideoThumbnailUtil
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardRegular
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardRegular
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable

@@ -15,7 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // my main top menu

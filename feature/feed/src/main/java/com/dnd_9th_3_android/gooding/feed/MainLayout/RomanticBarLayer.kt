@@ -27,7 +27,7 @@ fun RomanticBarLayer(
             .height(83.dp),
     ){
         Image(
-            painter = painterResource(id = R.drawable.romantic_bar_image),
+            painter = painterResource(id = R.drawable.romantic_bar),
             contentDescription = null,
             modifier = Modifier.fillMaxHeight().fillMaxWidth()
         )

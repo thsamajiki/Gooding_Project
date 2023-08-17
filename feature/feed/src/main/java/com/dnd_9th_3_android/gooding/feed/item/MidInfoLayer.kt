@@ -46,8 +46,6 @@ fun MidInfoLayer(
 
         Divider(modifier = Modifier.weight(1f))
 
-        // save button
-        Image(painter = painterResource(id = R.drawable.baseline_bookmark_24), contentDescription = null)
     }
     
     // subject

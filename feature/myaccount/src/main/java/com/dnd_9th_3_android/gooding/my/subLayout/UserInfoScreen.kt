@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.sp
-import com.dnd_9th_3_android.gooding.my.contentLayout.BoxText
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
+import com.dnd_9th_3_android.gooding.data.contentLayout.BoxText
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 
 // user info
 @OptIn(ExperimentalCoilApi::class)

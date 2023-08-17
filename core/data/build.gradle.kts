@@ -30,6 +30,12 @@ android {
             )
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
+    buildFeatures {
+        compose = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,4 +56,13 @@ dependencies {
 
     // module
     implementation(project(":core:model"))
+
+    // compose
+    val composeVersion = "1.2.0"
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
 }
