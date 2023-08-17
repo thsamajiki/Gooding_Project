@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.dnd_9th_3_android.gooding.core.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
 
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
 
         consumerProguardFiles("consumer-rules.pro")
 
@@ -29,6 +29,12 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.0"
+    }
+    buildFeatures {
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -50,4 +56,13 @@ dependencies {
 
     // module
     implementation(project(":core:model"))
+
+    // compose
+    val composeVersion = "1.2.0"
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
 }

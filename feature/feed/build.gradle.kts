@@ -79,6 +79,9 @@ dependencies {
     implementation("com.google.accompanist:accompanist-pager:0.20.1")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
 
+    // Exoplayer Dependency
+    implementation ("com.google.android.exoplayer:exoplayer:2.16.1")
+
     // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))

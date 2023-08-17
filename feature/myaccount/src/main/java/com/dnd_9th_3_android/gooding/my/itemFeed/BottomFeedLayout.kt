@@ -10,10 +10,11 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardBold
-import com.dnd_9th_3_android.gooding.my.contentLayout.pretendardRegular
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
+import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardRegular
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
 fun BottomFeedLayout(
@@ -39,7 +40,8 @@ fun BottomFeedLayout(
         maxLines = 2,
         modifier = Modifier
             .wrapContentHeight()
-            .width(dimensionResource(id = R.dimen.text_w_content))
+            .width(dimensionResource(id = R.dimen.text_w_content)),
+        overflow = TextOverflow.Ellipsis
     )
     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_12)))
 

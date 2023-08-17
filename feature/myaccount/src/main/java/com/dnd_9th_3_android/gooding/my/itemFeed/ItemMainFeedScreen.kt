@@ -1,12 +1,12 @@
 package com.dnd_9th_3_android.gooding.my.itemFeed
 
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.res.colorResource
@@ -19,7 +19,8 @@ import com.dnd_9th_3_android.gooding.model.feed.Feed
 
 @Composable
 fun ItemMainFeedScreen(
-    feed : Feed
+    feed : Feed,
+    onDeleteView : (Boolean) -> Unit
 ) {
     Row(
         Modifier
@@ -41,6 +42,7 @@ fun ItemMainFeedScreen(
         ) {
             TopInfoLayout(timeData = feed.uploadTime, onDelete = {
                 // delete feed
+                onDeleteView(true)
             })
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_15)))
             CenterFeedLayout(location = feed.location, imageList = feed.urlList)
@@ -58,5 +60,5 @@ fun ItemMainFeedScreen(
 @Preview
 @Composable
 fun PreviewItemFeed(){
-    ItemMainFeedScreen(SampleFeedData.sampleFeedList[0])
+    ItemMainFeedScreen(SampleFeedData.sampleFeedList[0], onDeleteView = {})
 }

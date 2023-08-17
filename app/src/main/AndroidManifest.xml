@@ -14,7 +14,6 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" /> <!-- File -->
     <uses-permission-sdk-23 android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission-sdk-23 android:name="android.permission.READ_MEDIA_VIDEO" />
-
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
@@ -24,6 +23,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:requestLegacyExternalStorage="true"
         android:name=".GlobalApplication"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -37,7 +37,7 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="8986a97c6664ef9f2c..." /> <!-- kakao 로그인 액티비티 -->
+            android:value="a244014544b5323246b6853ca1d8ca93" /> <!-- kakao 로그인 액티비티 -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">

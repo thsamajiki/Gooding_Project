@@ -9,13 +9,13 @@ plugins {
 }
 
 android {
-    namespace = "com.dnd_9th_3_android.gooding"
-    compileSdk = 34
+    namespace = "com.dnd_9th_3_android.gooding.login"
+    compileSdk = 33
 
     defaultConfig {
 
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 33
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -44,7 +44,7 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.core:core-ktx:1.5.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

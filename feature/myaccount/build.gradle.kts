@@ -85,6 +85,10 @@ dependencies {
 
     // bottom sheet
     implementation ("com.holix.android:bottomsheetdialog-compose:$composeVersion")
+
+    // Exoplayer Dependency
+    implementation ("com.google.android.exoplayer:exoplayer:2.16.1")
+
     // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))

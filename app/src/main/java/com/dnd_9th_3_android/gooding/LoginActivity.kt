@@ -9,8 +9,8 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.dnd_9th_3_android.gooding.api.RetrofitUtil
-import com.dnd_9th_3_android.gooding.data.GoogleLoginInterface
-import com.dnd_9th_3_android.gooding.data.KaKaoLoginInterface
+import com.dnd_9th_3_android.gooding.login.data.GoogleLoginInterface
+import com.dnd_9th_3_android.gooding.login.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
 import com.dnd_9th_3_android.gooding.model.user.AccessToken
 import com.google.firebase.auth.FirebaseAuth

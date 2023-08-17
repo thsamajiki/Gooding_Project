@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.feature.my.R
-import com.dnd_9th_3_android.gooding.my.contentLayout.poppins
+import com.dnd_9th_3_android.gooding.data.contentLayout.poppins
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
+import com.dnd_9th_3_android.gooding.my.itemFeed.DeleteFeedBottomSheet
 import com.dnd_9th_3_android.gooding.my.itemFeed.ItemMainFeedScreen
 import com.dnd_9th_3_android.gooding.my.mainLayout.DefaultTimeLineScreen
 import com.dnd_9th_3_android.gooding.my.selectMonth.SelectMonthBottomSheet
@@ -29,11 +30,26 @@ fun TimeLineScreen(
 ) {
     // curent month data
     val currentKey = todayViewModel.monthPicker.monthDataList[todayViewModel.monthPicker.currentPickIndex].keyDate
-
+    // is delete view ?
+    var  showDeleteView by remember {
+        mutableStateOf(false)
+    }
     // is monthPicker view?
     var showSelectView by remember {
         mutableStateOf(false)
     }
+    // 오류 있음 수정 필ㅇ ㅛ
+//    if (showDeleteView){
+//        DeleteFeedBottomSheet(0,
+//            onDelete = {
+//                // delete feed/ //
+//            },
+//            onClose = {
+//                // close view
+//                showDeleteView = false
+//            },
+//        )
+//    }
     if (showSelectView){
         SelectMonthBottomSheet(todayViewModel =todayViewModel,onClose = {
             todayViewModel.monthPicker.apply {
@@ -82,12 +98,13 @@ fun TimeLineScreen(
             }
         }
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_13)))
-        Log.d("currentKey",currentKey)
         if (currentKey == "2023.8") {
             // 8월 데이터
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 items(SampleFeedData.sampleFeedList){ data->
-                    ItemMainFeedScreen(feed = data)
+                    ItemMainFeedScreen(feed = data, onDeleteView = {
+                        showDeleteView = it
+                    })
                 }
             }
         } else {
