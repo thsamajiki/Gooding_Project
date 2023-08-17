@@ -1,6 +1,5 @@
 package com.dnd_9th_3_android.gooding.api
 
-//import com.dnd_9th_3_android.gooding.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

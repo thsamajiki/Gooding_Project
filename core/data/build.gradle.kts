@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.dnd_9th_3_android.gooding.core.data"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
 
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
 
         consumerProguardFiles("consumer-rules.pro")
 

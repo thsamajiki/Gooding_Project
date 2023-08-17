@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.data
+package com.dnd_9th_3_android.gooding.login.data
 
 import android.content.Context
 import com.kakao.sdk.auth.model.OAuthToken

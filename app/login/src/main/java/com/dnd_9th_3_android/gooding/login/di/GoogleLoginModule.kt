@@ -1,9 +1,9 @@
-package com.dnd_9th_3_android.gooding.di
+package com.dnd_9th_3_android.gooding.login.di
 
-import com.dnd_9th_3_android.gooding.data.GoogleLoginImpl
-import com.dnd_9th_3_android.gooding.data.GoogleLoginInterface
-import com.dnd_9th_3_android.gooding.data.KaKaoLoginImpl
-import com.dnd_9th_3_android.gooding.data.KaKaoLoginInterface
+import com.dnd_9th_3_android.gooding.login.data.GoogleLoginImpl
+import com.dnd_9th_3_android.gooding.login.data.GoogleLoginInterface
+import com.dnd_9th_3_android.gooding.login.data.KaKaoLoginImpl
+import com.dnd_9th_3_android.gooding.login.data.KaKaoLoginInterface
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
