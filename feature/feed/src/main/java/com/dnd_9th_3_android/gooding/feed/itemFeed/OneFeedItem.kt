@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
@@ -35,7 +36,7 @@ fun OneFeedItem(feed: Feed) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
+            .background(Color.Transparent)
     ){
         // first image load
         Image(
@@ -73,9 +74,11 @@ fun OneFeedItem(feed: Feed) {
         Column(
             modifier = Modifier.fillMaxWidth()
         ){
-            UserInfoLayer(userInfo = feed.userInfo, uploadTime = feed.uploadTime)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_padding)))
+            UserInfoLayer(userInfo = feed.userInfo)
             Divider(modifier = Modifier.weight(1f))
             MidInfoLayer(feed.location,feed.subject,feed.content)
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.bottom_padding)))
         }
     }
 }

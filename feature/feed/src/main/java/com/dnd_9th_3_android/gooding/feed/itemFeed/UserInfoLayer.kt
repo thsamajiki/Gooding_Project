@@ -14,18 +14,22 @@ import androidx.compose.material.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import com.dnd_9th_3_android.gooding.data.transform.TimeDataChanger
-import com.dnd_9th_3_android.gooding.feature.feed.R
+import com.dnd_9th_3_android.gooding.core.data.R
 
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun UserInfoLayer(userInfo: UserInfo, uploadTime : String) {
+fun UserInfoLayer(userInfo: UserInfo) {
     val painter = rememberImagePainter(
         data = userInfo.profile,
         builder = {
@@ -42,28 +46,23 @@ fun UserInfoLayer(userInfo: UserInfo, uploadTime : String) {
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .size(50.dp)
+                .size(dimensionResource(id = R.dimen.size_26))
                 .clip(CircleShape)
-                .border(1.dp, Color.White, CircleShape)
         )
-        Spacer(modifier = Modifier.width(8.dp))
-        Column {
-            Text(text = userInfo.name,color = Color.White,)
-            Text(text = TimeDataChanger().getLastText(uploadTime),color = Color.White,)
-        }
-        Spacer(modifier = Modifier.width(8.dp))
+
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_6)))
+
         Text(
-            text = "+팔로우",
-            color = Color.White,
-            fontSize = 10.sp,
-            modifier = Modifier
-                .background(Color.Black, RoundedCornerShape(20.dp))
-                .padding(
-                    start = 10.dp,
-                    end = 10.dp,
-                    top = 5.dp,
-                    bottom = 5.dp
-                )
+            text = userInfo.name,
+            style = TextStyle(
+                color = Color.White,
+                shadow = Shadow(
+                    color = colorResource(id = R.color.tab_shadow),
+                    blurRadius = 10f
+                ),
+                fontSize = dimensionResource(id = R.dimen.text_14_sp).value.sp,
+                fontWeight = FontWeight.Bold
+            )
         )
 
     }
