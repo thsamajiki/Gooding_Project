@@ -65,4 +65,11 @@ dependencies {
     implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
     implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    // compose view model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    // image ui
+    implementation ("io.coil-kt:coil-compose:1.3.2")
+    // tab + pager
+    implementation("com.google.accompanist:accompanist-pager:0.20.1")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.20.1")
 }

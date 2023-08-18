@@ -9,11 +9,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import com.dnd_9th_3_android.gooding.core.data.R
-import com.dnd_9th_3_android.gooding.feed.layout.MainTopBarScreen
+import com.dnd_9th_3_android.gooding.feed.layout.TopScrollBarLayer
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
 
+// 스크롤 뷰를 퐇마한 상단 데이터
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FeedTopLayout(
@@ -24,7 +25,7 @@ fun FeedTopLayout(
     Row(
         Modifier
             .padding(
-                start = dimensionResource(id = R.dimen.padding_10),
+                start = dimensionResource(id = R.dimen.padding_18),
                 end = dimensionResource(id = R.dimen.padding_16),
                 top = dimensionResource(id = R.dimen.padding_55),
                 bottom = dimensionResource(id = R.dimen.padding_13)
@@ -32,7 +33,7 @@ fun FeedTopLayout(
         verticalAlignment = Alignment.CenterVertically
     ) {
         // top bar .. !
-        MainTopBarScreen(pageState, coroutineScope)
+        TopScrollBarLayer(pageState, coroutineScope)
 
         Spacer(modifier = Modifier.weight(1f))
 

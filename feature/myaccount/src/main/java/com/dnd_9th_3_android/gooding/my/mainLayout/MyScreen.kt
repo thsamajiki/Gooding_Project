@@ -29,6 +29,7 @@ import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.data.SampleUserData
 import com.dnd_9th_3_android.gooding.data.SwipingStates
 import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.my.BottomNaviLocator
 import com.dnd_9th_3_android.gooding.my.subLayout.BottomTabScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.LevelScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.TopMenuScreen
@@ -43,7 +44,7 @@ import java.time.Duration
 @Composable
 fun MyScreen(
     navController: NavController,
-    bottomNavi: BottomNavigationView
+    bottomNavi : BottomNavigationView
 ) {
     // swipe state
     val swipingState = rememberSwipeableState(initialValue = SwipingStates.EXPANDED)
@@ -147,10 +148,10 @@ fun MyScreen(
                     // top bottom Visible
                     if (swipingState.currentValue==SwipingStates.COLLAPSED){
                         topBottom = true
-                        bottomNavi.visibility = View.GONE //bottom navi out
+                        BottomNaviLocator.stateChange(bottomNavi,false)
                     }else{
                         topBottom = false
-                        bottomNavi.visibility = View.VISIBLE //bottom navi out
+                        BottomNaviLocator.stateChange(bottomNavi,true)
                     }
                 },
                 progress = computedProgress
@@ -164,7 +165,7 @@ fun MyScreen(
                 ){
                     // main content (top menu)
                     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_margin)))
-                    TopMenuScreen(navController, bottomNavi)
+                    TopMenuScreen(navController)
                     Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_36)))
                     LevelScreen(
                         painterResource(id = R.drawable.level_icon),

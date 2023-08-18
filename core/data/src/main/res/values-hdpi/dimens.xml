@@ -66,4 +66,7 @@
     <!--main feed-->
     <dimen name="padding_55">55dp</dimen>
     <dimen name="book_padding_bottom">197dp</dimen>
+    <dimen name="text_18_sp">18sp</dimen>
+    <dimen name="tab_text_w">46dp</dimen>
+    <dimen name="tab_text_h">27dp</dimen>
 </resources>

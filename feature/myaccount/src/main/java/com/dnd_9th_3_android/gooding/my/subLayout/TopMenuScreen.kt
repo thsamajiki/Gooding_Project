@@ -16,14 +16,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
+import com.dnd_9th_3_android.gooding.my.BottomNaviLocator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 // my main top menu
 @SuppressLint("RestrictedApi")
 @Composable
 fun TopMenuScreen(
-    navController: NavController,
-    bottomNavi : BottomNavigationView
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
@@ -46,7 +46,6 @@ fun TopMenuScreen(
                 .size(dimensionResource(id = R.dimen.icon_size))
                 .clickable {
                     navController.navigate("settingScreen")
-                    bottomNavi.visibility = View.GONE
                 }
         )
 

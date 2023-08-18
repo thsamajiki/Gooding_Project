@@ -11,14 +11,12 @@ import com.google.accompanist.pager.PagerState
 // 메인 피드 - now
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun NowScreen(
-    hoPageState : PagerState
-) {
+fun NowScreen() {
 
     Box(modifier = Modifier.fillMaxSize()){
-        // 피드 페이저
+        // 피드 페이저 - 위아래 스크롤 뷰 ver
         TabFeedPager()
         // 고정 화면
-        FixedAreaScreen(hoPageState = hoPageState)
+        FixedAreaScreen()
     }
 }

@@ -26,7 +26,6 @@ import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.data.video.CheckUrl
-import com.dnd_9th_3_android.gooding.data.video.VideoDataChanger
 import com.dnd_9th_3_android.gooding.data.video.VideoThumbnailUtil
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
