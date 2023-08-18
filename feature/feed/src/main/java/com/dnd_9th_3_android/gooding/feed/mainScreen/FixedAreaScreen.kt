@@ -11,6 +11,7 @@ import com.google.accompanist.pager.PagerState
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.feed.itemFeed.RomanticBarLayer
@@ -19,19 +20,10 @@ import com.dnd_9th_3_android.gooding.feed.itemFeed.RomanticBarLayer
 // Fixed는 Box를 사용하므로, 자체 패딩 꼭 추가 !!
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun FixedAreaScreen(
-    hoPageState :PagerState
-) {
-    val coroutineScope = rememberCoroutineScope()
+fun FixedAreaScreen() {
     Box(
         modifier = Modifier.fillMaxSize()
     ){
-        // top menu
-        Box(
-            modifier = Modifier.align(Alignment.TopCenter)
-        ){
-            FeedTopLayout(pageState = hoPageState, coroutineScope = coroutineScope)
-        }
 
         // book mark
         Box(
@@ -54,7 +46,7 @@ fun FixedAreaScreen(
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth()
+                .width(500.dp)
                 .wrapContentHeight()
         ){
             RomanticBarLayer(romanticPer = 0)

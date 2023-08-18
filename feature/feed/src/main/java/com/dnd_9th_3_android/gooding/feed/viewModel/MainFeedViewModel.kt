@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.viewModel
+package com.dnd_9th_3_android.gooding.feed.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

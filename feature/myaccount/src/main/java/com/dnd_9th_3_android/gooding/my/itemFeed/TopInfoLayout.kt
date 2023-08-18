@@ -29,7 +29,7 @@ fun TopInfoLayout(
         verticalAlignment = Alignment.CenterVertically
     ){
         Text(
-            text = TimeDataChanger.getRecordText(timeData),
+            text = TimeDataChanger().getRecordText(timeData),
             fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
             fontFamily = pretendardBold,
             color = Color.White

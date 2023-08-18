@@ -10,7 +10,7 @@ import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
 import com.dnd_9th_3_android.gooding.my.selectMonth.data.MonthPickerInterface
-import com.dnd_9th_3_android.gooding.viewModel.MainFeedViewModel
+import com.dnd_9th_3_android.gooding.feed.viewModel.MainFeedViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint

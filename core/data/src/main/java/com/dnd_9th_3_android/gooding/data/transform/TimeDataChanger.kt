@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint
-object TimeDataChanger {
+class TimeDataChanger {
     @SuppressLint("SimpleDateFormat")
     fun getLastText(createTime: String): String {
         val uploadTimeStamp = createTime.split("-", "T", ":", ".")

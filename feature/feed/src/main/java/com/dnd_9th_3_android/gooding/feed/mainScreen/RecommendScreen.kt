@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import com.dnd_9th_3_android.gooding.feature.feed.R
 
 // 메인 피드  - 추천
 @Composable
@@ -17,7 +17,7 @@ fun RecommendScreen() {
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .background(colorResource(id = R.color.type2))
+            .background(Color.Yellow)
     ) {
 
     }
