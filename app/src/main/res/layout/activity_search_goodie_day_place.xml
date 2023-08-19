@@ -61,14 +61,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
+                android:layout_marginTop="20dp"
                 app:boxCornerRadiusBottomEnd="20dp"
                 app:boxCornerRadiusBottomStart="20dp"
                 app:boxCornerRadiusTopEnd="20dp"
                 app:boxCornerRadiusTopStart="20dp"
                 app:hintEnabled="false"
+                app:endIconMode="clear_text"
                 app:endIconDrawable="@drawable/icon_search"
                 app:boxBackgroundColor="@color/tertiaryColor"
-                app:boxStrokeColor="@color/transparent"
+                app:boxStrokeColor="@color/tertiaryColor"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,6 +80,8 @@
                     android:textCursorDrawable="@drawable/cursor_drawable"
                     android:maxLines="1"
                     android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="@color/white"
                     android:hint="지역, 장소 검색"
                     android:textColorHint="@color/quaternaryColor" />
 
