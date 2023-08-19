@@ -71,8 +71,8 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.10.1")
     implementation("androidx.activity:activity-ktx:1.7.2")
-    implementation("androidx.fragment:fragment-ktx:1.6.0")
-    implementation("androidx.recyclerview:recyclerview:1.3.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.1")
+    implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation("androidx.annotation:annotation:1.6.0")
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
@@ -104,16 +104,17 @@ dependencies {
     implementation("com.google.android.play:core:1.10.3")
 
     // Paging
-    implementation("androidx.paging:paging-runtime:3.2.0")
+    implementation("androidx.paging:paging-runtime-ktx:3.2.0")
 
     // ExoPlayer
-    implementation("com.google.android.exoplayer:exoplayer:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-core:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-dash:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.0")
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-core:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-dash:2.19.1")
+    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.1")
     // Hilt
     implementation("com.google.dagger:hilt-android:2.45")
     kapt("com.google.dagger:hilt-compiler:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.45")
 
 //     구글 로그인 모듈
 //    implementation ("com.google.android.gms:play-services-auth:20.6.0")

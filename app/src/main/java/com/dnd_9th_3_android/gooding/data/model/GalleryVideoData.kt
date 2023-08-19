@@ -18,11 +18,11 @@ data class GalleryVideoData(
     val height: Int         // 동영상의 높이
 ): Parcelable {
     // 동영상의 썸네일을 반환한다.
-    private fun getThumbnail(file_path: String): Bitmap? {
+    private fun getThumbnail(filePath: String): Bitmap? {
         val thumbnailTime = 1
         val retriever = MediaMetadataRetriever()
 
-        retriever.setDataSource(file_path, HashMap<String,String>())
+        retriever.setDataSource(filePath, HashMap<String,String>())
 
         return retriever.getFrameAtTime((thumbnailTime * 1000000).toLong(), MediaMetadataRetriever.OPTION_CLOSEST)
     }
