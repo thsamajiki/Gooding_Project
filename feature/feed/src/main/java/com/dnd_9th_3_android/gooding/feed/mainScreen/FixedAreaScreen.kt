@@ -9,7 +9,10 @@ import com.dnd_9th_3_android.gooding.feed.fixedAreaSubLayout.FeedTopLayout
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
@@ -46,8 +49,9 @@ fun FixedAreaScreen() {
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .width(500.dp)
-                .wrapContentHeight()
+                .width(324.dp)
+                .background(Color.Yellow)
+                .height(70.dp)
         ){
             RomanticBarLayer(romanticPer = 0)
         }

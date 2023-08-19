@@ -11,27 +11,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 
 import com.dnd_9th_3_android.gooding.core.data.R
+import com.dnd_9th_3_android.gooding.data.SampleFeedData
+import com.dnd_9th_3_android.gooding.data.video.CheckUrl
+
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun RomanticBarLayer(
     romanticPer : Int,
 ) {
-    Box(
-        modifier = Modifier
-            .padding(
-                bottom = dimensionResource(id = R.dimen.padding_24)
-            )
-            .background(Color.Yellow)
-            .width(324.dp)
-            .height(70.dp),
-        contentAlignment = Alignment.Center
-    ){
-        Image(
-            painter = painterResource(id = R.drawable.romantic_bar),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-    }
+    Image(
+        modifier =Modifier.fillMaxSize(),
+        painter = painterResource(id = R.drawable.romantic_var),
+        contentDescription = null,
+        contentScale = ContentScale.Crop,
+    )
 }

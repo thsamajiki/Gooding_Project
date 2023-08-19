@@ -51,38 +51,29 @@ fun OneFeedItem(feed: Feed) {
             }
             else ->{}
         }
-        // top shadow
-        Image(
-            painter = painterResource(id = R.drawable.top_shadow),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .align(Alignment.TopCenter)
-        )
-        // bottom shadow
-        Image(
-            painter = painterResource(id = R.drawable.bottom_shadow),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .wrapContentHeight()
-                .align(Alignment.BottomCenter)
-        )
 
-        // in feed content
+        // top Box - add shadow
         Column(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(id = R.dimen.top_box_h))
+                .align(Alignment.TopCenter)
         ){
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_padding)))
 
             UserInfoLayer(userInfo = feed.userInfo)
+        }
 
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.mid_padding)))
+        // bottom Box - add shadow
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(dimensionResource(id = R.dimen.bottom_box_h))
+                .align(Alignment.BottomCenter)
+        ){
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_38)))
 
             MidInfoLayer(feed.location,feed.subject,feed.content)
-
-            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.bottom_padding)))
         }
     }
 }

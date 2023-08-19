@@ -30,15 +30,16 @@ import com.dnd_9th_3_android.gooding.data.video.VideoThumbnailUtil
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardRegular
+import com.dnd_9th_3_android.gooding.model.feed.FileData
 
 @OptIn(ExperimentalCoilApi::class)
 @Composable
 fun CenterFeedLayout(
     location : String,
-    imageList : List<String>,
+    imageList : List<FileData>,
 ) {
     // is video check
-    val isVideo = CheckUrl.isVideo(imageList[0])
+    val isVideo = CheckUrl.isVideo(imageList[0].fileUrl)
     val painter = if (isVideo) rememberImagePainter(
         data = SampleFeedData.sampleThumb[0],
         builder = { crossfade(true) }
