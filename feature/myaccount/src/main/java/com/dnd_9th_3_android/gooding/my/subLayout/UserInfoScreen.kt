@@ -53,7 +53,6 @@ fun UserInfoScreen(
             modifier = Modifier
                 .size(dimensionResource(id = R.dimen.profile_image_size))
                 .clip(CircleShape)
-                .border(dimensionResource(id = R.dimen.border_size), Color.White, CircleShape)
         )
         Spacer(modifier =Modifier.width(dimensionResource(id = R.dimen.padding_10)))
         // user name

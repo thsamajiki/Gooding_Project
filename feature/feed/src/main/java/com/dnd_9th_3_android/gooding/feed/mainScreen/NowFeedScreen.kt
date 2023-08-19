@@ -9,7 +9,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 
 // 메인 피드 - now
-@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun NowScreen() {
 

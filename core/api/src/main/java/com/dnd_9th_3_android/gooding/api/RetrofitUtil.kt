@@ -22,7 +22,7 @@ object RetrofitUtil {
             val original = it.request()
             if (userToken!=null){
                 val request = original.newBuilder()
-                    .header("Authorization","token $userToken")
+                    .header("Authorization","Bearer $userToken")
                     .build()
                 it.proceed(request)
             }
@@ -31,10 +31,10 @@ object RetrofitUtil {
         }
 
         return instance ?: Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(buildOkHttpClient(header))
-                .build()
+            .baseUrl("$baseUrl/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(buildOkHttpClient(header))
+            .build()
     }
 
     // 클라이언트 빌드

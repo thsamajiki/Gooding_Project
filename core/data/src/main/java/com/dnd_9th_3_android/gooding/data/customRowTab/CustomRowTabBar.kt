@@ -52,13 +52,11 @@ fun CustomRowTabBar(
     fontUnSelectColor : Color,
     boxHeight : Dp
 ) {
-    val scrollState = rememberScrollState()
     Row(
         modifier = Modifier
-            .horizontalScroll(scrollState)
-            .fillMaxWidth()
+            .width(dimensionResource(id = R.dimen.tab_width))
             .height(boxHeight),
-        horizontalArrangement = Arrangement.spacedBy(14.dp)
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_14))
     ) {
         pages.forEachIndexed { index, title ->
             Box(

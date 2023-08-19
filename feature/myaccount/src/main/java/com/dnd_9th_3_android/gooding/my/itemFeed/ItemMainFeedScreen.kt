@@ -16,10 +16,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.model.feed.Feed
+import com.dnd_9th_3_android.gooding.model.feed.MyFeed
 
 @Composable
 fun ItemMainFeedScreen(
-    feed : Feed,
+    feed : MyFeed,
     onDeleteView : (Boolean) -> Unit
 ) {
     Row(
@@ -40,25 +41,19 @@ fun ItemMainFeedScreen(
                 .fillMaxWidth()
                 .wrapContentHeight()
         ) {
-            TopInfoLayout(timeData = feed.uploadTime, onDelete = {
+            TopInfoLayout(timeData = feed.recordDate, onDelete = {
                 // delete feed
                 onDeleteView(true)
             })
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_15)))
-            CenterFeedLayout(location = feed.location, imageList = feed.urlList)
+            CenterFeedLayout(location = feed.placeTitle, imageList = feed.files)
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_12)))
             BottomFeedLayout(
-                feed.subject, feed.content,
+                feed.description, feed.description,
                 onMoreInfo = {
                     // go more info
                 }
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewItemFeed(){
-    ItemMainFeedScreen(SampleFeedData.sampleFeedList[0], onDeleteView = {})
 }

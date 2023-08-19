@@ -13,7 +13,13 @@ import com.dnd_9th_3_android.gooding.feature.my.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardRegular
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
 
 @Composable
@@ -66,3 +72,29 @@ fun BottomFeedLayout(
         )
     }
 }
+
+//// location
+//Row(
+//verticalAlignment = Alignment.CenterVertically,
+//modifier = Modifier.padding(
+//start=18.dp, end = 18.dp
+//)
+//) {
+//    // location Info
+//    Row(
+//        modifier = Modifier
+//            .background(Color.Gray, RoundedCornerShape(8.dp))
+//            .padding(8.dp),
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        Image(
+//            painter = painterResource(id = R.drawable.baseline_location_on_24), contentDescription =null,
+//            modifier = Modifier.size(20.dp)
+//        )
+//        Spacer(modifier = Modifier.width(3.dp))
+//        Text(text = location, color = Color.White, fontSize = 10.sp)
+//    }
+//
+//    Divider(modifier = Modifier.weight(1f))
+//
+//}

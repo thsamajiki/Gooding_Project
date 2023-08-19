@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.tooling.preview.Preview
+import com.dnd_9th_3_android.gooding.data.preventScroll.disabledHorizontalPointerInputScroll
 import com.dnd_9th_3_android.gooding.feed.fixedAreaSubLayout.FeedTopLayout
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -23,7 +24,9 @@ fun FeedScreen() {
         HorizontalPager(
             count = pages.size,
             state = hoPageState,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .disabledHorizontalPointerInputScroll() //custom
         ) { page ->
             when (page) {
                 0 -> NowScreen()

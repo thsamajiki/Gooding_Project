@@ -6,6 +6,8 @@ object SampleFeedData {
     val sampleThumb = listOf(
         "https://media.w3.org/2010/05/sintel/poster.png",
     )
+    private fun sampleRandomImage(id:Int) : String = "https://picsum.photos/id/$id/360/685"
+
     val sampleFeedList = listOf(
         Feed(
             "나의 첫 굳이데이 기록",
@@ -13,9 +15,9 @@ object SampleFeedData {
             10,
             "광안리 해수욕장",
             listOf(
-                "https://media.w3.org/2010/05/sintel/trailer.mp4",
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160530047_oen",
-                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                sampleRandomImage(1),
+                sampleRandomImage(2),
+                sampleRandomImage(3)
             ),
             "2023-01-14T14:49:09.230Z",
             SampleUserData.sampleUserData[0]
@@ -27,10 +29,11 @@ object SampleFeedData {
             30,
             "광안리 해수욕장",
             listOf(
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel",
+                sampleRandomImage(20),
                 "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel",
-                "https://www.visitbusan.net/uploadImgs/files/cntnts/20191229160529389_ttiel",
+                sampleRandomImage(15),
+                sampleRandomImage(20),
+                sampleRandomImage(21)
             ),
             "2023-12-15T14:49:09.230Z",
             SampleUserData.sampleUserData[1]
