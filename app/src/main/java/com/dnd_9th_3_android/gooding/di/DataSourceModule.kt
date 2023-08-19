@@ -2,6 +2,8 @@ package com.dnd_9th_3_android.gooding.di
 
 import com.dnd_9th_3_android.gooding.data.GalleryLocalDataSource
 import com.dnd_9th_3_android.gooding.data.GalleryLocalDataSourceImpl
+import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSource
+import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,4 +17,10 @@ abstract class DataSourceModule {
     @Singleton
     @Binds
     abstract fun bindGalleryLocalDataSource(galleryLocalDataSourceImpl : GalleryLocalDataSourceImpl) : GalleryLocalDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindKakaoMapAddressRemoteDataSource(
+        kakaoMapAddressRemoteDataSourceImpl: KakaoMapAddressRemoteDataSourceImpl
+    ): KakaoMapAddressRemoteDataSource
 }
