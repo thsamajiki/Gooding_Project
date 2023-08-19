@@ -1,12 +1,8 @@
 package com.dnd_9th_3_android.gooding.di
 
 import android.util.Log
-import com.dnd_9th_3_android.gooding.KakaoMapService
-import com.dnd_9th_3_android.gooding.api.baseUrl
+import com.dnd_9th_3_android.gooding.data.api.KakaoMapService
 import com.dnd_9th_3_android.gooding.api.kakaoMapUrl
-import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSource
-import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSourceImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

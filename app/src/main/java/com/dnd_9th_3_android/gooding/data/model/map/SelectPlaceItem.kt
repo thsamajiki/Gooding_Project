@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.data.model
+package com.dnd_9th_3_android.gooding.data.model.map
 
 // 장소 선택 데이터
 data class SelectPlaceItem(
