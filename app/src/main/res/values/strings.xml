@@ -73,5 +73,7 @@
     <string name="asterisk">*</string>
     <string name="please_choose_category">카테고리를 선택해주세요.</string>
     <string name="goodie_day_category">활동 카테고리</string>
-    <string name="please_search_goodie_day_place">굳이데이를 즐긴 장소를 검색해주세요.</string>​
+    <string name="please_search_goodie_day_place">굳이데이를 즐긴 장소를 검색해주세요.</string>
+    <string name="title_select_date">활동 날짜 선택</string>
+    <string name="select_complete">선택 완료</string>​
 </resources>
