@@ -88,13 +88,11 @@ class Record01Activity : AppCompatActivity() {
             bottomSheetSelectCategory.show(supportFragmentManager, bottomSheetSelectCategory.tag)
         }
 
-        binding.switchPrivacySetting.setOnClickListener {
-            if (!binding.switchPrivacySetting.splitTrack) {
-                binding.switchPrivacySetting.setThumbResource(R.color.primaryColor)
-                binding.switchPrivacySetting.setTrackResource(R.color.activatedColor)
+        binding.switchPrivacySetting.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if (isChecked) {
+
             } else {
-                binding.switchPrivacySetting.setThumbResource(R.color.white)
-                binding.switchPrivacySetting.setTrackResource(R.color.unactivatedColor)
+
             }
         }
 
