@@ -3,4 +3,8 @@
     <color name="unselect_white">#80FFFFFF</color>
     <color name="location_color">#50FFFFFF</color>
     <color name="tab_shadow">#26000000</color> <!--15%-->
+    <color name="main_gra_color_1">#57000000</color> <!--34%-->
+    <color name="main_gra_color_2">#00000000</color> <!--0%-->
+    <color name="romantic_bar_color">#CC1C1D27</color>
+    <color name="shadow_color_romantic">#33000000</color> <!--20%-->
 </resources>

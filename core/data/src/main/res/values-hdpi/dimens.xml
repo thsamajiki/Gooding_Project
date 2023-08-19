@@ -80,4 +80,9 @@
     <dimen name="top_box_h">136dp</dimen>
     <dimen name="bottom_box_h">260dp</dimen>
     <dimen name="padding_38">38dp</dimen>
+    <dimen name="romantic_w">324dp</dimen>
+    <dimen name="romantic_total_h">85dp</dimen>
+    <dimen name="romantic_h">70dp</dimen>
+    <dimen name="size_60">60dp</dimen>
+    <dimen name="size_30">30dp</dimen>
 </resources>

@@ -46,14 +46,10 @@ fun FixedAreaScreen() {
         }
 
         // romantic per
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .width(324.dp)
-                .background(Color.Yellow)
-                .height(70.dp)
-        ){
+        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
             RomanticBarLayer(romanticPer = 0)
+
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
         }
     }
 }
