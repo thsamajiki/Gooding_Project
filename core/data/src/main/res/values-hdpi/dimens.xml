@@ -71,4 +71,10 @@
     <dimen name="tab_text_h">27dp</dimen>
     <dimen name="bottom_padding">137dp</dimen>
     <dimen name="top_padding">95dp</dimen>
+    <dimen name="mid_padding">342dp</dimen>
+    <dimen name="padding_3">3dp</dimen>
+    <dimen name="corner_35">35dp</dimen>
+    <dimen name="padding_8_5">8.5dp</dimen>
+    <dimen name="padding_9">9dp</dimen>
+    <dimen name="size_280">280dp</dimen>
 </resources>

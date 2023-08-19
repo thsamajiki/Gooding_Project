@@ -46,7 +46,7 @@ fun FeedTopLayout(
                 }
         ){
             Image(
-                painterResource(id = R.drawable.baseline_search_24),
+                painterResource(id = R.drawable.search),
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize()
             )

@@ -75,9 +75,13 @@ fun OneFeedItem(feed: Feed) {
             modifier = Modifier.fillMaxWidth()
         ){
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_padding)))
+
             UserInfoLayer(userInfo = feed.userInfo)
-            Divider(modifier = Modifier.weight(1f))
+
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.mid_padding)))
+
             MidInfoLayer(feed.location,feed.subject,feed.content)
+
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.bottom_padding)))
         }
     }

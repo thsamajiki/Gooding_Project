@@ -26,7 +26,7 @@ fun FeedScreen() {
             state = hoPageState,
             modifier = Modifier
                 .fillMaxSize()
-                .disabledHorizontalPointerInputScroll()
+                .disabledHorizontalPointerInputScroll() //custom
         ) { page ->
             when (page) {
                 0 -> NowScreen()

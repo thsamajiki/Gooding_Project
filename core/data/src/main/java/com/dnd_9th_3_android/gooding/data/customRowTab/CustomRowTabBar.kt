@@ -54,7 +54,7 @@ fun CustomRowTabBar(
 ) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
+            .width(dimensionResource(id = R.dimen.tab_width))
             .height(boxHeight),
         horizontalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_14))
     ) {

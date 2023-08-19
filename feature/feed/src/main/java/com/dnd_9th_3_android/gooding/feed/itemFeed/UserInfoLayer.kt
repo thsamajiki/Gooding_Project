@@ -36,10 +36,12 @@ fun UserInfoLayer(userInfo: UserInfo) {
             crossfade(true)
         }
     )
-
+    Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_9)))
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(18.dp)
+        modifier = Modifier.padding(
+            start =  dimensionResource(id = R.dimen.padding_18)
+        )
     ) {
         Image(
             painter = painter,
