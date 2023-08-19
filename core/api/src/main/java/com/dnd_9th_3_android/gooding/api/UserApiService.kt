@@ -13,5 +13,5 @@ interface UserApiService {
     @GET("api/v1/record/my-record")
     fun getMyRecords(
         @Query("userId") userId: Int,
-    ) : Call<Unit>
+    ) : Call<ArrayList<MyFeed>>
 }

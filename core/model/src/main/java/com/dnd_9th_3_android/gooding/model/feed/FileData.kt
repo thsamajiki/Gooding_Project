@@ -5,5 +5,4 @@ import java.io.Serializable
 data class FileData (
     val id : Int,
     val fileUrl :String,
-    val thumbnailUrl : String?,
 ):Serializable

@@ -25,8 +25,9 @@ object RetrofitUtil {
                     .header("Authorization","Bearer $userToken")
                     .build()
                 it.proceed(request)
+            }else {
+                it.proceed(original)
             }
-            it.proceed(original)
 
         }
 

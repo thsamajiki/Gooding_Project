@@ -41,11 +41,11 @@ fun CenterFeedLayout(
     // is video check
     val isVideo = CheckUrl.isVideo(imageList[0].fileUrl)
     val painter = if (isVideo) rememberImagePainter(
-        data = SampleFeedData.sampleThumb[0],
+        data = imageList[0].fileUrl,
         builder = { crossfade(true) }
     )
     else rememberImagePainter(
-        data = imageList[0],
+        data = imageList[0].fileUrl,
         builder = { crossfade(true) }
     )
     // location

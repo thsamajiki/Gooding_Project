@@ -107,28 +107,30 @@ fun TimeLineScreen(
             // 8월 데이터
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 // 임시 데이터 받기 !
-                RetrofitUtil.setUserToken("eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2OTI0MjczNDksImV4cCI6MTY5MjQyOTE0OX0.Wbbj6maj9AGNe4Kexs76shZiE3KNnwL9xYpJ0qw3TTi4T8p00IeZHxI_7Qsxk8Y5")
+                RetrofitUtil.setUserToken(
+                    "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2OTI0MjkyMjcsImV4cCI6MTY5MjQzMTAyN30.eFrGY4_RZcSmFVee_cJ4IU9zaGGHe1A3YWoFbV4JvmJ-hp3xohT98vGf33M40eiv"
+                )
                 RetrofitUtil.userApiService.getMyRecords(1)
-                    .enqueue(object :Callback<Unit>{
+                    .enqueue(object :Callback<ArrayList<MyFeed>>{
                         override fun onResponse(
-                            call: Call<Unit>,
-                            response: Response<Unit>
+                            call: Call<ArrayList<MyFeed>>,
+                            response: Response<ArrayList<MyFeed>>
                         ) {
                             if (response.isSuccessful){
                                 val dataList = response.body()!!
                                 Log.d("dataSEt",dataList.toString())
-//                                items(dataList){ data->
-//                                    ItemMainFeedScreen(feed = data, onDeleteView = {
-//                                        showDeleteView = it
-//                                    })
-//                                }
+                                items(dataList){ data->
+                                    ItemMainFeedScreen(feed = data, onDeleteView = {
+                                        showDeleteView = it
+                                    })
+                                }
                             }else{
                                 Log.d("fail 22",response.errorBody()!!.string())
                                 Log.d("fail 22",response.message()!!.toString())
                             }
                         }
 
-                        override fun onFailure(call: Call<Unit>, t: Throwable) {
+                        override fun onFailure(call: Call<ArrayList<MyFeed>>, t: Throwable) {
                             Log.d("fail data","load fail $t")
                         }
 
