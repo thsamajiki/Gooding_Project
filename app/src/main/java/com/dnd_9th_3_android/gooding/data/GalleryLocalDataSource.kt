@@ -1,8 +1,8 @@
 package com.dnd_9th_3_android.gooding.data
 
-import com.dnd_9th_3_android.gooding.data.model.GalleryData
-import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
-import com.dnd_9th_3_android.gooding.data.model.GalleryVideoData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryVideoData
 
 interface GalleryLocalDataSource {
     fun getAllImages(page: Int): List<GalleryImageData>

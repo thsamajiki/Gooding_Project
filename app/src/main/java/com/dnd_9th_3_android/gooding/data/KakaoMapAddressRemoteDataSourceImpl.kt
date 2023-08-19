@@ -1,7 +1,7 @@
 package com.dnd_9th_3_android.gooding.data
 
-import com.dnd_9th_3_android.gooding.KakaoMapService
-import com.dnd_9th_3_android.gooding.data.model.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.api.KakaoMapService
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
 import javax.inject.Inject
 
 class KakaoMapAddressRemoteDataSourceImpl @Inject constructor(

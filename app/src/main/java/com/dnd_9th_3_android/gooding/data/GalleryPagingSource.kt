@@ -2,7 +2,7 @@ package com.dnd_9th_3_android.gooding.data
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
 
 class GalleryPagingSource(
     private val galleryLocalDataSource: GalleryLocalDataSource
