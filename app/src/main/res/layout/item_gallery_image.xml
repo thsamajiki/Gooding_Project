@@ -8,7 +8,7 @@
 
         <variable
             name="galleryImage"
-            type="com.dnd_9th_3_android.gooding.data.model.GalleryImageData" />
+            type="com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
