@@ -22,6 +22,8 @@ class Record01Activity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        binding.progressBar.progress = 33
+
         initListeners()
     }
 
@@ -63,9 +65,28 @@ class Record01Activity : AppCompatActivity() {
         }
 
         binding.textLayoutDateGoodieDay.setOnClickListener {
-            binding.textEditContentGoodieDay.clearFocus()
             val bottomSheetDatePicker = BottomSheetDatePicker.newInstance()
             bottomSheetDatePicker.show(supportFragmentManager, bottomSheetDatePicker.tag)
+        }
+
+        binding.cvPlaceGoodieDay.setOnClickListener {
+            val intent = SearchGoodieDayPlaceActivity.getIntent(this@Record01Activity)
+            startActivity(intent)
+        }
+
+        binding.cvCategoryGoodieDay.setOnClickListener {
+            val bottomSheetSelectCategory = BottomSheetSelectCategory.newInstance()
+            bottomSheetSelectCategory.show(supportFragmentManager, bottomSheetSelectCategory.tag)
+        }
+
+        binding.switchPrivacySetting.setOnClickListener {
+            if (!binding.switchPrivacySetting.splitTrack) {
+                binding.switchPrivacySetting.setThumbResource(R.color.primaryColor)
+                binding.switchPrivacySetting.setTrackResource(R.color.activatedColor)
+            } else {
+                binding.switchPrivacySetting.setThumbResource(R.color.white)
+                binding.switchPrivacySetting.setTrackResource(R.color.unactivatedColor)
+            }
         }
 
         binding.btnNextStep.setOnClickListener {
