@@ -352,7 +352,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_title_privacy_setting"
                 android:thumb="@drawable/selector_thumb"
-                android:track="@drawable/selector_switch" />
+                android:track="@drawable/selector_track" />
 
             <TextView
                 android:id="@+id/tv_subtitle_privacy_setting"
