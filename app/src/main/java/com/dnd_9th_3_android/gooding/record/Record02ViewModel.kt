@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dnd_9th_3_android.gooding.data.model.RequestUploadFeed
 import com.dnd_9th_3_android.gooding.data.model.UploadRequest
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
 import com.dnd_9th_3_android.gooding.data.repository.UploadFeedRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

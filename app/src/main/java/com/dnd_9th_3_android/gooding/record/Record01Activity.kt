@@ -59,7 +59,7 @@ class Record01Activity : AppCompatActivity() {
             } else {
                 binding.textEditTitleGoodieDay.setHint(R.string.please_write_title)
                 binding.textLayoutTitleGoodieDay.background = ContextCompat.getDrawable(this,
-                    R.drawable.border_text_input_layout_unselected
+                    R.drawable.border_text_input_layout_unselected_with_padding
                 )
             }
         }
@@ -73,7 +73,7 @@ class Record01Activity : AppCompatActivity() {
             } else {
                 binding.textEditContentGoodieDay.setHint(R.string.please_write_your_goodie_day)
                 binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this,
-                    R.drawable.border_text_input_layout_unselected
+                    R.drawable.border_text_input_layout_unselected_with_padding
                 )
             }
         }
