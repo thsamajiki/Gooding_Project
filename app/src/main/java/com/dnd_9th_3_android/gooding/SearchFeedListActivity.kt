@@ -114,7 +114,7 @@ class SearchFeedListActivity : AppCompatActivity() {
     private fun initViewModel() {
         with(viewModel) {
             lifecycleScope.launch {
-                uiState.collect {state ->
+                uiState.collect { state ->
                     when(state) {
                         is SearchFeedListViewModel.UiState.SearchFeedListFailed -> {
                             Toast.makeText(
