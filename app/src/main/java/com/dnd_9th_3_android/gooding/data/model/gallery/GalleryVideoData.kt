@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.data.model
+package com.dnd_9th_3_android.gooding.data.model.gallery
 
 import android.graphics.Bitmap
 import android.media.MediaMetadataRetriever

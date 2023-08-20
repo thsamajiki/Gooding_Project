@@ -1,10 +1,10 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.record
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dnd_9th_3_android.gooding.data.model.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
 import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

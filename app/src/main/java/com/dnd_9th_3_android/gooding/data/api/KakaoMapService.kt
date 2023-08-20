@@ -1,6 +1,6 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.data.api
 
-import com.dnd_9th_3_android.gooding.data.model.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

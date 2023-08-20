@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
 import com.dnd_9th_3_android.gooding.data.repository.GalleryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -57,13 +57,13 @@
                     android:scheme="kakaoa244014544b5323246b6853ca1d8ca93" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchGoodieDayPlaceActivity"
+        <activity android:name=".record.SearchGoodieDayPlaceActivity"
             android:exported="false" />
-        <activity android:name=".Record01Activity"
+        <activity android:name=".record.Record01Activity"
             android:exported="false" />
-        <activity android:name=".Record02Activity"
+        <activity android:name=".record.Record02Activity"
             android:exported="false" />
-        <activity android:name=".GalleryActivity"
+        <activity android:name=".gallery.GalleryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

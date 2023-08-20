@@ -39,7 +39,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:text="활동 날짜 선택"
+                    android:text="@string/title_select_date"
                     android:textColor="@color/white"
                     android:textSize="17sp"
                     android:textStyle="bold"
@@ -51,8 +51,14 @@
 
         </androidx.appcompat.widget.Toolbar>
 
-        <DatePicker
-            style="@style/CustomDatePickerStyle"
+<!--        <DatePicker-->
+<!--            style="@style/CustomDatePickerStyle"-->
+<!--            android:id="@+id/date_picker"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal" />-->
+
+        <CalendarView
             android:id="@+id/date_picker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +70,7 @@
             android:layout_height="50dp"
             android:layout_margin="20dp"
             android:backgroundTint="@color/unactivatedBackgroundColor"
-            android:text="선택 완료"
+            android:text="@string/select_complete"
             android:textColor="@color/unactivatedColor"
             android:textStyle="bold" />
 

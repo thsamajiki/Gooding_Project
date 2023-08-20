@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.record
 
 import android.app.Activity
 import android.content.Context
@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
 import com.dnd_9th_3_android.gooding.databinding.ActivitySearchGoodieDayPlaceBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemKakaoMapPlaceBinding
 import dagger.hilt.android.AndroidEntryPoint

@@ -9,15 +9,9 @@ import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
 import android.util.Log
-import android.view.View
-import android.widget.ImageView
-import android.widget.RadioButton
-import android.widget.TextView
-import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.dnd_9th_3_android.gooding.data.model.GalleryData
-import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
-import com.dnd_9th_3_android.gooding.data.model.GalleryVideoData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryVideoData
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
