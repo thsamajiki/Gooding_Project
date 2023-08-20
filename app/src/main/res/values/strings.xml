@@ -75,5 +75,9 @@
     <string name="goodie_day_category">활동 카테고리</string>
     <string name="please_search_goodie_day_place">굳이데이를 즐긴 장소를 검색해주세요.</string>
     <string name="title_select_date">활동 날짜 선택</string>
-    <string name="select_complete">선택 완료</string>​
+    <string name="select_complete">선택 완료</string>
+    <string name="nothing_found">검색 결과가 없습니다.</string>
+    <string name="delete_all">모두 지우기</string>
+    <string name="title_recent_keyword_list">최근 검색어</string>
+    <string name="please_input_keyword">검색어를 입력하세요</string>​
 </resources>
