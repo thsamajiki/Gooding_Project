@@ -56,6 +56,8 @@
                     android:scheme="kakaoa244014544b5323246b6853ca1d8ca93" />
             </intent-filter>
         </activity>
+        <activity android:name=".SearchFeedListActivity"
+            android:exported="false" />
         <activity android:name=".record.SearchGoodieDayPlaceActivity"
             android:exported="false" />
         <activity android:name=".record.Record01Activity"
