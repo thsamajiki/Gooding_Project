@@ -10,7 +10,9 @@ import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord01Binding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class Record01Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecord01Binding
@@ -23,9 +25,12 @@ class Record01Activity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        binding.progressBar.progress = 33
-
+        initView()
         initListeners()
+    }
+
+    private fun initView() {
+        binding.progressBar.progress = 33
     }
 
     private fun initListeners() {

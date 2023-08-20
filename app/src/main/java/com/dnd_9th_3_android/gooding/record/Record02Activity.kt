@@ -3,6 +3,9 @@ package com.dnd_9th_3_android.gooding.record
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.Animation
+import android.view.animation.Transformation
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +13,12 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord02Binding
+import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 
+@AndroidEntryPoint
 class Record02Activity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRecord02Binding
@@ -31,7 +38,31 @@ class Record02Activity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding.progressBar.setProgressCompat(66, true)
+        val currentProgress = binding.progressBar.progress
+        getInterval().subscribe {
+            binding.progressBar.progress = currentProgress + it.toInt()
+        }
+
+//        val anim = AnimateProgressBar(binding.progressBar, 33f,66f)
+//        anim.duration = 100
+//        binding.progressBar.startAnimation(anim)
+    }
+
+    private fun getInterval(): Observable<Long> =
+        Observable.interval(1L, TimeUnit.MILLISECONDS).map { interval ->
+            interval + 1
+        }.take(66)
+
+    class AnimateProgressBar(
+        private var progressBar: ProgressBar,
+        private var from: Float,
+        private var to: Float
+    ) : Animation() {
+        override fun applyTransformation(interpolatedTime: Float, t: Transformation?) {
+            super.applyTransformation(interpolatedTime, t)
+            val value = from + (to - from) * interpolatedTime
+            progressBar.progress = value.toInt()
+        }
     }
 
     private fun initViewModel() {
