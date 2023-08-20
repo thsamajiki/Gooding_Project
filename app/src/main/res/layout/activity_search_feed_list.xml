@@ -163,7 +163,7 @@
                 tools:listitem="@layout/item_popular_keyword" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_searched_keyword_list"
+                android:id="@+id/rv_searched_feed_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
