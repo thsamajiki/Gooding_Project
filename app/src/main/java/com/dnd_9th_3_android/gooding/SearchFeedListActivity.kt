@@ -14,6 +14,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -29,6 +31,7 @@ import com.dnd_9th_3_android.gooding.databinding.ItemPopularKeywordBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemRecentKeywordBinding
 import com.dnd_9th_3_android.gooding.record.Record01Activity
 import dagger.hilt.android.AndroidEntryPoint
+import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -55,7 +58,18 @@ class SearchFeedListActivity : AppCompatActivity() {
     private fun initView() {
         initRecentKeywordListRecyclerView(binding.rvRecentKeywordList)
         initPopularKeywordListRecyclerView(binding.rvPopularKeywordList)
-        initSearchFeedListRecyclerView(binding.rvSearchedKeywordList)
+        initSearchFeedListRecyclerView(binding.rvSearchedFeedList)
+
+        TedKeyboardObserver(this)
+            .listen { isShow ->
+                val isItemEmpty = searchFeedListAdapter.itemCount == 0
+                binding.rvSearchedFeedList.isInvisible = isShow || isItemEmpty
+                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
+
+                if (!isShow) {
+                    binding.textEditSearchFeed.clearFocus()
+                }
+            }
     }
 
     private fun initRecentKeywordListRecyclerView(recyclerView: RecyclerView) {
@@ -64,7 +78,7 @@ class SearchFeedListActivity : AppCompatActivity() {
         )
 
         recyclerView.run {
-            layoutManager = LinearLayoutManager(this@SearchFeedListActivity, HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = recentKeywordListAdapter
         }
     }
@@ -79,7 +93,7 @@ class SearchFeedListActivity : AppCompatActivity() {
         )
 
         recyclerView.run {
-            layoutManager = LinearLayoutManager(this@SearchFeedListActivity, HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = popularKeywordListAdapter
         }
     }
