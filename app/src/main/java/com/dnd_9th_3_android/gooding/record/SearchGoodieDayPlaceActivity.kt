@@ -14,15 +14,18 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapResponse
 import com.dnd_9th_3_android.gooding.databinding.ActivitySearchGoodieDayPlaceBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemKakaoMapPlaceBinding
 import dagger.hilt.android.AndroidEntryPoint
+import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -54,6 +57,23 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 
     private fun initView() {
         initRecyclerView(binding.rvPlaceList)
+
+        if (binding.textEditSearchPlace.hasFocus()) {
+            binding.ivDelete.isVisible = true
+        } else {
+            binding.ivDelete.isGone = true
+        }
+
+        TedKeyboardObserver(this)
+            .listen { isShow ->
+                val isItemEmpty = goodieDayPlaceListAdapter.itemCount == 0
+                binding.rvPlaceList.isInvisible = isShow || isItemEmpty
+                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
+
+                if (!isShow) {
+                    binding.textEditSearchPlace.clearFocus()
+                }
+            }
     }
 
     private fun initRecyclerView(recyclerView: RecyclerView) {
@@ -67,7 +87,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
         }
     }
 
-    private fun onClickPlaceItem(kakaoMapData: KakaoMapData) {
+    private fun onClickPlaceItem(kakaoMapResponse: KakaoMapResponse) {
         // TODO: 주소 아이템 클릭하면 Record01Activity에 해당 주소가 반영되도록 하기
     }
 
@@ -105,6 +125,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 
             if (binding.textEditSearchPlace.hasFocus()) {
                 binding.textEditSearchPlace.clearFocus()
+                binding.ivDelete.isGone = true
             }
         }
 
@@ -123,6 +144,20 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 
             true
         }
+
+        binding.ivSearch.setOnClickListener {
+            val query = binding.textEditSearchPlace.text.toString()
+            binding.rvPlaceList.isGone = true
+            viewModel.searchPlace(query)
+            Log.d("query", "SearchGoodieDayPlaceActivity - initListeners: query - $query")
+
+            closeKeyboard(binding.root)
+            binding.textEditSearchPlace.clearFocus()
+        }
+
+        binding.ivDelete.setOnClickListener {
+            binding.textEditSearchPlace.text?.clear()
+        }
     }
 
     private fun closeKeyboard(view: View) {
@@ -137,16 +172,16 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 }
 
 class GoodieDayPlaceListAdapter(
-    private val onClick: (KakaoMapData) -> Unit,
-) : ListAdapter<KakaoMapData, GoodieDayPlaceListAdapter.GoodieDayPlaceViewHolder>(DiffCallback()) {
-    private val addressList = mutableListOf<KakaoMapData>()
+    private val onClick: (KakaoMapResponse) -> Unit,
+) : ListAdapter<KakaoMapResponse, GoodieDayPlaceListAdapter.GoodieDayPlaceViewHolder>(DiffCallback()) {
+    private val addressList = mutableListOf<KakaoMapResponse>()
 
     class GoodieDayPlaceViewHolder(
         val binding: ItemKakaoMapPlaceBinding,
-        private val onClick: (KakaoMapData) -> Unit,
+        private val onClick: (KakaoMapResponse) -> Unit,
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(mapData: KakaoMapData) {
+        fun bind(mapData: KakaoMapResponse) {
             binding.tvPlaceName.text = mapData.documents[0].placeName
             binding.tvPlaceDetail.text = mapData.documents[0].addressName
 
@@ -173,12 +208,12 @@ class GoodieDayPlaceListAdapter(
         return currentList.size
     }
 
-    private class DiffCallback : DiffUtil.ItemCallback<KakaoMapData>() {
-        override fun areItemsTheSame(oldItem: KakaoMapData, newItem: KakaoMapData): Boolean {
+    private class DiffCallback : DiffUtil.ItemCallback<KakaoMapResponse>() {
+        override fun areItemsTheSame(oldItem: KakaoMapResponse, newItem: KakaoMapResponse): Boolean {
             return oldItem.documents[0].id == newItem.documents[0].id
         }
 
-        override fun areContentsTheSame(oldItem: KakaoMapData, newItem: KakaoMapData): Boolean {
+        override fun areContentsTheSame(oldItem: KakaoMapResponse, newItem: KakaoMapResponse): Boolean {
             return oldItem == newItem
         }
     }

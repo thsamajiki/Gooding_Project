@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapResponse
 import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +22,7 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
         object SearchPlaceFailed : UiState()
 
         data class SearchPlaceSuccess(
-            val mapAddressList: List<KakaoMapData>,
+            val mapAddressList: List<KakaoMapResponse>,
         ) : UiState()
 
         object Idle : UiState()
@@ -38,7 +38,7 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
     val emptyStateMessage: LiveData<String>
         get() = _emptyStateMessage
 
-    private val mapAddressList = mutableListOf<KakaoMapData>()
+    private val mapAddressList = mutableListOf<KakaoMapResponse>()
 
     fun searchPlace(query: String) {
         viewModelScope.launch {
