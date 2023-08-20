@@ -56,7 +56,7 @@ class GalleryViewModel @Inject constructor(
         }
     }
 
-    fun addRecipePhotoList(photoPathList: List<String>) {
+    fun addGalleryList(photoPathList: List<String>) {
 //        _imageList.value = _imageList.value + photoPathList
     }
 
