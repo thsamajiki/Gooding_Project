@@ -65,6 +65,7 @@
 
     <!--main feed-->
     <dimen name="padding_55">55dp</dimen>
+    <dimen name="padding_53">53dp</dimen>
     <dimen name="book_padding_bottom">197dp</dimen>
     <dimen name="text_18_sp">18sp</dimen>
     <dimen name="tab_text_w">46dp</dimen>
@@ -92,10 +93,14 @@
     <dimen name="union_pro_w">36dp</dimen>
     <dimen name="union_pro_h">30.59dp</dimen>
     <dimen name="size_64">64dp</dimen>
+    <dimen name="size_44">44dp</dimen>
     <dimen name="size_50">50dp</dimen>
-    <dimen name="bottom_pro_size">26.3dp</dimen>
+    <dimen name="bottom_pro_size">25.3dp</dimen>
     <dimen name="circle_pro_size">24dp</dimen>
-    <dimen name="padding_3_5">3.5dp</dimen>
+    <dimen name="padding_5_7">5.7dp</dimen>
+    <dimen name="padding_58">58dp</dimen>
+    <dimen name="padding_31">31dp</dimen>
+    <dimen name="padding_46">46dp</dimen>
     <dimen name="padding_62">62dp</dimen>
 
 </resources>

@@ -19,4 +19,21 @@
     <color name="blue_gray_4">#575860</color>
     <color name="blue_gray_6">#282932</color>
     <color name="blue_gray_7">#1C1D27</color>
+
+
+    <color name="normal_state">#BBBEC3</color>
+
+    <color name="state1">#FF59D0</color>
+    <color name="state2">#F562C2</color>
+    <color name="state3">#E270CA</color>
+    <color name="state4">#C280C5</color>
+    <color name="state5">#B891C0</color>
+    <color name="state6">#A59FBC</color>
+    <color name="state7">#90B0B7</color>
+    <color name="state8">#7DBEB2</color>
+    <color name="state9">#68CEAD</color>
+    <color name="state10">#54DEA9</color>
+    <color name="state11">#3FEEA4</color>
+    <color name="state12">#3CEFA3</color>
+
 </resources>

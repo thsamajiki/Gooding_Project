@@ -15,7 +15,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.dnd_9th_3_android.gooding.core.data.R
 
-// 바깥쪽 뷰
+// 백 그라운드 뷰
 @Composable
 fun BarInternalContent() {
     Row(
@@ -42,8 +42,6 @@ fun BarInternalContent() {
             modifier = Modifier
                 .width(dimensionResource(id = R.dimen.bar_w))
                 .wrapContentHeight()
-                .padding(end = 10.dp)
-
         )
 
         Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_20)))

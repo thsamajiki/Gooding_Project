@@ -106,11 +106,7 @@ dependencies {
     // Paging
     implementation("androidx.paging:paging-runtime:3.2.0")
 
-    // ExoPlayer
-    implementation("com.google.android.exoplfayer:exoplayer:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-core:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-dash:2.19.0")
-    implementation("com.google.android.exoplayer:exoplayer-ui:2.19.0")
+
     // Hilt
     implementation("com.google.dagger:hilt-android:2.45")
     kapt("com.google.dagger:hilt-compiler:2.45")

@@ -3,28 +3,21 @@ package com.dnd_9th_3_android.gooding.feed.itemFeed
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.blur
-import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
-import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import androidx.compose.ui.unit.dp
 
 import com.dnd_9th_3_android.gooding.core.data.R
-import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.data.contentLayout.coustomShadow
-import com.dnd_9th_3_android.gooding.data.video.CheckUrl
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.BarInternalContent
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.ProgressGraphic
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.ProgressSlider
@@ -58,29 +51,34 @@ fun RomanticBarLayer(
         ){
             BarInternalContent() // 기본 배경
         }
-        var currentValue = remember {
+        val currentValue = remember {
             mutableStateOf(romanticPer)
+        }
+        val currentOffset = remember {
+            mutableStateOf(Offset(0f,0f))
         }
         // 내부 슬라이더
         Box(
             modifier = Modifier
-                .align(Alignment.Center)
                 .padding(
-                    start = dimensionResource(id = R.dimen.padding_62),
-                    end = dimensionResource(id = R.dimen.padding_62)
+                    start = dimensionResource(id = R.dimen.padding_53),
+                    end = dimensionResource(id = R.dimen.padding_53),
+                    top = dimensionResource(id = R.dimen.padding_46),
+                    bottom = dimensionResource(id = R.dimen.padding_31)
                 )
-                .fillMaxWidth()
-                .height(dimensionResource(id = R.dimen.size_50))
+                .fillMaxSize()
+                .height(dimensionResource(id = R.dimen.size_60))
         ){
-//            ProgressSlider(
-//                currentValue = currentValue.value,
-//                chageValue = {
-//                    currentValue.value = it
-//                },
-//                colorList = listOf(colorResource(id = R.color.for_grada_1), colorResource(id = R.color.secondary_1))
-//            )
+            ProgressSlider(
+                currentValue = currentValue.value,
+                changeValue = { value, offset ->
+                    currentValue.value = value
+                    currentOffset.value = offset
+                }
+            )
         }
-        ProgressGraphic(ColorFilter.tint(Color.Red),currentValue.value) //현재 상태
+
+        ProgressGraphic(progress = currentValue.value, offset = currentOffset.value) //현재 상태
 
     }
 }

@@ -1,7 +1,8 @@
 package com.dnd_9th_3_android.gooding.feed.romanticFunction
 
+import android.util.Log
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
@@ -10,22 +11,37 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.data.contentLayout.camptonBold
 
 @Composable
 fun ProgressGraphic(
-    tint : ColorFilter,
-    progress : Float
+    progress : Float,
+    offset: Offset,
 ) {
-    // padding : 0~ 182
+    val colorState by  animateColorAsState(
+        if (progress==0.0f || (progress/8.4).toInt()>=MAX_COLRINDEX){
+            colorResource(id = R.color.normal_state)
+        }else {
+            getRomanticColorList()[(progress / 8.4).toInt()]
+        }
+    )
     Row(
-        modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier
+            .fillMaxSize()
+        ,horizontalArrangement = Arrangement.Center
     ){
-        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.size_50)))
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.size_44)))
 
         // 이동 이미지
         Box(
@@ -34,6 +50,7 @@ fun ProgressGraphic(
         ){
             Box(
                 modifier = Modifier
+                    .offset(x = offset.x.dp)
                     .width(dimensionResource(id = R.dimen.padding_36))
                     .height(dimensionResource(id = R.dimen.size_64))
             ){
@@ -52,7 +69,7 @@ fun ProgressGraphic(
                             .align(Alignment.Center),
                         painter = painterResource(id = R.drawable.union_pro),
                         contentDescription = null,
-                        colorFilter = tint
+                        colorFilter = ColorFilter.tint(colorState)
                     )
 
                     // 텍스트
@@ -100,13 +117,13 @@ fun ProgressGraphic(
                             painter = painterResource(R.drawable.bottom_pro_image),
                             contentDescription = null,
                             modifier = Modifier.fillMaxSize(),
-                        colorFilter = tint
+                        colorFilter = ColorFilter.tint(colorState)
 
                     )
                 }
             }
         }
-        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.size_50)))
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.size_44)))
     }
 
 }
