@@ -1,17 +1,17 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.record
 
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dnd_9th_3_android.gooding.databinding.BottomSheetDatePickerBinding
+import com.dnd_9th_3_android.gooding.R
+import com.dnd_9th_3_android.gooding.databinding.BottomSheetSelectCategoryBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import java.util.Calendar
 
-class BottomSheetDatePicker : BottomSheetDialogFragment() {
-    private var _binding: BottomSheetDatePickerBinding? = null
-    private val binding: BottomSheetDatePickerBinding
+class BottomSheetSelectCategory: BottomSheetDialogFragment() {
+    private var _binding: BottomSheetSelectCategoryBinding? = null
+    private val binding: BottomSheetSelectCategoryBinding
         get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class BottomSheetDatePicker : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = BottomSheetDatePickerBinding.inflate(inflater, container, false)
+        _binding = BottomSheetSelectCategoryBinding.inflate(inflater, container, false)
 
         setupView()
         setupListeners()
@@ -30,7 +30,7 @@ class BottomSheetDatePicker : BottomSheetDialogFragment() {
     override fun getTheme(): Int = R.style.RounderBottomSheetDialog
 
     private fun setupView() {
-        binding.cvDatePicker.background = GradientDrawable().apply {
+        binding.cvSelectCategory.background = GradientDrawable().apply {
             val radius = resources.getDimension(R.dimen.bottom_sheet_radius)
             cornerRadii = floatArrayOf(radius, radius, radius, radius, 0f, 0f, 0f, 0f)
         }
@@ -42,19 +42,14 @@ class BottomSheetDatePicker : BottomSheetDialogFragment() {
         }
 
         binding.btnComplete.setOnClickListener {
-            val currentTime = Calendar.getInstance()
-            val year = currentTime.get(Calendar.YEAR)
-            val month = currentTime.get(Calendar.MONTH)
-            val day = currentTime.get(Calendar.DAY_OF_MONTH)
-
 
             dismiss()
         }
     }
 
     companion object {
-        fun newInstance(): BottomSheetDatePicker =
-            BottomSheetDatePicker().apply {
+        fun newInstance(): BottomSheetSelectCategory =
+            BottomSheetSelectCategory().apply {
                 arguments = Bundle().apply {
 
                 }

@@ -1,11 +1,11 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.gallery
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.GalleryImageData
+import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
 import com.dnd_9th_3_android.gooding.databinding.ItemGalleryImageBinding
 
 class GalleryImageListAdapter(

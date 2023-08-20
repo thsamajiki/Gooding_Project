@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding
+package com.dnd_9th_3_android.gooding.record
 
 import android.app.Activity
 import android.content.Context
@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord01Binding
 
 class Record01Activity : AppCompatActivity() {
@@ -21,6 +22,8 @@ class Record01Activity : AppCompatActivity() {
 
         val view = binding.root
         setContentView(view)
+
+        binding.progressBar.progress = 33
 
         initListeners()
     }
@@ -45,27 +48,52 @@ class Record01Activity : AppCompatActivity() {
         binding.textEditTitleGoodieDay.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 binding.textEditTitleGoodieDay.hint = ""
-                binding.textLayoutTitleGoodieDay.background = ContextCompat.getDrawable(this, R.drawable.border_text_input_layout_selected)
+                binding.textLayoutTitleGoodieDay.background = ContextCompat.getDrawable(this,
+                    R.drawable.border_text_input_layout_selected
+                )
             } else {
                 binding.textEditTitleGoodieDay.setHint(R.string.please_write_title)
-                binding.textLayoutTitleGoodieDay.background = ContextCompat.getDrawable(this, R.drawable.border_text_input_layout_unselected)
+                binding.textLayoutTitleGoodieDay.background = ContextCompat.getDrawable(this,
+                    R.drawable.border_text_input_layout_unselected
+                )
             }
         }
 
         binding.textEditContentGoodieDay.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 binding.textEditContentGoodieDay.hint = ""
-                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this, R.drawable.border_text_input_layout_selected)
+                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this,
+                    R.drawable.border_text_input_layout_selected
+                )
             } else {
                 binding.textEditContentGoodieDay.setHint(R.string.please_write_your_goodie_day)
-                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this, R.drawable.border_text_input_layout_unselected)
+                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this,
+                    R.drawable.border_text_input_layout_unselected
+                )
             }
         }
 
         binding.textLayoutDateGoodieDay.setOnClickListener {
-            binding.textEditContentGoodieDay.clearFocus()
             val bottomSheetDatePicker = BottomSheetDatePicker.newInstance()
             bottomSheetDatePicker.show(supportFragmentManager, bottomSheetDatePicker.tag)
+        }
+
+        binding.cvPlaceGoodieDay.setOnClickListener {
+            val intent = SearchGoodieDayPlaceActivity.getIntent(this@Record01Activity)
+            startActivity(intent)
+        }
+
+        binding.cvCategoryGoodieDay.setOnClickListener {
+            val bottomSheetSelectCategory = BottomSheetSelectCategory.newInstance()
+            bottomSheetSelectCategory.show(supportFragmentManager, bottomSheetSelectCategory.tag)
+        }
+
+        binding.switchPrivacySetting.setOnCheckedChangeListener { compoundButton, isChecked ->
+            if (isChecked) {
+
+            } else {
+
+            }
         }
 
         binding.btnNextStep.setOnClickListener {

@@ -2,6 +2,10 @@ package com.dnd_9th_3_android.gooding.di
 
 import com.dnd_9th_3_android.gooding.data.repository.GalleryRepository
 import com.dnd_9th_3_android.gooding.data.repository.GalleryRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepository
+import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.SearchFeedRepository
+import com.dnd_9th_3_android.gooding.data.repository.SearchFeedRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +21,16 @@ abstract class RepositoryModule {
     abstract fun bindGalleryRepository(
         galleryRepositoryImpl: GalleryRepositoryImpl
     ): GalleryRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindSearchFeedRepositoryImpl(
+        searchFeedRepositoryImpl: SearchFeedRepositoryImpl
+    ): SearchFeedRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindKakaoMapAddressRepository(
+        kakaoMapAddressRepositoryImpl: KakaoMapAddressRepositoryImpl
+    ): KakaoMapAddressRepository
 }
