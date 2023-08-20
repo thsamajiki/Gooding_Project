@@ -107,7 +107,7 @@ dependencies {
     implementation("androidx.paging:paging-runtime:3.2.0")
 
     // ExoPlayer
-    implementation("com.google.android.exoplayer:exoplayer:2.19.0")
+    implementation("com.google.android.exoplfayer:exoplayer:2.19.0")
     implementation("com.google.android.exoplayer:exoplayer-core:2.19.0")
     implementation("com.google.android.exoplayer:exoplayer-dash:2.19.0")
     implementation("com.google.android.exoplayer:exoplayer-ui:2.19.0")
@@ -125,7 +125,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx")
 
     // 카카오 로그인 모듈
-    implementation("com.kakao.sdk:v2-user:2.14.0")
+    implementation("com.kakao.sdk:v2-user:2.15.0")
 
     implementation("io.github.ParkSangGwon:tedkeyboardobserver:1.0.1")
 
