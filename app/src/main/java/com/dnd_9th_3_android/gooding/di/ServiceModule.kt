@@ -1,8 +1,10 @@
 package com.dnd_9th_3_android.gooding.di
 
 import android.util.Log
+import com.dnd_9th_3_android.gooding.api.baseUrl
 import com.dnd_9th_3_android.gooding.data.api.KakaoMapService
 import com.dnd_9th_3_android.gooding.api.kakaoMapUrl
+import com.dnd_9th_3_android.gooding.data.api.SearchFeedService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +24,7 @@ import javax.inject.Singleton
 @Module
 class ServiceModule() {
     private var kakaoMapService: KakaoMapService? = null
+    private var searchFeedService: SearchFeedService? = null
 
     @Provides
     @Singleton
@@ -81,6 +84,28 @@ class ServiceModule() {
                 .create(KakaoMapService::class.java)
 
             return kakaoMapService!!
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun searchFeedApiService(
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): SearchFeedService {
+        searchFeedService?.let {
+            return it
+        } ?: run {
+            val client = OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build()
+
+            searchFeedService = Retrofit.Builder().baseUrl("$baseUrl/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+                .create(SearchFeedService::class.java)
+
+            return searchFeedService!!
         }
     }
 
