@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.record
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -37,13 +38,14 @@ class Record02Activity : AppCompatActivity() {
         initListeners()
     }
 
+    @SuppressLint("CheckResult")
     private fun initView() {
         val currentProgress = binding.progressBar.progress
         getInterval().subscribe {
             binding.progressBar.progress = currentProgress + it.toInt()
         }
 
-//        val anim = AnimateProgressBar(binding.progressBar, 33f,66f)
+//        val anim = AnimateProgressBar(binding.progressBar, 33f, 66f)
 //        anim.duration = 100
 //        binding.progressBar.startAnimation(anim)
     }
@@ -51,7 +53,7 @@ class Record02Activity : AppCompatActivity() {
     private fun getInterval(): Observable<Long> =
         Observable.interval(1L, TimeUnit.MILLISECONDS).map { interval ->
             interval + 1
-        }.take(66)
+        }.take(666)
 
     class AnimateProgressBar(
         private var progressBar: ProgressBar,

@@ -30,7 +30,7 @@ class Record01Activity : AppCompatActivity() {
     }
 
     private fun initView() {
-        binding.progressBar.progress = 33
+        binding.progressBar.progress = 333
     }
 
     private fun initListeners() {
