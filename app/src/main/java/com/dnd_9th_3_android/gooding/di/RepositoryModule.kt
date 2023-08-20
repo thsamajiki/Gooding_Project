@@ -1,13 +1,13 @@
 package com.dnd_9th_3_android.gooding.di
 
-import com.dnd_9th_3_android.gooding.data.UploadFeedRepositoryImpl
-import com.dnd_9th_3_android.gooding.data.repository.GalleryRepository
-import com.dnd_9th_3_android.gooding.data.repository.GalleryRepositoryImpl
-import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepository
-import com.dnd_9th_3_android.gooding.data.repository.KakaoMapAddressRepositoryImpl
-import com.dnd_9th_3_android.gooding.data.repository.SearchFeedRepository
-import com.dnd_9th_3_android.gooding.data.repository.SearchFeedRepositoryImpl
-import com.dnd_9th_3_android.gooding.data.repository.UploadFeedRepository
+import com.dnd_9th_3_android.gooding.data.repository.feed.UploadFeedRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.gallery.GalleryRepository
+import com.dnd_9th_3_android.gooding.data.repository.gallery.GalleryRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.map.KakaoMapAddressRepository
+import com.dnd_9th_3_android.gooding.data.repository.map.KakaoMapAddressRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.search.SearchFeedRepository
+import com.dnd_9th_3_android.gooding.data.repository.search.SearchFeedRepositoryImpl
+import com.dnd_9th_3_android.gooding.data.repository.feed.UploadFeedRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

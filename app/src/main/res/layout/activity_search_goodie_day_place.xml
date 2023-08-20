@@ -7,14 +7,14 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.dnd_9th_3_android.gooding.record.SearchGoodieDayPlaceViewModel" />
+            type="com.dnd_9th_3_android.gooding.presentation.record.search.SearchGoodieDayPlaceViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primaryBackgroundColor"
-        tools:context=".record.SearchGoodieDayPlaceActivity">
+        tools:context=".presentation.record.search.SearchGoodieDayPlaceActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tool_bar"
