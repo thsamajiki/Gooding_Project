@@ -86,7 +86,7 @@
     <dimen name="romantic_h">70dp</dimen>
     <dimen name="size_60">60dp</dimen>
     <dimen name="size_30">30dp</dimen>
-    <dimen name="bar_w">200dp</dimen>
+    <dimen name="bar_w">206dp</dimen>
     <dimen name="size_45">45dp</dimen>
 
     <!--romantic bar -->
@@ -102,5 +102,13 @@
     <dimen name="padding_31">31dp</dimen>
     <dimen name="padding_46">46dp</dimen>
     <dimen name="padding_62">62dp</dimen>
-
+    <dimen name="padding_40">40dp</dimen>
+    <dimen name="size_244">244dp</dimen>
+    <dimen name="size_236">236dp</dimen>
+    <dimen name="size_204">204dp</dimen>
+    <dimen name="size_208">208dp</dimen>
+    <dimen name="size_200">200dp</dimen>
+    <dimen name="size_5">5dp</dimen>
+    <dimen name="padding_32_5">32.5dp</dimen>
+    <dimen name="padding_7">7dp</dimen>
 </resources>

@@ -17,23 +17,31 @@
     <color name="blue_gray_2">#A4A6AA</color>
     <color name="blue_gray_3">#75777B</color>
     <color name="blue_gray_4">#575860</color>
+    <color name="blue_gray_5">#3E4049</color>
     <color name="blue_gray_6">#282932</color>
     <color name="blue_gray_7">#1C1D27</color>
 
 
     <color name="normal_state">#BBBEC3</color>
 
-    <color name="state1">#FF59D0</color>
-    <color name="state2">#F562C2</color>
-    <color name="state3">#E270CA</color>
-    <color name="state4">#C280C5</color>
-    <color name="state5">#B891C0</color>
-    <color name="state6">#A59FBC</color>
-    <color name="state7">#90B0B7</color>
-    <color name="state8">#7DBEB2</color>
-    <color name="state9">#68CEAD</color>
-    <color name="state10">#54DEA9</color>
-    <color name="state11">#3FEEA4</color>
-    <color name="state12">#3CEFA3</color>
-
+    <color name="state1">#FE5FD3</color>
+    <color name="state2">#FC71DA</color>
+    <color name="state3">#F984E2</color>
+    <color name="state4">#F697EA</color>
+    <color name="state5">#F3A9F2</color>
+    <color name="state6">#EDAEF4</color>
+    <color name="state7">#E6B3F6</color>
+    <color name="state8">#E0B7F8</color>
+    <color name="state9">#D8BCF8</color>
+    <color name="state10">#CEC1F5</color>
+    <color name="state11">#C4C6F2</color>
+    <color name="state12">#B9CAEF</color>
+    <color name="state13">#AAD0E6</color>
+    <color name="state14">#97D5DB</color>
+    <color name="state15">#84DBCF</color>
+    <color name="state16">#72E0C4</color>
+    <color name="state17">#63E4BB</color>
+    <color name="state18">#56E8B3</color>
+    <color name="state19">#4AEBAC</color>
+    <color name="state20">#3CEFA3</color>
 </resources>

@@ -6,8 +6,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import com.dnd_9th_3_android.gooding.core.data.R
 
-const val MAX_COLRINDEX = 12
-
+const val MAX_COLOR_INDEX = 20
+const val SCOPE_RATIO = 5.0
 @Composable
 fun getRomanticColorList(
 ): List<Color> {
@@ -23,6 +23,14 @@ fun getRomanticColorList(
         colorResource(id = R.color.state9),
         colorResource(id = R.color.state10),
         colorResource(id = R.color.state11),
-        colorResource(id = R.color.state12)
+        colorResource(id = R.color.state12),
+        colorResource(id = R.color.state13),
+        colorResource(id = R.color.state14),
+        colorResource(id = R.color.state15),
+        colorResource(id = R.color.state16),
+        colorResource(id = R.color.state17),
+        colorResource(id = R.color.state18),
+        colorResource(id = R.color.state19),
+        colorResource(id = R.color.state20),
     )
 }
