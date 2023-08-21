@@ -133,7 +133,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-auth-ktx")
 
     // 카카오 로그인 모듈
-    implementation("com.kakao.sdk:v2-user:2.14.0")
+    implementation("com.kakao.sdk:v2-user:2.15.0")
 
     implementation("io.github.ParkSangGwon:tedkeyboardobserver:1.0.1")
 

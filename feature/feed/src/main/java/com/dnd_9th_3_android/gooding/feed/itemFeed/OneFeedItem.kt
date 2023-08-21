@@ -12,8 +12,10 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Divider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import coil.annotation.ExperimentalCoilApi
@@ -58,6 +60,14 @@ fun OneFeedItem(feed: Feed) {
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.top_box_h))
                 .align(Alignment.TopCenter)
+                .background(
+                    brush = Brush.verticalGradient(
+                        listOf(
+                            colorResource(id = R.color.main_gra_color_1),
+                            colorResource(id = R.color.main_gra_color_2)
+                        )
+                    )
+                )
         ){
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.top_padding)))
 
@@ -70,6 +80,14 @@ fun OneFeedItem(feed: Feed) {
                 .fillMaxWidth()
                 .height(dimensionResource(id = R.dimen.bottom_box_h))
                 .align(Alignment.BottomCenter)
+                .background(
+                    brush = Brush.verticalGradient(
+                        listOf(
+                            colorResource(id = R.color.main_gra_color_2),
+                            colorResource(id = R.color.main_gra_color_1)
+                        )
+                    )
+                )
         ){
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_38)))
 
