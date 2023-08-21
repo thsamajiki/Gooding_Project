@@ -7,14 +7,14 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.dnd_9th_3_android.gooding.SearchFeedListViewModel" />
+            type="com.dnd_9th_3_android.gooding.presentation.search_feed.SearchFeedListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primaryBackgroundColor"
-        tools:context=".SearchFeedListActivity">
+        tools:context=".presentation.search_feed.SearchFeedListActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tool_bar"
@@ -163,7 +163,7 @@
                 tools:listitem="@layout/item_popular_keyword" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_searched_keyword_list"
+                android:id="@+id/rv_searched_feed_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"

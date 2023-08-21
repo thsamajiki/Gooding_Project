@@ -4,6 +4,7 @@ import android.util.Log
 import com.dnd_9th_3_android.gooding.api.baseUrl
 import com.dnd_9th_3_android.gooding.data.api.KakaoMapService
 import com.dnd_9th_3_android.gooding.api.kakaoMapUrl
+import com.dnd_9th_3_android.gooding.data.api.RecordFeedService
 import com.dnd_9th_3_android.gooding.data.api.SearchFeedService
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,7 @@ import javax.inject.Singleton
 class ServiceModule() {
     private var kakaoMapService: KakaoMapService? = null
     private var searchFeedService: SearchFeedService? = null
+    private var recordFeedService: RecordFeedService? = null
 
     @Provides
     @Singleton
@@ -106,6 +108,28 @@ class ServiceModule() {
                 .create(SearchFeedService::class.java)
 
             return searchFeedService!!
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun recordFeedApiService(
+        httpLoggingInterceptor: HttpLoggingInterceptor
+    ): RecordFeedService {
+        recordFeedService?.let {
+            return it
+        } ?: run {
+            val client = OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build()
+
+            recordFeedService = Retrofit.Builder().baseUrl("$baseUrl/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+                .create(RecordFeedService::class.java)
+
+            return recordFeedService!!
         }
     }
 

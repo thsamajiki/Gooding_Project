@@ -1,11 +1,13 @@
 package com.dnd_9th_3_android.gooding.di
 
-import com.dnd_9th_3_android.gooding.data.GalleryLocalDataSource
-import com.dnd_9th_3_android.gooding.data.GalleryLocalDataSourceImpl
-import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSource
-import com.dnd_9th_3_android.gooding.data.KakaoMapAddressRemoteDataSourceImpl
-import com.dnd_9th_3_android.gooding.data.SearchFeedListRemoteDataSource
-import com.dnd_9th_3_android.gooding.data.SearchFeedListRemoteDataSourceImpl
+import com.dnd_9th_3_android.gooding.data.local.GalleryLocalDataSource
+import com.dnd_9th_3_android.gooding.data.local.GalleryLocalDataSourceImpl
+import com.dnd_9th_3_android.gooding.data.remote.map.KakaoMapAddressRemoteDataSource
+import com.dnd_9th_3_android.gooding.data.remote.map.KakaoMapAddressRemoteDataSourceImpl
+import com.dnd_9th_3_android.gooding.data.remote.search.SearchFeedListRemoteDataSource
+import com.dnd_9th_3_android.gooding.data.remote.search.SearchFeedListRemoteDataSourceImpl
+import com.dnd_9th_3_android.gooding.data.remote.feed.UploadFeedRemoteDataSource
+import com.dnd_9th_3_android.gooding.data.remote.feed.UploadFeedRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -27,6 +29,12 @@ abstract class DataSourceModule {
     abstract fun bindSearchFeedListRemoteDataSource(
         searchFeedListRemoteDataSourceImpl: SearchFeedListRemoteDataSourceImpl
     ): SearchFeedListRemoteDataSource
+
+    @Singleton
+    @Binds
+    abstract fun bindUploadFeedRemoteDataSource(
+        uploadFeedRemoteDataSourceImpl: UploadFeedRemoteDataSourceImpl
+    ): UploadFeedRemoteDataSource
 
     @Singleton
     @Binds

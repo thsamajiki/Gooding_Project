@@ -29,4 +29,11 @@
     <style name="RoundBottomSheet" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_border</item>
     </style>
+
+    <style name="CustomSwitch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:thumb">@drawable/selector_thumb</item>
+        <item name="android:track">@drawable/selector_track</item>
+    </style>
 </resources>
