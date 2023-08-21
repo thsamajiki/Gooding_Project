@@ -11,7 +11,7 @@ import com.dnd_9th_3_android.gooding.databinding.ItemGalleryImageBinding
 
 class GalleryFileListAdapter(
     private val onClick: (GalleryFileUiData) -> Unit
-) : PagingDataAdapter<GalleryFileUiData, GalleryFileListAdapter.GalleryImageItemViewHolder>(
+) : PagingDataAdapter<GalleryFileUiData, GalleryFileListAdapter.GalleryFileItemViewHolder>(
     object : DiffUtil.ItemCallback<GalleryFileUiData>() {
         override fun areItemsTheSame(oldItem: GalleryFileUiData, newItem: GalleryFileUiData): Boolean {
             return oldItem.id == newItem.id
@@ -23,14 +23,14 @@ class GalleryFileListAdapter(
     }
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryImageItemViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryFileItemViewHolder {
         val binding =
             ItemGalleryImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return GalleryImageItemViewHolder(binding, onClick)
+        return GalleryFileItemViewHolder(binding, onClick)
     }
 
-    override fun onBindViewHolder(holder: GalleryImageItemViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GalleryFileItemViewHolder, position: Int) {
         getItem(position).let {
             if (it != null) {
                 holder.bind(it)
@@ -38,25 +38,25 @@ class GalleryFileListAdapter(
         }
     }
 
-    class GalleryImageItemViewHolder(
-        private val itemGalleryImageBinding: ItemGalleryImageBinding,
+    class GalleryFileItemViewHolder(
+        private val binding: ItemGalleryImageBinding,
         private val onClick: (GalleryFileUiData) -> Unit
-    ) : RecyclerView.ViewHolder(itemGalleryImageBinding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: GalleryFileUiData) {
-            itemGalleryImageBinding.root.setOnClickListener {
+            binding.root.setOnClickListener {
                 onClick(item)
             }
 
             val image = Uri.parse(item.mediaData)
-            itemGalleryImageBinding.ivGalleryImage.setImageURI(image)
+            binding.ivGalleryImage.setImageURI(image)
 
-            itemGalleryImageBinding.cvGalleryImageCount.isVisible = item.selectedNumber > 0
-            itemGalleryImageBinding.tvGalleryImageCount.text = item.selectedNumber.toString()
-            itemGalleryImageBinding.cvGalleryImageCover.isVisible = item.selectedNumber == 1
+            binding.cvGalleryImageCount.isVisible = item.selectedNumber > 0
+            binding.tvGalleryImageCount.text = item.selectedNumber.toString()
+            binding.cvGalleryImageCover.isVisible = item.selectedNumber == 1
 
-            itemGalleryImageBinding.galleryImage = item
-            itemGalleryImageBinding.executePendingBindings()
+            binding.galleryImage = item
+            binding.executePendingBindings()
         }
     }
 }
