@@ -56,7 +56,7 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_image_list"
+                android:id="@+id/rv_image_video_file_list"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:layout_marginHorizontal="18dp"
@@ -64,7 +64,8 @@
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listItems="@layout/item_record_image_video_file"/>
 
             <LinearLayout
                 android:id="@+id/layout_title_what_goodie_day_did_you_have"
@@ -74,7 +75,7 @@
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_image_list" >
+                app:layout_constraintTop_toBottomOf="@id/rv_image_video_file_list" >
 
                 <TextView
                     android:layout_width="wrap_content"

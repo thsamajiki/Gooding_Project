@@ -80,6 +80,16 @@ class SearchFeedListActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = recentKeywordListAdapter
         }
+
+        recentKeywordListAdapter.submitList(
+            listOf(
+                RecentKeywordData(0, "해운대"),
+                RecentKeywordData(1, "지리산"),
+                RecentKeywordData(2, "을왕리"),
+                RecentKeywordData(3, "울릉도"),
+                RecentKeywordData(4, "제주도"),
+            )
+        )
     }
 
     private fun onClickRecentKeywordItem(keywordData: RecentKeywordData) {
@@ -95,6 +105,16 @@ class SearchFeedListActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = popularKeywordListAdapter
         }
+
+        popularKeywordListAdapter.submitList(
+            listOf(
+                PopularKeywordData(0, "해운대", 55, 1),
+                PopularKeywordData(1, "지리산", 45, 2),
+                PopularKeywordData(2, "을왕리", 35, 3),
+                PopularKeywordData(3, "울릉도", 25, 4),
+                PopularKeywordData(4, "제주도", 15, 5)
+            )
+        )
     }
 
     private fun onClickPopularKeywordItem(keywordData: PopularKeywordData) {

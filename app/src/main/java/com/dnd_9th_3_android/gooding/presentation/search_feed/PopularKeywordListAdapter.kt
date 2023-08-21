@@ -24,7 +24,7 @@ class PopularKeywordListAdapter(
                 onClick(popularKeywordData)
             }
 
-            binding.tvKeywordRank.text = "1"
+            binding.tvKeywordRank.text = popularKeywordData.rank.toString()
             binding.tvKeyword.text = popularKeywordData.content
         }
     }
