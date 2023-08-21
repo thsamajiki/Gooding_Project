@@ -5,13 +5,15 @@ import com.google.gson.annotations.SerializedName
 data class PopularKeywordResponse(
     @SerializedName("id") val id: Int,
     @SerializedName("content") val content: String,
-    @SerializedName("searchedCount") val searchedCount: Int
+    @SerializedName("searchedCount") val searchedCount: Int,
+    @SerializedName("rank") val rank: Int,
 )
 
 fun PopularKeywordResponse.toEntity(): PopularKeywordData {
     return PopularKeywordData(
         id = id,
         content = content,
-        searchedCount = searchedCount
+        searchedCount = searchedCount,
+        rank = rank
     )
 }

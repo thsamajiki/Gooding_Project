@@ -1,6 +1,6 @@
 package com.dnd_9th_3_android.gooding.data.model.gallery
 
-import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryUiData
+import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
 
 data class GalleryData(
     val id: Long? = -1,
@@ -10,8 +10,8 @@ data class GalleryData(
     val albumName: String = ""
 )
 
-fun GalleryData.toUiData(): GalleryUiData {
-    return GalleryUiData(
+fun GalleryData.toUiData(): GalleryFileUiData {
+    return GalleryFileUiData(
         id = this.id,
         mediaType = this.mediaType,
         mediaData = this.mediaData,

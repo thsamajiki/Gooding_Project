@@ -4,4 +4,5 @@ data class PopularKeywordData(
     val id: Int,
     val content: String,
     val searchedCount: Int,
+    val rank: Int
 )

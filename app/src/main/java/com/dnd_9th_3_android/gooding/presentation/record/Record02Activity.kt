@@ -44,16 +44,12 @@ class Record02Activity : AppCompatActivity() {
         getInterval().subscribe {
             binding.progressBar.progress = currentProgress + it.toInt()
         }
-
-//        val anim = AnimateProgressBar(binding.progressBar, 33f, 66f)
-//        anim.duration = 100
-//        binding.progressBar.startAnimation(anim)
     }
 
     private fun getInterval(): Observable<Long> =
         Observable.interval(1L, TimeUnit.MILLISECONDS).map { interval ->
             interval + 1
-        }.take(666)
+        }.take(333)
 
     class AnimateProgressBar(
         private var progressBar: ProgressBar,

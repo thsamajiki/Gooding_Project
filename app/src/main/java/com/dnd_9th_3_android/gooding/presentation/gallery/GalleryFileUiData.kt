@@ -1,6 +1,6 @@
 package com.dnd_9th_3_android.gooding.presentation.gallery
 
-data class GalleryUiData(
+data class GalleryFileUiData(
     val id: Long? = -1,
     val isSelected: Boolean = false,
     val selectedNumber: Int = -1,

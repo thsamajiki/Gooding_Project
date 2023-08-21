@@ -68,7 +68,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
             .listen { isShow ->
                 val isItemEmpty = goodieDayPlaceListAdapter.itemCount == 0
                 binding.rvPlaceList.isInvisible = isShow || isItemEmpty
-                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
+//                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
 
                 if (!isShow) {
                     binding.textEditSearchPlace.clearFocus()

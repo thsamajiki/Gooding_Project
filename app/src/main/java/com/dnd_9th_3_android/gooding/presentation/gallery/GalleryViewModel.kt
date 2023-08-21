@@ -24,9 +24,9 @@ class GalleryViewModel @Inject constructor(
 ) : ViewModel() {
 
     sealed class UiState {
-        object GetGalleryImageListSuccess : UiState()
+        object GetGalleryFileListSuccess : UiState()
 
-        object GetGalleryImageListFailed : UiState()
+        object GetGalleryFileListFailed : UiState()
 
         object Idle : UiState()
     }
@@ -37,7 +37,7 @@ class GalleryViewModel @Inject constructor(
     private val _imageList = MutableLiveData<PagingData<GalleryImageData>>()
     val imageList: LiveData<PagingData<GalleryImageData>> = _imageList
 
-    val imagePagingList: Flow<PagingData<GalleryUiData>> = galleryRepository.getGalleryPagingList()
+    val imagePagingList: Flow<PagingData<GalleryFileUiData>> = galleryRepository.getGalleryPagingList()
         .cachedIn(viewModelScope)
         .map {
             it.map {
@@ -45,13 +45,13 @@ class GalleryViewModel @Inject constructor(
             }
         }
 
-    fun getAlbumList(): List<AlbumUiData> {
+    fun getAlbumList(): List<GalleryAlbumUiData> {
         val uiDataList = galleryRepository.getAlbumList()
             .map {
-                AlbumUiData(
+                GalleryAlbumUiData(
                     thumbnail = it.thumbnail,
-                    name = it.name,
-                    count = it.count,
+                    folderName = it.folderName,
+                    folderFileCount = it.folderFileCount,
                 )
             }
 
