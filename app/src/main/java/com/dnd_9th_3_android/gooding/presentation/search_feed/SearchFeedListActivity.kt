@@ -3,6 +3,7 @@ package com.dnd_9th_3_android.gooding.presentation.search_feed
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
@@ -63,7 +65,7 @@ class SearchFeedListActivity : AppCompatActivity() {
             .listen { isShow ->
                 val isItemEmpty = searchFeedListAdapter.itemCount == 0
                 binding.rvSearchedFeedList.isInvisible = isShow || isItemEmpty
-                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
+//                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
 
                 if (!isShow) {
                     binding.textEditSearchFeed.clearFocus()
@@ -79,6 +81,12 @@ class SearchFeedListActivity : AppCompatActivity() {
         recyclerView.run {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = recentKeywordListAdapter
+
+            val spaceDecoration = HorizontalSpaceItemDecoration(25)
+            removeItemDecoration(object : DividerItemDecoration(this@SearchFeedListActivity, HORIZONTAL) {
+
+            })
+            addItemDecoration(spaceDecoration)
         }
 
         recentKeywordListAdapter.submitList(
@@ -96,13 +104,36 @@ class SearchFeedListActivity : AppCompatActivity() {
         // TODO 해당 키워드로 검색되도록 하기
     }
 
+    // RecyclerView Item 간 간격 조정하기 위한 클래스
+    inner class HorizontalSpaceItemDecoration(private val horizontalSpaceWidth: Int) : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position = parent.getChildAdapterPosition(view)
+            val count = state.itemCount
+
+            when (position) {
+                0 -> {
+                    outRect.left = 0
+                }
+                else -> {
+                    outRect.left = horizontalSpaceWidth
+                }
+            }
+        }
+    }
+
     private fun initPopularKeywordListRecyclerView(recyclerView: RecyclerView) {
         popularKeywordListAdapter = PopularKeywordListAdapter(
             onClick = ::onClickPopularKeywordItem
         )
 
         recyclerView.run {
-            layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
+            layoutManager = LinearLayoutManager(context)
             adapter = popularKeywordListAdapter
         }
 
