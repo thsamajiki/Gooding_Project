@@ -3,7 +3,6 @@ package com.dnd_9th_3_android.gooding.presentation.gallery
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -104,10 +103,10 @@ class GalleryActivity : AppCompatActivity() {
     }
 
     private fun onClickAlbumItem(galleryAlbumUiData: GalleryAlbumUiData) {
-        if (binding.tvTitleAlbumType.text == galleryAlbumUiData.name) {
+        if (binding.tvTitleAlbumType.text == galleryAlbumUiData.folderName) {
             return
         }
-        binding.tvTitleAlbumType.text = galleryAlbumUiData.name
+        binding.tvTitleAlbumType.text = galleryAlbumUiData.folderName
     }
 
     private fun initViewModel() {

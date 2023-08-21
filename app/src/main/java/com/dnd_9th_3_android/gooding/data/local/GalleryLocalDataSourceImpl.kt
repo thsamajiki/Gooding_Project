@@ -289,8 +289,8 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             .map { (albumName, galleryDataList) ->
                 GalleryAlbumData(
                     thumbnail = galleryDataList.firstOrNull()?.mediaData?.toUri() ?: Uri.EMPTY,
-                    name = albumName,
-                    count = galleryDataList.size,
+                    folderName = albumName,
+                    folderFileCount = galleryDataList.size,
                 )
             }
     }

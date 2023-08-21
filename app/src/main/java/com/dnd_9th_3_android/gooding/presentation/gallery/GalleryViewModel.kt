@@ -50,8 +50,8 @@ class GalleryViewModel @Inject constructor(
             .map {
                 GalleryAlbumUiData(
                     thumbnail = it.thumbnail,
-                    name = it.name,
-                    count = it.count,
+                    folderName = it.folderName,
+                    folderFileCount = it.folderFileCount,
                 )
             }
 

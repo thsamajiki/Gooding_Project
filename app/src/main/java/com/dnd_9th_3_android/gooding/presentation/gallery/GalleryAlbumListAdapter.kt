@@ -13,7 +13,7 @@ class GalleryAlbumListAdapter(
 ) : ListAdapter<GalleryAlbumUiData, GalleryAlbumListAdapter.AlbumViewHolder>(object :
     DiffUtil.ItemCallback<GalleryAlbumUiData>() {
     override fun areItemsTheSame(oldItem: GalleryAlbumUiData, newItem: GalleryAlbumUiData): Boolean {
-        return oldItem.name == newItem.name
+        return oldItem.folderName == newItem.folderName
     }
 
     override fun areContentsTheSame(oldItem: GalleryAlbumUiData, newItem: GalleryAlbumUiData): Boolean {
@@ -48,8 +48,8 @@ class GalleryAlbumListAdapter(
             }
 
             binding.ivAlbumImage.setImageURI(item.thumbnail)
-            binding.title.text = item.name
-            binding.subtitle.text = item.count.toString()
+            binding.tvFolderName.text = item.folderName
+            binding.tvFolderFileCount.text = item.folderFileCount.toString()
         }
     }
 }
