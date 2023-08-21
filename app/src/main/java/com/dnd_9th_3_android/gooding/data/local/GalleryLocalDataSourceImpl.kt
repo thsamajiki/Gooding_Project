@@ -7,8 +7,13 @@ import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
+import android.os.CancellationSignal
 import android.provider.MediaStore
 import android.util.Log
+import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
+import com.dnd_9th_3_android.gooding.data.model.gallery.AlbumData
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryVideoData
@@ -21,8 +26,12 @@ class GalleryLocalDataSourceImpl @Inject constructor(
 
     private val resolver: ContentResolver? = context.contentResolver
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("Range")
-    override fun getImageVideoFromGallery(): List<GalleryData> {
+    override fun getImageVideoFromGallery(
+        page: Int,
+        pageSize: Int
+    ): List<GalleryData> {
         val galleryDataList = mutableListOf<GalleryData>()
 
         val projection = arrayOf(
@@ -32,28 +41,31 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             MediaStore.Files.FileColumns.DURATION
         )
 
-        val selection: String = (MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
-                + " OR " + MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)
+        val selection = "${MediaStore.Files.FileColumns.MEDIA_TYPE} IN (?, ?)"
+        val selectionArgs = arrayOf(
+            MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE.toString(),
+            MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO.toString()
+        )
+
+        val sortOrder = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+
+        val offset = page * pageSize
+
+        val bundle = Bundle().apply {
+            putInt(ContentResolver.QUERY_ARG_LIMIT, pageSize)
+            putInt(ContentResolver.QUERY_ARG_OFFSET, offset)
+            putString(ContentResolver.QUERY_ARG_SQL_SELECTION, selection)
+            putStringArray(ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS, selectionArgs)
+            putString(ContentResolver.QUERY_ARG_SQL_SORT_ORDER, sortOrder)
+        }
+
         val queryUri = MediaStore.Files.getContentUri("external")
-
-
-        //이런 방법도 있다~
-//            cursorLoader = CursorLoader(
-//                this@CustomAlbumActivity,
-//                queryUri,
-//                projection,
-//                selection,
-//                null,  // Selection args (none).
-//                MediaStore.Files.FileColumns.DATE_ADDED + " DESC" // Sort order.
-//            )
-//            cursor = cursorLoader.loadInBackground()
 
         val cursor: Cursor? = resolver?.query(
             queryUri,
             projection,
-            selection,
-            null,
-            MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+            bundle,
+            CancellationSignal()
         )
 
         while (cursor?.moveToNext() == true) {
@@ -266,5 +278,73 @@ class GalleryLocalDataSourceImpl @Inject constructor(
         Log.d("TAG", "getAllVideos: $galleryVideoList")
 
         return galleryVideoList
+    }
+
+    @SuppressLint("Range")
+    override fun getMediaFoldersFromMediaStore(
+        resolver: ContentResolver
+    ): List<AlbumData> {
+        return getAllImageVideoFromGallery()
+            .groupBy { it.albumName }
+            .map { (albumName, galleryDataList) ->
+                AlbumData(
+                    thumbnail = galleryDataList.firstOrNull()?.mediaData?.toUri() ?: Uri.EMPTY,
+                    name = albumName,
+                    count = galleryDataList.size,
+                )
+            }
+    }
+
+    @SuppressLint("Range")
+    private fun getAllImageVideoFromGallery(): List<GalleryData> {
+        val galleryDataList = mutableListOf<GalleryData>()
+
+        val projection = arrayOf(
+            MediaStore.Files.FileColumns._ID,
+            MediaStore.Files.FileColumns.DATE_ADDED,
+            MediaStore.Files.FileColumns.MEDIA_TYPE,
+            MediaStore.Files.FileColumns.DURATION,
+            MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME,
+        )
+
+        val selection: String =
+            (MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
+                + " OR " + MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)
+        val queryUri = MediaStore.Files.getContentUri("external")
+
+        val cursor: Cursor? = resolver?.query(
+            queryUri,
+            projection,
+            selection,
+            null,
+            MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
+        )
+
+        cursor?.let {
+            val bucketDisplayNameColumnIndex = cursor.getColumnIndex(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME)
+
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
+                val mediaType = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE))
+                val folderName = cursor.getString(bucketDisplayNameColumnIndex)
+
+                val galleryData = GalleryData(
+                    id = id,
+                    mediaType = mediaType,
+                    mediaData = if (mediaType == 1) {
+                        "content://media/external/images/media/$id"
+                    } else {
+                        "content://media/external/video/media/$id"
+                    },
+                    duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION)),
+                    albumName = folderName,
+                )
+
+                galleryDataList.add(galleryData)
+            }
+            cursor.close()
+        }
+
+        return galleryDataList
     }
 }
