@@ -1,19 +1,24 @@
 package com.dnd_9th_3_android.gooding.feed.feedScreen
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
 import com.dnd_9th_3_android.gooding.feature.feed.R
 import com.dnd_9th_3_android.gooding.feed.itemFeed.OneFeedItem
 import com.dnd_9th_3_android.gooding.feed.viewModel.MainFeedViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.VerticalPager
 import com.google.accompanist.pager.rememberPagerState
 
@@ -22,11 +27,12 @@ import com.google.accompanist.pager.rememberPagerState
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TabFeedPager(
-    feedViewModel: MainFeedViewModel = viewModel()
+    verPageState : PagerState,
+    feedViewModel: MainFeedViewModel = hiltViewModel()
 ) {
-    // sample code
+    // sample code : init view model
     feedViewModel.initFeedData(SampleFeedData.sampleFeedList)
-    val verPageState = rememberPagerState() // current feed state -> ver
+
     Column(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -34,7 +40,8 @@ fun TabFeedPager(
             count = feedViewModel.feedList.value!!.size,
             state = verPageState
         ) {page->
-            OneFeedItem(feedViewModel.feedList.value!![page])
+            OneFeedItem(feed = feedViewModel.feedList.value!![page])
         }
     }
+
 }

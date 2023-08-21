@@ -111,4 +111,6 @@
     <dimen name="size_5">5dp</dimen>
     <dimen name="padding_32_5">32.5dp</dimen>
     <dimen name="padding_7">7dp</dimen>
+
+    <dimen name="padding_122">122dp</dimen>
 </resources>

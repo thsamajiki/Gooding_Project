@@ -8,7 +8,7 @@ object SampleFeedData {
     )
     private fun sampleRandomImage(id:Int) : String = "https://picsum.photos/id/$id/360/685"
 
-    val sampleFeedList = listOf(
+    val sampleFeedList = arrayListOf(
         Feed(
             "나의 첫 굳이데이 기록",
             "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
@@ -26,11 +26,10 @@ object SampleFeedData {
         Feed(
             "나의 두번째 굳이데이 기록",
             "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
-            30,
+            80,
             "광안리 해수욕장",
             listOf(
                 sampleRandomImage(20),
-                "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
                 sampleRandomImage(15),
                 sampleRandomImage(20),
                 sampleRandomImage(21)

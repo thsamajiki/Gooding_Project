@@ -13,17 +13,24 @@ import androidx.compose.foundation.background
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Observer
 
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.feed.itemFeed.RomanticBarLayer
+import com.dnd_9th_3_android.gooding.feed.viewModel.MainFeedViewModel
 
 // main 고정 화면
 // Fixed는 Box를 사용하므로, 자체 패딩 꼭 추가 !!
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun FixedAreaScreen() {
+fun FixedAreaScreen(
+    verPageState : PagerState,
+) {
     Box(
         modifier = Modifier.fillMaxSize()
     ){
@@ -47,7 +54,8 @@ fun FixedAreaScreen() {
 
         // romantic per
         Column(modifier = Modifier.align(Alignment.BottomCenter)) {
-            RomanticBarLayer(romanticPer = 0f)
+
+            RomanticBarLayer(0.0f,verPageState)
 
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
         }

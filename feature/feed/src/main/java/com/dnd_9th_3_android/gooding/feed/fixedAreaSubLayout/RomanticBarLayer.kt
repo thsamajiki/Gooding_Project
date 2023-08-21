@@ -1,20 +1,22 @@
 package com.dnd_9th_3_android.gooding.feed.itemFeed
 
+import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.background
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Observer
 
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.coustomShadow
@@ -22,17 +24,35 @@ import com.dnd_9th_3_android.gooding.feed.romanticFunction.BarInternalContent
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.ProgressGradient
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.ProgressGraphic
 import com.dnd_9th_3_android.gooding.feed.romanticFunction.ProgressSlider
+import com.dnd_9th_3_android.gooding.feed.viewModel.MainFeedViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun RomanticBarLayer(
-    romanticPer : Float,
+    initBarData : Float,
+    verPageState : PagerState,
+    feedViewModel : MainFeedViewModel = hiltViewModel()
 ) {
     // 현재 진행 상태
     val currentValue = remember {
-        mutableStateOf(romanticPer)
+        mutableStateOf(initBarData)
     }
     val currentOffset = remember {
         mutableStateOf(Offset(0f,0f))
+    }
+
+    // 페이지 변화 감지
+    LaunchedEffect(verPageState){
+        snapshotFlow { verPageState.currentPage }.collect { page->
+            feedViewModel.setCurrentFeed(feedViewModel.feedList.value!![page])
+            feedViewModel.currentFeed.value.let{
+                currentValue.value = it?.romanticPer?.toFloat() ?: 0.0f
+            }
+        }
     }
 
     // total 높이 : 85(70+15) 드래그 탑 아이콘 까지 고려
@@ -89,6 +109,7 @@ fun RomanticBarLayer(
                     changeValue = { value, offset ->
                         currentValue.value = value
                         currentOffset.value = offset
+                        feedViewModel.setRomantic(value.toInt())
                     }
                 )
             }
