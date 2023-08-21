@@ -29,7 +29,6 @@ class GalleryPagingSource(
 //            pageNumber + (params.loadSize / PAGING_SIZE)
 //        }
 
-
         return LoadResult.Page(
             data = data,
             prevKey = null,

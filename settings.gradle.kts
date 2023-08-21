@@ -12,7 +12,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { setUrl("https://devrepo.kakao.com/nexus/content/groups/public/") }
+        maven {
+            setUrl("https://jitpack.io")
+        }
+        maven {
+            setUrl("https://devrepo.kakao.com/nexus/content/groups/public/")
+        }
     }
 }
 rootProject.name = "Gooding"

@@ -22,24 +22,26 @@ fun FeedTopLayout(
     coroutineScope: CoroutineScope
 ) {
     // top Layout
-    Row(
+    Box(
         Modifier
             .padding(
                 start = dimensionResource(id = R.dimen.padding_18),
                 end = dimensionResource(id = R.dimen.padding_16),
                 top = dimensionResource(id = R.dimen.padding_55),
                 bottom = dimensionResource(id = R.dimen.padding_13)
-            ),
-        verticalAlignment = Alignment.CenterVertically
+            )
     ) {
         // top bar .. !
-        TopScrollBarLayer(pageState, coroutineScope)
-
-        Spacer(modifier = Modifier.weight(1f))
+        Box(
+            modifier = Modifier.align(Alignment.CenterStart)
+        ) {
+            TopScrollBarLayer(pageState, coroutineScope)
+        }
 
         // search button
         Box(
             Modifier
+                .align(Alignment.CenterEnd)
                 .size(dimensionResource(id = R.dimen.padding_24))
                 .clickable {
                     // go search fragment

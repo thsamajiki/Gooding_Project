@@ -14,5 +14,4 @@ interface GalleryLocalDataSource {
     fun getImageVideoFromGallery(page: Int, pageSize: Int): List<GalleryData>
 
     fun getMediaFoldersFromMediaStore(resolver: ContentResolver): List<AlbumData>
-//    suspend fun fetchGalleryImages(limit: Int, offset: Int): List<GalleryImageData>
 }

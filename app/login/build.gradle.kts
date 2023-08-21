@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "com.dnd_9th_3_android.gooding.login"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
 
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -62,7 +62,6 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.45")
 
     // 구글 로그인 모듈
-    implementation ("com.google.android.gms:play-services-auth:20.6.0")
     implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
     implementation ("com.google.firebase:firebase-analytics-ktx")
     implementation ("com.google.firebase:firebase-auth-ktx")

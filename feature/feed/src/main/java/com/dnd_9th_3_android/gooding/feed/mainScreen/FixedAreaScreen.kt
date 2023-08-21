@@ -21,7 +21,7 @@ import com.dnd_9th_3_android.gooding.feed.itemFeed.RomanticBarLayer
 
 // main 고정 화면
 // Fixed는 Box를 사용하므로, 자체 패딩 꼭 추가 !!
-@OptIn(ExperimentalPagerApi::class)
+
 @Composable
 fun FixedAreaScreen() {
     Box(
@@ -46,14 +46,10 @@ fun FixedAreaScreen() {
         }
 
         // romantic per
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .width(324.dp)
-                .background(Color.Yellow)
-                .height(70.dp)
-        ){
-            RomanticBarLayer(romanticPer = 0)
+        Column(modifier = Modifier.align(Alignment.BottomCenter)) {
+            RomanticBarLayer(romanticPer = 0f)
+
+            Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_24)))
         }
     }
 }

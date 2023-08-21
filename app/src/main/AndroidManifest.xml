@@ -56,20 +56,15 @@
                     android:scheme="kakaoa244014544b5323246b6853ca1d8ca93" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.search_feed.SearchFeedListActivity"
+        <activity android:name=".presentation.search_feed.SearchFeedListActivity"
             android:exported="false" />
-        <activity
-            android:name=".presentation.record.search.SearchGoodieDayPlaceActivity"
+        <activity android:name=".presentation.record.search.SearchGoodieDayPlaceActivity"
             android:exported="true" />
-        <activity
-            android:name=".presentation.record.Record01Activity"
+        <activity android:name=".presentation.record.Record01Activity"
             android:exported="true" />
-        <activity
-            android:name=".presentation.record.Record02Activity"
+        <activity android:name=".presentation.record.Record02Activity"
             android:exported="false" />
-        <activity
-            android:name=".presentation.gallery.GalleryActivity"
+        <activity android:name=".presentation.gallery.GalleryActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

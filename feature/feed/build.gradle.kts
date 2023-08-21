@@ -82,7 +82,12 @@ dependencies {
     // Exoplayer Dependency
     implementation ("com.google.android.exoplayer:exoplayer:2.16.1")
 
-    // module
+    // colorful bar
+    implementation ("com.github.SmartToolFactory:Compose-Colorful-Sliders:1.2.0")
+
+    // 색상 추출
+    implementation ("androidx.palette:palette-ktx:1.0.0")
+// module
     implementation(project(":core:model"))
     implementation(project(":core:data"))
 }

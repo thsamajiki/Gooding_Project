@@ -3,4 +3,37 @@
     <color name="unselect_white">#80FFFFFF</color>
     <color name="location_color">#50FFFFFF</color>
     <color name="tab_shadow">#26000000</color> <!--15%-->
+    <color name="main_gra_color_1">#57000000</color> <!--34%-->
+    <color name="main_gra_color_2">#00000000</color> <!--0%-->
+    <color name="romantic_bar_color">#CC1C1D27</color>
+    <color name="shadow_color_romantic">#33000000</color> <!--20%-->
+
+    <color name="secondary_1">#3CEFA3</color>
+    <color name="for_grada_1">#FF59D0</color>
+    <color name="box_strok_color">#3CEFA3</color>
+    <color name="blue_gray">#3E4049</color>
+    <color name="back_blue_gray">#1A3CEFA3</color>
+    <color name="tab_background">#282932</color>
+    <color name="blue_gray_2">#A4A6AA</color>
+    <color name="blue_gray_3">#75777B</color>
+    <color name="blue_gray_4">#575860</color>
+    <color name="blue_gray_6">#282932</color>
+    <color name="blue_gray_7">#1C1D27</color>
+
+
+    <color name="normal_state">#BBBEC3</color>
+
+    <color name="state1">#FF59D0</color>
+    <color name="state2">#F562C2</color>
+    <color name="state3">#E270CA</color>
+    <color name="state4">#C280C5</color>
+    <color name="state5">#B891C0</color>
+    <color name="state6">#A59FBC</color>
+    <color name="state7">#90B0B7</color>
+    <color name="state8">#7DBEB2</color>
+    <color name="state9">#68CEAD</color>
+    <color name="state10">#54DEA9</color>
+    <color name="state11">#3FEEA4</color>
+    <color name="state12">#3CEFA3</color>
+
 </resources>
