@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
-import com.dnd_9th_3_android.gooding.gallery.GalleryActivity
+import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationBarView
 import dagger.hilt.android.AndroidEntryPoint

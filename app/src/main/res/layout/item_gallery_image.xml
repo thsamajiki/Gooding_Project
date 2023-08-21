@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
             name="galleryImage"
-            type="com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData" />
+            type="com.dnd_9th_3_android.gooding.presentation.gallery.GalleryUiData" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,11 +19,16 @@
         android:background="@color/tertiaryColor">
 
         <ImageView
+            android:id="@+id/iv_gallery_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="0dp"
             tools:src="@drawable/icon_google" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_gallery_image_count"
             android:layout_width="24dp"
             android:layout_height="24dp"
             app:cardBackgroundColor="@color/primaryColor"
@@ -29,6 +36,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/tv_gallery_image_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -42,25 +50,26 @@
             android:id="@+id/iv_delete_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:src="@drawable/icon_close"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_gallery_image_cover"
             android:layout_width="37dp"
             android:layout_height="24dp"
             app:cardBackgroundColor="@color/primaryColor"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:layout_gravity="center"
                 android:text="표지"
-                android:textSize="12sp"
                 android:textColor="@color/black"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
         </androidx.cardview.widget.CardView>

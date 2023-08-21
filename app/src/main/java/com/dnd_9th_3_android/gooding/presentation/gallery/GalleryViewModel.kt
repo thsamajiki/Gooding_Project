@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.gallery
+package com.dnd_9th_3_android.gooding.presentation.gallery
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -6,19 +6,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.map
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
-import com.dnd_9th_3_android.gooding.data.repository.GalleryRepository
+import com.dnd_9th_3_android.gooding.data.model.gallery.toUiData
+import com.dnd_9th_3_android.gooding.data.repository.gallery.GalleryRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 @HiltViewModel
 class GalleryViewModel @Inject constructor(
     private val galleryRepository: GalleryRepository
-): ViewModel() {
+) : ViewModel() {
 
     sealed class UiState {
         object GetGalleryImageListSuccess : UiState()
@@ -34,29 +37,28 @@ class GalleryViewModel @Inject constructor(
     private val _imageList = MutableLiveData<PagingData<GalleryImageData>>()
     val imageList: LiveData<PagingData<GalleryImageData>> = _imageList
 
-    init {
-        getGalleryImages()
-    }
-
-    fun getGalleryImages() {
-        viewModelScope.launch {
-            kotlin.runCatching {
-                galleryRepository.getGalleryPagingList()
-                    .cachedIn(viewModelScope)
-                    .collect {
-                        _imageList.value = it
-                    }
+    val imagePagingList: Flow<PagingData<GalleryUiData>> = galleryRepository.getGalleryPagingList()
+        .cachedIn(viewModelScope)
+        .map {
+            it.map {
+                it.toUiData()
             }
-                .onSuccess {
-                    _uiState.value = UiState.GetGalleryImageListSuccess
-                }
-                .onFailure {
-                    _uiState.value = UiState.GetGalleryImageListFailed
-                }
         }
+
+    fun getAlbumList(): List<AlbumUiData> {
+        val uiDataList = galleryRepository.getAlbumList()
+            .map {
+                AlbumUiData(
+                    thumbnail = it.thumbnail,
+                    name = it.name,
+                    count = it.count,
+                )
+            }
+
+        return uiDataList
     }
 
-    fun addRecipePhotoList(photoPathList: List<String>) {
+    fun addGalleryList(photoPathList: List<String>) {
 //        _imageList.value = _imageList.value + photoPathList
     }
 
