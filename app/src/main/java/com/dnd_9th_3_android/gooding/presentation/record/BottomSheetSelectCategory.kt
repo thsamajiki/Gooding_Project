@@ -35,6 +35,8 @@ class BottomSheetSelectCategory: BottomSheetDialogFragment() {
             val radius = resources.getDimension(R.dimen.bottom_sheet_radius)
             cornerRadii = floatArrayOf(radius, radius, radius, radius, 0f, 0f, 0f, 0f)
         }
+
+        binding.btnComplete.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_background01)
     }
 
     private fun setupListeners() {

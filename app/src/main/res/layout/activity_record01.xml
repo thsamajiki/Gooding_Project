@@ -344,6 +344,7 @@
                 app:layout_constraintTop_toBottomOf="@id/cv_category_goodie_day" />
 
             <androidx.appcompat.widget.SwitchCompat
+                style="@style/CustomSwitchCompat"
                 android:id="@+id/switch_privacy_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -367,12 +368,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_privacy_setting" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_next_step"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="20dp"
-                android:backgroundTint="@color/unactivatedBackgroundColor"
+                android:background="@drawable/button_background01"
                 android:text="@string/next_step"
                 android:textColor="@color/unactivatedColor"
                 android:textStyle="bold"

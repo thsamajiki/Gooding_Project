@@ -251,12 +251,12 @@
 
     </GridLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_finish_record"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_margin="20dp"
-        android:backgroundTint="@color/unactivatedBackgroundColor"
+        android:background="@drawable/button_background01"
         android:text="@string/finish_record"
         android:textColor="@color/unactivatedColor"
         android:textStyle="bold"
