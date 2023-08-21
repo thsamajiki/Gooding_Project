@@ -102,6 +102,8 @@ class SearchFeedListActivity : AppCompatActivity() {
 
     private fun onClickRecentKeywordItem(keywordData: RecentKeywordData) {
         // TODO 해당 키워드로 검색되도록 하기
+        binding.textEditSearchFeed.setText(keywordData.content)
+        binding.textEditSearchFeed.setSelection(keywordData.content.length)
     }
 
     // RecyclerView Item 간 간격 조정하기 위한 클래스
@@ -150,6 +152,8 @@ class SearchFeedListActivity : AppCompatActivity() {
 
     private fun onClickPopularKeywordItem(keywordData: PopularKeywordData) {
         // TODO 해당 키워드로 검색되도록 하기
+        binding.textEditSearchFeed.setText(keywordData.content)
+        binding.textEditSearchFeed.setSelection(keywordData.content.length)
     }
 
     private fun initSearchFeedListRecyclerView(recyclerView: RecyclerView) {
@@ -275,6 +279,10 @@ class SearchFeedListActivity : AppCompatActivity() {
             }
 
             true
+        }
+
+        binding.ivDelete.setOnClickListener {
+            binding.textEditSearchFeed.setText("")
         }
     }
 
