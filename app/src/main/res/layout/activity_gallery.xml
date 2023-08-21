@@ -8,14 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.dnd_9th_3_android.gooding.gallery.GalleryViewModel" />
+            type="com.dnd_9th_3_android.gooding.presentation.gallery.GalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/primaryBackgroundColor"
-        tools:context=".gallery.GalleryActivity">
+        tools:context=".presentation.gallery.GalleryActivity">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tool_bar"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryBackgroundColor"
-    tools:context=".record.Record01Activity">
+    tools:context=".presentation.record.Record01Activity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar"
@@ -30,11 +30,13 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.progressindicator.LinearProgressIndicator
+    <ProgressBar
         android:id="@+id/progress_bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:indicatorColor="@color/primaryColor"
+        android:max="1000"
+        android:progressTint="@color/primaryColor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tool_bar" />
@@ -99,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/border_text_input_layout_unselected"
+                android:background="@drawable/border_text_input_layout_unselected_with_padding"
                 app:counterEnabled="true"
                 app:counterMaxLength="20"
                 app:boxBackgroundMode="none"
@@ -127,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/border_text_input_layout_unselected"
+                android:background="@drawable/border_text_input_layout_unselected_with_padding"
                 app:counterEnabled="true"
                 app:counterMaxLength="100"
                 app:boxBackgroundMode="none"
@@ -350,7 +352,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@id/tv_title_privacy_setting"
                 android:thumb="@drawable/selector_thumb"
-                android:track="@drawable/selector_switch" />
+                android:track="@drawable/selector_track" />
 
             <TextView
                 android:id="@+id/tv_subtitle_privacy_setting"
