@@ -1,29 +1,31 @@
 package com.dnd_9th_3_android.gooding.presentation.gallery
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
 import com.dnd_9th_3_android.gooding.databinding.ItemGalleryImageBinding
 
-class GalleryImageListAdapter(
-    private val onClick: (GalleryImageData) -> Unit
-) : PagingDataAdapter<GalleryImageData, GalleryImageListAdapter.GalleryImageItemViewHolder>(
-    object : DiffUtil.ItemCallback<GalleryImageData>() {
-        override fun areItemsTheSame(oldItem: GalleryImageData, newItem: GalleryImageData): Boolean {
-            return oldItem.name == newItem.name
+class GalleryFileListAdapter(
+    private val onClick: (GalleryFileUiData) -> Unit
+) : PagingDataAdapter<GalleryFileUiData, GalleryFileListAdapter.GalleryImageItemViewHolder>(
+    object : DiffUtil.ItemCallback<GalleryFileUiData>() {
+        override fun areItemsTheSame(oldItem: GalleryFileUiData, newItem: GalleryFileUiData): Boolean {
+            return oldItem.id == newItem.id
         }
 
-        override fun areContentsTheSame(oldItem: GalleryImageData, newItem: GalleryImageData): Boolean {
+        override fun areContentsTheSame(oldItem: GalleryFileUiData, newItem: GalleryFileUiData): Boolean {
             return oldItem == newItem
         }
     }
 ) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GalleryImageItemViewHolder {
-        val binding = ItemGalleryImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemGalleryImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return GalleryImageItemViewHolder(binding, onClick)
     }
@@ -38,13 +40,21 @@ class GalleryImageListAdapter(
 
     class GalleryImageItemViewHolder(
         private val itemGalleryImageBinding: ItemGalleryImageBinding,
-        private val onClick: (GalleryImageData) -> Unit
+        private val onClick: (GalleryFileUiData) -> Unit
     ) : RecyclerView.ViewHolder(itemGalleryImageBinding.root) {
 
-        fun bind(item: GalleryImageData) {
+        fun bind(item: GalleryFileUiData) {
             itemGalleryImageBinding.root.setOnClickListener {
                 onClick(item)
             }
+
+            val image = Uri.parse(item.mediaData)
+            itemGalleryImageBinding.ivGalleryImage.setImageURI(image)
+
+            itemGalleryImageBinding.cvGalleryImageCount.isVisible = item.selectedNumber > 0
+            itemGalleryImageBinding.tvGalleryImageCount.text = item.selectedNumber.toString()
+            itemGalleryImageBinding.cvGalleryImageCover.isVisible = item.selectedNumber == 1
+
             itemGalleryImageBinding.galleryImage = item
             itemGalleryImageBinding.executePendingBindings()
         }

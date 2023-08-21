@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.databinding.ItemAlbumBinding
+import com.dnd_9th_3_android.gooding.databinding.ItemGalleryAlbumBinding
 
 
-class AlbumListAdapter(
-    private val onClick: (AlbumUiData) -> Unit
-) : ListAdapter<AlbumUiData, AlbumListAdapter.AlbumViewHolder>(object :
-    DiffUtil.ItemCallback<AlbumUiData>() {
-    override fun areItemsTheSame(oldItem: AlbumUiData, newItem: AlbumUiData): Boolean {
+class GalleryAlbumListAdapter(
+    private val onClick: (GalleryAlbumUiData) -> Unit
+) : ListAdapter<GalleryAlbumUiData, GalleryAlbumListAdapter.AlbumViewHolder>(object :
+    DiffUtil.ItemCallback<GalleryAlbumUiData>() {
+    override fun areItemsTheSame(oldItem: GalleryAlbumUiData, newItem: GalleryAlbumUiData): Boolean {
         return oldItem.name == newItem.name
     }
 
-    override fun areContentsTheSame(oldItem: AlbumUiData, newItem: AlbumUiData): Boolean {
+    override fun areContentsTheSame(oldItem: GalleryAlbumUiData, newItem: GalleryAlbumUiData): Boolean {
         return oldItem == newItem
     }
 }) {
@@ -31,18 +31,18 @@ class AlbumListAdapter(
 
     class AlbumViewHolder(
         parent: ViewGroup,
-        private val onClick: (AlbumUiData) -> Unit
+        private val onClick: (GalleryAlbumUiData) -> Unit
     ) :
         RecyclerView.ViewHolder(
-            ItemAlbumBinding.inflate(
+            ItemGalleryAlbumBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
             ).root
         ) {
-        private val binding = ItemAlbumBinding.bind(itemView)
+        private val binding = ItemGalleryAlbumBinding.bind(itemView)
 
-        fun bind(item: AlbumUiData) {
+        fun bind(item: GalleryAlbumUiData) {
             binding.root.setOnClickListener {
                 onClick(item)
             }
