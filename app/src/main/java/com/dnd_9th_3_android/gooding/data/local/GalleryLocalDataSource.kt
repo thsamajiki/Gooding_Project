@@ -11,7 +11,7 @@ interface GalleryLocalDataSource {
 
     fun getAllVideos(page: Int): List<GalleryVideoData>
 
-    fun getImageVideoFromGallery(page: Int, pageSize: Int): List<GalleryData>
+    fun getImageVideoFromGallery(albumName: String, page: Int, pageSize: Int): List<GalleryData>
 
     fun getMediaFoldersFromMediaStore(resolver: ContentResolver): List<GalleryAlbumData>
 }

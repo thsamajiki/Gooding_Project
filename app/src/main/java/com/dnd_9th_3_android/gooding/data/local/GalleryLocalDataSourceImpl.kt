@@ -13,6 +13,7 @@ import android.provider.MediaStore
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
+import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryAlbumData
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryImageData
@@ -21,14 +22,15 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class GalleryLocalDataSourceImpl @Inject constructor(
-    @ApplicationContext context: Context
-): GalleryLocalDataSource {
+    @ApplicationContext private val context: Context
+) : GalleryLocalDataSource {
 
     private val resolver: ContentResolver? = context.contentResolver
 
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("Range")
     override fun getImageVideoFromGallery(
+        albumName: String,
         page: Int,
         pageSize: Int
     ): List<GalleryData> {
@@ -38,7 +40,8 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             MediaStore.Files.FileColumns._ID,
             MediaStore.Files.FileColumns.DATE_ADDED,
             MediaStore.Files.FileColumns.MEDIA_TYPE,
-            MediaStore.Files.FileColumns.DURATION
+            MediaStore.Files.FileColumns.DURATION,
+            MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME,
         )
 
         val selection = "${MediaStore.Files.FileColumns.MEDIA_TYPE} IN (?, ?)"
@@ -48,7 +51,6 @@ class GalleryLocalDataSourceImpl @Inject constructor(
         )
 
         val sortOrder = MediaStore.Files.FileColumns.DATE_ADDED + " DESC"
-
         val offset = page * pageSize
 
         val bundle = Bundle().apply {
@@ -68,25 +70,34 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             CancellationSignal()
         )
 
-        while (cursor?.moveToNext() == true) {
-            val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
-            val mediaType = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE))
+        cursor?.let {
+            val bucketDisplayNameColumnIndex =
+                cursor.getColumnIndex(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME)
 
-            val galleryData = GalleryData(
-                id = id,
-                mediaType = mediaType,
-                mediaData = if (mediaType == 1) {
-                    "content://media/external/images/media/$id"
-                } else {
-                    "content://media/external/video/media/$id"
-                },
-                duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION))
-            )
+            while (cursor.moveToNext()) {
+                val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
+                val mediaType =
+                    cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE))
+                val folderName = cursor.getString(bucketDisplayNameColumnIndex)
 
-            galleryDataList.add(galleryData)
+                val galleryData = GalleryData(
+                    id = id,
+                    mediaType = mediaType,
+                    mediaData = if (mediaType == 1) {
+                        "content://media/external/images/media/$id"
+                    } else {
+                        "content://media/external/video/media/$id"
+                    },
+                    duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.DURATION))
+                )
+
+                if (folderName == albumName || albumName == context.getString(R.string.recent_album_name) || albumName.isEmpty()) {
+                    galleryDataList.add(galleryData)
+                }
+            }
+
+            cursor.close()
         }
-
-        cursor?.close()
 
         return galleryDataList
     }
@@ -112,7 +123,8 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             MediaStore.Images.Media.HEIGHT,
         )
 
-        val selection: String? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MediaStore.Images.Media.SIZE + " > 0" else null
+        val selection: String? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MediaStore.Images.Media.SIZE + " > 0" else null
         val selectionArgs: Array<String>? = null
 
         cursor = resolver?.query(
@@ -243,7 +255,8 @@ class GalleryLocalDataSourceImpl @Inject constructor(
             MediaStore.Video.Media.HEIGHT,
         )
 
-        val selection: String? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MediaStore.Video.Media.SIZE + " > 0" else null
+        val selection: String? =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) MediaStore.Video.Media.SIZE + " > 0" else null
         val selectionArgs: Array<String>? = null
 
         cursor = resolver?.query(
@@ -284,7 +297,14 @@ class GalleryLocalDataSourceImpl @Inject constructor(
     override fun getMediaFoldersFromMediaStore(
         resolver: ContentResolver
     ): List<GalleryAlbumData> {
-        return getAllImageVideoFromGallery()
+        val mediaList = getAllImageVideoFromGallery()
+        val recentAlbum = GalleryAlbumData(
+            mediaList.firstOrNull()?.mediaData?.toUri() ?: Uri.EMPTY,
+            context.getString(R.string.recent_album_name),
+            mediaList.size
+        )
+
+        return listOf(recentAlbum) + mediaList
             .groupBy { it.albumName }
             .map { (albumName, galleryDataList) ->
                 GalleryAlbumData(
@@ -309,7 +329,7 @@ class GalleryLocalDataSourceImpl @Inject constructor(
 
         val selection: String =
             (MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
-                + " OR " + MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)
+                    + " OR " + MediaStore.Files.FileColumns.MEDIA_TYPE + "=" + MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO)
         val queryUri = MediaStore.Files.getContentUri("external")
 
         val cursor: Cursor? = resolver?.query(
@@ -321,11 +341,13 @@ class GalleryLocalDataSourceImpl @Inject constructor(
         )
 
         cursor?.let {
-            val bucketDisplayNameColumnIndex = cursor.getColumnIndex(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME)
+            val bucketDisplayNameColumnIndex =
+                cursor.getColumnIndex(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME)
 
             while (cursor.moveToNext()) {
                 val id = cursor.getLong(cursor.getColumnIndex(MediaStore.Files.FileColumns._ID))
-                val mediaType = cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE))
+                val mediaType =
+                    cursor.getInt(cursor.getColumnIndex(MediaStore.Files.FileColumns.MEDIA_TYPE))
                 val folderName = cursor.getString(bucketDisplayNameColumnIndex)
 
                 val galleryData = GalleryData(

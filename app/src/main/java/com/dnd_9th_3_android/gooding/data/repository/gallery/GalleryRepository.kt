@@ -6,7 +6,7 @@ import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
 import kotlinx.coroutines.flow.Flow
 
 interface GalleryRepository {
-    fun getGalleryPagingList(): Flow<PagingData<GalleryData>>
+    fun getGalleryPagingList(albumName: String): Flow<PagingData<GalleryData>>
 
     fun getAlbumList(): List<GalleryAlbumData>
 }
