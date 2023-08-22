@@ -19,7 +19,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.bottomGradient
 import com.dnd_9th_3_android.gooding.data.contentLayout.topGradient
-import com.dnd_9th_3_android.gooding.data.preventScroll.disabledHorizontalPointerInputScroll
+import com.dnd_9th_3_android.gooding.data.preventScroll.disabledHorizontalPointerInputScrollPost
 import com.dnd_9th_3_android.gooding.feed.feedScreen.OneFeedContent
 import com.dnd_9th_3_android.gooding.feed.itemFeed.midInfoFunction.GradientBoxState
 import com.dnd_9th_3_android.gooding.feed.itemFeed.midInfoFunction.PaddingState
@@ -46,9 +46,9 @@ fun OneFeedItem(
         // feed image list
         HorizontalPager(
             state = pagerState,
-//            modifier =
-//            if (pagerState.currentPage==feed.urlList.size-1) Modifier.disabledHorizontalPointerInputScroll()
-//            else Modifier
+            modifier =
+            if (pagerState.currentPage==feed.urlList.size-1) Modifier.disabledHorizontalPointerInputScrollPost()
+            else Modifier
         ){page->
             OneFeedContent(feed.urlList[page])
         }
