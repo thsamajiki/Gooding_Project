@@ -22,10 +22,10 @@
 
                 <com.skydoves.elasticviews.ElasticImageView
                     android:id="@+id/iv_close"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="36dp"
+                    android:layout_marginEnd="13dp"
                     android:padding="4dp"
                     android:src="@drawable/icon_close"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -37,12 +37,13 @@
                     android:id="@+id/tv_title_select_category"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="17dp"
+                    android:layout_marginTop="36dp"
                     android:text="활동 카테고리 선택"
+                    android:fontFamily="@font/pretendard_semibold"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textFontWeight="600"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -82,16 +83,19 @@
                         android:layout_gravity="center">
 
                         <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
+                            android:layout_width="26dp"
+                            android:layout_height="26dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_shopping"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:text="쇼핑"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -122,13 +126,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_travel"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="여행"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -165,6 +172,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
                             android:text="미식"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
@@ -204,13 +214,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_read_book"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="독서"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -241,13 +254,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_cook"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="요리"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -278,13 +294,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_culture"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="문화"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -323,13 +342,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background" />
+                            android:src="@drawable/icon_sports" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="스포츠"
                             android:textColor="@color/white"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -360,13 +382,13 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_hobby"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:text="취미"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -397,13 +419,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_study"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="학업"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -442,87 +467,16 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
+                            android:src="@drawable/icon_this_month_goodie_day"/>
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="7dp"
-                            android:text="미식"
-                            android:textColor="@color/white"
-                            app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cv_category_11"
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="15dp"
-                    app:cardCornerRadius="32dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="@color/unactivatedBackgroundColor"
-                    app:cardBackgroundColor="@color/unactivatedBackgroundColor">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="7dp"
-                            android:text="미식"
-                            android:textColor="@color/white"
-                            app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cv_category_12"
-                    android:layout_width="75dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="15dp"
-                    app:cardCornerRadius="32dp"
-                    app:strokeWidth="1dp"
-                    app:strokeColor="@color/unactivatedBackgroundColor"
-                    app:cardBackgroundColor="@color/unactivatedBackgroundColor">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_gravity="center">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_marginStart="5dp"
-                            android:src="@drawable/ic_launcher_background"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="7dp"
-                            android:text="미식"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:textSize="14sp"
+                            android:text="이달의 굳이데이"
                             android:textColor="@color/white"
                             app:layout_constraintTop_toBottomOf="@id/iv_romance_level_01"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -539,16 +493,20 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_complete"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_margin="20dp"
+            android:layout_height="47dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="28dp"
             android:background="@drawable/button_background01"
             android:text="@string/select_complete"
+            android:fontFamily="@font/pretendard_regular"
             android:textColor="@color/unactivatedColor"
             android:textStyle="bold" />
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

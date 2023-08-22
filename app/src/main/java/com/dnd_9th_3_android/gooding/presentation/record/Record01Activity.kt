@@ -3,13 +3,16 @@ package com.dnd_9th_3_android.gooding.presentation.record
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord01Binding
 import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
@@ -46,8 +49,15 @@ class Record01Activity : AppCompatActivity() {
         )
 
         recyclerView.run {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = recordImageVideoListAdapter
+
+            val spaceDecoration = HorizontalSpaceItemDecoration(25)
+            removeItemDecoration(object : DividerItemDecoration(this@Record01Activity, HORIZONTAL) {
+
+            })
+            addItemDecoration(spaceDecoration)
+
             recordImageVideoListAdapter.submitList(
                 listOf(
                     GalleryFileUiData(
@@ -95,6 +105,29 @@ class Record01Activity : AppCompatActivity() {
         }
     }
 
+    // RecyclerView Item 간 간격 조정하기 위한 클래스
+    inner class HorizontalSpaceItemDecoration(private val horizontalSpaceWidth: Int) : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position = parent.getChildAdapterPosition(view)
+            val count = state.itemCount
+
+            when (position) {
+                0 -> {
+                    outRect.left = 0
+                }
+                else -> {
+                    outRect.left = horizontalSpaceWidth
+                }
+            }
+        }
+    }
+
     private fun onClickImageVideoItem(galleryFileUiData: GalleryFileUiData) {
         TODO("Not yet implemented")
     }
@@ -111,9 +144,9 @@ class Record01Activity : AppCompatActivity() {
                 binding.textEditTitleGoodieDay.clearFocus()
             }
 
-            if (binding.textEditContentGoodieDay.hasFocus()) {
-                binding.textEditContentGoodieDay.clearFocus()
-            }
+//            if (binding.textEditContentGoodieDay.hasFocus()) {
+//                binding.textEditContentGoodieDay.clearFocus()
+//            }
         }
 
         binding.textEditTitleGoodieDay.setOnFocusChangeListener { view, hasFocus ->
@@ -130,18 +163,8 @@ class Record01Activity : AppCompatActivity() {
             }
         }
 
-        binding.textEditContentGoodieDay.setOnFocusChangeListener { view, hasFocus ->
-            if (hasFocus) {
-                binding.textEditContentGoodieDay.hint = ""
-                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this,
-                    R.drawable.border_text_input_layout_selected
-                )
-            } else {
-                binding.textEditContentGoodieDay.setHint(R.string.please_write_your_goodie_day)
-                binding.textLayoutContentGoodieDay.background = ContextCompat.getDrawable(this,
-                    R.drawable.border_text_input_layout_unselected_with_padding
-                )
-            }
+        binding.textLayoutContentGoodieDay.apply {
+            setHint(getString(R.string.please_write_your_goodie_day))
         }
 
         binding.textLayoutDateGoodieDay.setOnClickListener {

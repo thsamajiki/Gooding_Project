@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -65,25 +66,26 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:listItems="@layout/item_record_image_video_file"/>
+                tools:listItems="@layout/item_record_image_video_file" />
 
             <LinearLayout
                 android:id="@+id/layout_title_what_goodie_day_did_you_have"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="15dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rv_image_video_file_list" >
+                app:layout_constraintTop_toBottomOf="@id/rv_image_video_file_list">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/what_goodie_day_did_you_have"
                     android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp"
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textFontWeight="600" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -103,9 +105,9 @@
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="20dp"
                 android:background="@drawable/border_text_input_layout_unselected_with_padding"
+                app:boxBackgroundMode="none"
                 app:counterEnabled="true"
                 app:counterMaxLength="20"
-                app:boxBackgroundMode="none"
                 app:hintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,51 +117,35 @@
                     android:id="@+id/text_edit_title_goodie_day"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textCursorDrawable="@drawable/cursor_drawable"
+                    android:hint="@string/please_write_title"
                     android:maxLength="20"
                     android:maxLines="1"
                     android:textColor="@color/white"
-                    android:hint="@string/please_write_title"
-                    android:textColorHint="@color/quaternaryColor" />
+                    android:textColorHint="@color/quaternaryColor"
+                    android:textCursorDrawable="@drawable/cursor_drawable" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <com.dnd_9th_3_android.gooding.ui.component.RecordInputTextView
                 android:id="@+id/text_layout_content_goodie_day"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="18dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/border_text_input_layout_unselected_with_padding"
-                app:counterEnabled="true"
-                app:counterMaxLength="100"
-                app:boxBackgroundMode="none"
-                app:hintEnabled="false"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_layout_title_goodie_day">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/text_edit_content_goodie_day"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:textCursorDrawable="@drawable/cursor_drawable"
-                    android:maxLength="100"
-                    android:textColor="@color/white"
-                    android:hint="@string/please_write_your_goodie_day"
-                    android:textColorHint="@color/quaternaryColor" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+                app:layout_constraintTop_toBottomOf="@id/text_layout_title_goodie_day" />
 
             <LinearLayout
                 android:id="@+id/layout_date_goodie_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginStart="18dp"
                 android:layout_marginTop="20dp"
+                android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_layout_content_goodie_day" >
+                app:layout_constraintTop_toBottomOf="@id/text_layout_content_goodie_day">
 
                 <TextView
                     android:id="@+id/tv_date_goodie_day"
@@ -168,7 +154,8 @@
                     android:text="@string/goodie_day_date"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/pretendard_semibold"
+                    android:textFontWeight="600" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -188,8 +175,8 @@
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="20dp"
                 app:cardBackgroundColor="@color/tertiaryColor"
-                app:cardElevation="0dp"
                 app:cardCornerRadius="6dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/layout_date_goodie_day">
@@ -198,19 +185,19 @@
                     android:id="@+id/text_edit_date_goodie_day"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="15dp"
                     android:layout_gravity="center_vertical"
-                    android:maxLines="1"
+                    android:layout_marginStart="15dp"
                     android:background="@null"
-                    android:textSize="14sp"
+                    android:maxLines="1"
                     android:text="@string/goodie_day_date_hint"
-                    android:textColor="@color/quaternaryColor" />
+                    android:textColor="@color/quaternaryColor"
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="21dp"
                     android:layout_height="21dp"
-                    android:layout_marginEnd="15dp"
                     android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="15dp"
                     android:src="@drawable/icon_arrow_right" />
 
             </androidx.cardview.widget.CardView>
@@ -224,7 +211,8 @@
                 android:text="@string/goodie_day_place"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textFontWeight="600"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_layout_date_goodie_day" />
 
@@ -235,8 +223,8 @@
                 android:layout_marginHorizontal="18dp"
                 android:layout_marginTop="15dp"
                 app:cardBackgroundColor="@color/tertiaryColor"
-                app:cardElevation="0dp"
                 app:cardCornerRadius="6dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_place_goodie_day">
@@ -253,33 +241,33 @@
                         android:layout_gravity="center_vertical"
                         android:layout_marginStart="15dp"
                         android:src="@drawable/icon_default_place_pin"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tv_set_place_goodie_day"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:layout_marginStart="20dp"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginStart="20dp"
+                        android:background="@null"
                         android:text="@string/please_set_place"
                         android:textColor="@color/quaternaryColor"
                         android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/iv_place_pin"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:layout_width="21dp"
                         android:layout_height="21dp"
-                        android:layout_marginEnd="15dp"
                         android:layout_gravity="center_vertical|end"
+                        android:layout_marginEnd="15dp"
                         android:src="@drawable/icon_arrow_right"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -294,7 +282,8 @@
                 android:text="@string/goodie_day_category"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textFontWeight="600"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cv_place_goodie_day" />
 
@@ -305,8 +294,8 @@
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginTop="15dp"
                 app:cardBackgroundColor="@color/tertiaryColor"
-                app:cardElevation="0dp"
                 app:cardCornerRadius="6dp"
+                app:cardElevation="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_category_goodie_day">
@@ -315,8 +304,8 @@
                     android:id="@+id/tv_choose_category_goodie_day"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@null"
                     android:layout_marginStart="20dp"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:text="@string/please_choose_category"
                     android:textColor="@color/quaternaryColor"
@@ -325,8 +314,8 @@
                 <ImageView
                     android:layout_width="21dp"
                     android:layout_height="21dp"
-                    android:layout_marginEnd="15dp"
                     android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="15dp"
                     android:src="@drawable/icon_arrow_right" />
 
             </androidx.cardview.widget.CardView>
@@ -340,21 +329,22 @@
                 android:text="@string/setting_privacy"
                 android:textColor="@color/white"
                 android:textSize="14sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_semibold"
+                android:textFontWeight="600"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cv_category_goodie_day" />
 
             <androidx.appcompat.widget.SwitchCompat
-                style="@style/CustomSwitchCompat"
                 android:id="@+id/switch_privacy_setting"
+                style="@style/CustomSwitchCompat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
+                android:thumb="@drawable/selector_thumb"
+                android:track="@drawable/selector_track"
                 app:layout_constraintBottom_toBottomOf="@id/tv_title_privacy_setting"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tv_title_privacy_setting"
-                android:thumb="@drawable/selector_thumb"
-                android:track="@drawable/selector_track" />
+                app:layout_constraintTop_toTopOf="@id/tv_title_privacy_setting" />
 
             <TextView
                 android:id="@+id/tv_subtitle_privacy_setting"
@@ -365,21 +355,23 @@
                 android:text="@string/making_my_record_public_can_show_other_people"
                 android:textColor="@color/quaternaryColor"
                 android:textSize="12sp"
-                android:textStyle="bold"
+                android:fontFamily="@font/pretendard_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_title_privacy_setting" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_next_step"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="47dp"
                 android:layout_margin="20dp"
                 android:background="@drawable/button_background01"
                 android:text="@string/next_step"
                 android:textColor="@color/unactivatedColor"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_privacy_setting"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                android:textSize="16sp"
+                android:fontFamily="@font/pretendard_semibold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_subtitle_privacy_setting" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,7 +2,6 @@ package com.dnd_9th_3_android.gooding.presentation.gallery
 
 import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
@@ -10,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
@@ -23,7 +23,8 @@ import com.dnd_9th_3_android.gooding.MyGoodingFragment
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityGalleryBinding
 import com.dnd_9th_3_android.gooding.presentation.record.Record01Activity
-import com.dnd_9th_3_android.gooding.presentation.util.CenterToastView
+import com.dnd_9th_3_android.gooding.ui.component.CenterToastView
+import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -104,7 +105,11 @@ class GalleryActivity : AppCompatActivity() {
             }
             adapter = galleryFileListAdapter
             addItemDecoration(
-                GridSpacingItemDecoration(spanCount = 3, spacing = 8f.fromDpToPx())
+                GridSpacingItemDecoration(
+                    spanCount = 3,
+                    sideSpacing = 1f.fromDpToPx(),
+                    bottomSpacing = 2f.fromDpToPx()
+                )
             )
         }
     }
@@ -116,11 +121,30 @@ class GalleryActivity : AppCompatActivity() {
         } else {
             showToast()
         }
+
+        if (viewModel.selectedItems.isNotEmpty()) {
+            binding.tvNextStep.isEnabled = true
+            binding.tvNextStep.setTextColor(
+                ContextCompat.getColor(
+                    this@GalleryActivity,
+                    R.color.primaryColor
+                )
+            )
+        } else {
+            binding.tvNextStep.isEnabled = false
+            binding.tvNextStep.setTextColor(
+                ContextCompat.getColor(
+                    this@GalleryActivity,
+                    com.dnd_9th_3_android.gooding.core.data.R.color.blue_gray_3
+                )
+            )
+        }
     }
 
     internal class GridSpacingItemDecoration(
         private val spanCount: Int, // Grid의 column 수
-        private val spacing: Int // 간격
+        private val sideSpacing: Int, // 간격
+        private val bottomSpacing: Int
     ) : RecyclerView.ItemDecoration() {
 
         override fun getItemOffsets(
@@ -131,29 +155,11 @@ class GalleryActivity : AppCompatActivity() {
         ) {
             val position: Int = parent.getChildAdapterPosition(view)
 
-            if (position >= 0) {
-                val column = position % spanCount // item column
-                outRect.apply {
-                    // spacing - column * ((1f / spanCount) * spacing)
-                    left = spacing - column * spacing / spanCount
-                    // (column + 1) * ((1f / spanCount) * spacing)
-                    right = (column + 1) * spacing / spanCount
-                    if (position < spanCount) top = spacing
-                    bottom = spacing
-                }
-            } else {
-                outRect.apply {
-                    left = 0
-                    right = 0
-                    top = 0
-                    bottom = 0
-                }
-            }
+            outRect.left = sideSpacing
+            outRect.right = sideSpacing
+            outRect.bottom = bottomSpacing
         }
     }
-
-    fun Float.fromDpToPx(): Int =
-        (this * Resources.getSystem().displayMetrics.density).toInt()
 
     private fun showToast() {
         val toastView = CenterToastView(this@GalleryActivity)
