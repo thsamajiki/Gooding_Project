@@ -6,7 +6,8 @@ import com.dnd_9th_3_android.gooding.data.local.GalleryLocalDataSource
 import com.dnd_9th_3_android.gooding.data.model.gallery.GalleryData
 
 class GalleryPagingSource(
-    private val galleryLocalDataSource: GalleryLocalDataSource
+    private val galleryLocalDataSource: GalleryLocalDataSource,
+    private val albumName: String
 ) : PagingSource<Int, GalleryData>() {
 
     override fun getRefreshKey(state: PagingState<Int, GalleryData>): Int? {
@@ -18,16 +19,7 @@ class GalleryPagingSource(
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, GalleryData> {
         val page = params.key ?: FIRST_PAGE
-        val data = galleryLocalDataSource.getImageVideoFromGallery(page, params.loadSize)
-//        val data = galleryLocalDataSource.fetchGalleryImages(params.loadSize, page*params.loadSize)
-//        val endOfPaginationReached = (data.size ?: 0) == 0
-//
-//        val prevKey = if (pageNumber == FIRST_PAGE) null else pageNumber - 1
-//        val nextKey = if (endOfPaginationReached) {
-//            null
-//        } else {
-//            pageNumber + (params.loadSize / PAGING_SIZE)
-//        }
+        val data = galleryLocalDataSource.getImageVideoFromGallery(albumName, page, params.loadSize)
 
         return LoadResult.Page(
             data = data,

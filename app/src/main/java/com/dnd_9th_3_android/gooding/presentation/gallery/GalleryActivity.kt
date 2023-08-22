@@ -2,10 +2,15 @@ package com.dnd_9th_3_android.gooding.presentation.gallery
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Resources
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -18,8 +23,11 @@ import com.dnd_9th_3_android.gooding.MyGoodingFragment
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityGalleryBinding
 import com.dnd_9th_3_android.gooding.presentation.record.Record01Activity
+import com.dnd_9th_3_android.gooding.presentation.util.CenterToastView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 @AndroidEntryPoint
 class GalleryActivity : AppCompatActivity() {
@@ -95,18 +103,88 @@ class GalleryActivity : AppCompatActivity() {
                 }
             }
             adapter = galleryFileListAdapter
+            addItemDecoration(
+                GridSpacingItemDecoration(spanCount = 3, spacing = 8f.fromDpToPx())
+            )
         }
     }
 
     private fun onClickGalleryImageItem(galleryFileUiData: GalleryFileUiData) {
+        val isSuccess = viewModel.selectedGalleryImageItem(galleryFileUiData)
+        if (isSuccess) {
+            galleryFileListAdapter.notifyDataSetChanged()
+        } else {
+            showToast()
+        }
+    }
 
+    internal class GridSpacingItemDecoration(
+        private val spanCount: Int, // Grid의 column 수
+        private val spacing: Int // 간격
+    ) : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position: Int = parent.getChildAdapterPosition(view)
+
+            if (position >= 0) {
+                val column = position % spanCount // item column
+                outRect.apply {
+                    // spacing - column * ((1f / spanCount) * spacing)
+                    left = spacing - column * spacing / spanCount
+                    // (column + 1) * ((1f / spanCount) * spacing)
+                    right = (column + 1) * spacing / spanCount
+                    if (position < spanCount) top = spacing
+                    bottom = spacing
+                }
+            } else {
+                outRect.apply {
+                    left = 0
+                    right = 0
+                    top = 0
+                    bottom = 0
+                }
+            }
+        }
+    }
+
+    fun Float.fromDpToPx(): Int =
+        (this * Resources.getSystem().displayMetrics.density).toInt()
+
+    private fun showToast() {
+        val toastView = CenterToastView(this@GalleryActivity)
+        toastView.setText(getString(R.string.limit_exceed_toast))
+
+        toastView.layoutParams = ConstraintLayout.LayoutParams(
+            resources.getDimensionPixelOffset(R.dimen.center_toast_width),
+            resources.getDimensionPixelOffset(R.dimen.center_toast_height)
+        ).apply {
+            startToStart = binding.rootView.id
+            topToTop = binding.rootView.id
+            endToEnd = binding.rootView.id
+            bottomToBottom = binding.rootView.id
+        }
+
+        binding.rootView.addView(toastView)
+
+        lifecycleScope.launch {
+            delay(2.seconds)
+            binding.rootView.removeView(toastView)
+        }
     }
 
     private fun onClickAlbumItem(galleryAlbumUiData: GalleryAlbumUiData) {
-        if (binding.tvTitleAlbumType.text == galleryAlbumUiData.folderName) {
+        val folderName = galleryAlbumUiData.folderName
+        if (binding.tvTitleAlbumType.text == folderName) {
             return
         }
-        binding.tvTitleAlbumType.text = galleryAlbumUiData.folderName
+        binding.tvTitleAlbumType.text = folderName
+        viewModel.updateAlbumName(folderName)
+        binding.rvGalleryAlbumList.isGone = true
     }
 
     private fun initViewModel() {
@@ -117,6 +195,7 @@ class GalleryActivity : AppCompatActivity() {
                         is GalleryViewModel.UiState.GetGalleryFileListSuccess -> {
 
                         }
+
                         is GalleryViewModel.UiState.GetGalleryFileListFailed -> {
                             Toast.makeText(
                                 this@GalleryActivity,
@@ -124,6 +203,7 @@ class GalleryActivity : AppCompatActivity() {
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
+
                         is GalleryViewModel.UiState.Idle -> {}
                     }
                 }

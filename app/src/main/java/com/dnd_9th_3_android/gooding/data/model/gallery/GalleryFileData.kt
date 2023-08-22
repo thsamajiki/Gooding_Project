@@ -3,7 +3,7 @@ package com.dnd_9th_3_android.gooding.data.model.gallery
 import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
 
 data class GalleryData(
-    val id: Long? = -1,
+    val id: Long = -1,
     val mediaType: Int? = -1, // 사진: 1, 동영상: 3
     val mediaData: String = "",
     val duration: Int = 0, // 동영상 재생시간
