@@ -12,8 +12,7 @@ android {
 
     defaultConfig {
 
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 30
 
         consumerProguardFiles("consumer-rules.pro")
 
@@ -31,17 +30,14 @@ android {
         }
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
+
     buildFeatures {
         compose = true
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 
@@ -58,7 +54,7 @@ dependencies {
     implementation(project(":core:model"))
 
     // compose
-    val composeVersion = "1.2.0"
+    val composeVersion = "1.4.3"
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")

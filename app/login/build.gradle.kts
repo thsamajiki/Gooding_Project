@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
-    id("com.google.gms.google-services") version "4.3.8" apply true
+    id("com.google.gms.google-services") version "4.3.10" apply true
 
 
 }
@@ -14,8 +14,7 @@ android {
 
     defaultConfig {
 
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 30
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,12 +32,11 @@ android {
         viewBinding = true
         dataBinding = true
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 

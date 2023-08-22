@@ -9,7 +9,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 30
         targetSdk = 34
         consumerProguardFiles("consumer-rules.pro")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -28,15 +28,11 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
     buildFeatures {
         compose = true
@@ -64,7 +60,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.45")
 
     // compose
-    val composeVersion = "1.2.0"
+    val composeVersion = "1.4.3"
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
@@ -88,7 +84,7 @@ dependencies {
     // colorful bar
     implementation ("com.github.SmartToolFactory:Compose-Colorful-Sliders:1.2.0")
 
-// module
+    // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))
 }

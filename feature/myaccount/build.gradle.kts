@@ -13,8 +13,7 @@ android {
 
     defaultConfig {
 
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 30
 
         consumerProguardFiles("consumer-rules.pro")
 
@@ -34,15 +33,11 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 
@@ -60,7 +55,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.45")
 
     // compose
-    val composeVersion = "1.2.0"
+    val composeVersion = "1.4.3"
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
@@ -84,7 +79,7 @@ dependencies {
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
 
     // bottom sheet
-    implementation ("com.holix.android:bottomsheetdialog-compose:$composeVersion")
+    implementation ("com.holix.android:bottomsheetdialog-compose:1.3.1")
 
     // Exoplayer Dependency
     implementation ("com.google.android.exoplayer:exoplayer:2.16.1")

@@ -34,7 +34,7 @@ fun TopScrollBarLayer (
             blurRadius = 10f
         ),
         camptonMedium,
-        dimensionResource(id = R.dimen.text_18_sp).value.sp,
+        18.sp,
         Color.White,
         colorResource(id = R.color.unselect_white),
         dimensionResource(id = R.dimen.tab_text_w)

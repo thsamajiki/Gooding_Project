@@ -7,6 +7,7 @@
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/primaryColor</item>
+        <item name="android:windowBackground">@color/transparent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>

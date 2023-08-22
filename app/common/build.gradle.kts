@@ -8,9 +8,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-
-        minSdk = 24
-        targetSdk = 34
+        minSdk = 30
 
         consumerProguardFiles("consumer-rules.pro")
 
@@ -26,12 +24,8 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 }
 

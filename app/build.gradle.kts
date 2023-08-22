@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.dnd_9th_3_android.gooding"
-        minSdk = 24
+        minSdk = 30
         targetSdk = 34
         versionCode = 2
         versionName = "1.1.1"
@@ -45,10 +45,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.0"
+        kotlinCompilerExtensionVersion = "1.4.3"
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
 
     packagingOptions {
@@ -143,7 +143,7 @@ dependencies {
     implementation ("com.sothree.slidinguppanel:library:3.4.0")
 
     // compose
-    val composeVersion = "1.2.0"
+    val composeVersion = "1.4.3"
     implementation("androidx.compose.material:material:$composeVersion")
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
