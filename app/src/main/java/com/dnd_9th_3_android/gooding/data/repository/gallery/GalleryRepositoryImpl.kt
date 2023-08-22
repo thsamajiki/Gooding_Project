@@ -18,14 +18,16 @@ class GalleryRepositoryImpl @Inject constructor(
     private val galleryLocalDataSource: GalleryLocalDataSource
 ): GalleryRepository {
 
-    override fun getGalleryPagingList(): Flow<PagingData<GalleryData>> {
+    override fun getGalleryPagingList(
+        albumName: String
+    ): Flow<PagingData<GalleryData>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,
                 initialLoadSize = 20
             ),
             pagingSourceFactory = {
-                GalleryPagingSource(galleryLocalDataSource)
+                GalleryPagingSource(galleryLocalDataSource, albumName)
             }
         )
             .flow
