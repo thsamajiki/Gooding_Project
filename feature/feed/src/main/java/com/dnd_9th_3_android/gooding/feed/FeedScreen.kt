@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.feed
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.*
 
 import androidx.compose.material.*
@@ -7,8 +8,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
-import androidx.compose.ui.tooling.preview.Preview
-import com.dnd_9th_3_android.gooding.data.preventScroll.disabledHorizontalPointerInputScroll
 import com.dnd_9th_3_android.gooding.feed.fixedAreaSubLayout.FeedTopLayout
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -18,6 +17,8 @@ private val pages = listOf("NOW", "HOT")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun FeedScreen() {
+    // 뒤로가기 동작 제어
+    BackHandler(enabled = true, onBack = {})
     Box {
         // 페이지 상태 지정 ( now - 추천 가로 페이징 )
         val hoPageState = rememberPagerState()
@@ -28,8 +29,8 @@ fun FeedScreen() {
                 .fillMaxSize()
 //                .disabledHorizontalPointerInputScroll() //custom
         ) { page ->
-            when (page) {
-                0 -> NowScreen()
+                when (page) {
+                    0 -> NowScreen()
                 else -> RecommendScreen()
             }
         }
@@ -43,11 +44,4 @@ fun FeedScreen() {
         }
     }
 
-}
-
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewFeed() {
-    FeedScreen()
 }

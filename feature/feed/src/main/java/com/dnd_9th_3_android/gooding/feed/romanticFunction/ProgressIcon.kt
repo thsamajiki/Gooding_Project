@@ -64,8 +64,6 @@ fun ProgressGraphic(
         }
 
 
-    Log.d("(progress /SCOPE_RATIO).toInt()",(progress /SCOPE_RATIO).toInt().toString())
-
     Row(
         modifier = Modifier
             .fillMaxSize()

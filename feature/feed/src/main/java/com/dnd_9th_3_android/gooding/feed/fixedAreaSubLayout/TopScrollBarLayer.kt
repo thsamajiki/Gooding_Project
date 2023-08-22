@@ -10,6 +10,7 @@ import androidx.compose.ui.graphics.Shadow
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.data.contentLayout.CustomRowTabBar
 import com.dnd_9th_3_android.gooding.data.feed.feedPages
 import com.dnd_9th_3_android.gooding.core.data.R

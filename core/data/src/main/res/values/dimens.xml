@@ -81,6 +81,7 @@
     <dimen name="size_280">280dp</dimen>
     <dimen name="top_box_h">136dp</dimen>
     <dimen name="bottom_box_h">260dp</dimen>
+    <dimen name="bottom_box_h_extend">294dp</dimen>
     <dimen name="padding_38">38dp</dimen>
     <dimen name="romantic_w">324dp</dimen>
     <dimen name="romantic_total_h">85dp</dimen>
@@ -113,5 +114,12 @@
     <dimen name="padding_32_5">32.5dp</dimen>
     <dimen name="padding_7">7dp</dimen>
 
+    <!--main extend -->
     <dimen name="padding_122">122dp</dimen>
+    <dimen name="line_1_box_h">85dp</dimen>
+    <dimen name="line_2_box_h">105dp</dimen>
+    <dimen name="line_3_box_h">123dp</dimen>
+    <dimen name="line_1_padding">38dp</dimen>
+    <dimen name="line_2_padding">54dp</dimen>
+    <dimen name="line_3_padding">34dp</dimen>
 </resources>
