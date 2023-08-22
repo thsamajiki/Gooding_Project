@@ -15,7 +15,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import androidx.palette.graphics.Palette
 
 import com.smarttoolfactory.slider.*
 import com.dnd_9th_3_android.gooding.core.data.R

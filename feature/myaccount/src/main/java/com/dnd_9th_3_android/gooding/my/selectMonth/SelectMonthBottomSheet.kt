@@ -10,7 +10,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialogProperties
@@ -77,7 +77,7 @@ fun SelectMonthBottomSheet(
                         }
                 ){
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_close_24),
+                        painter = painterResource(id = R.drawable.close_button),
                         contentDescription = null,
                     )
                 }

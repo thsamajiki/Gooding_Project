@@ -7,7 +7,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.sp
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.poppins
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 import androidx.compose.foundation.Image
@@ -20,6 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.dnd_9th_3_android.gooding.api.RetrofitUtil
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
+import com.dnd_9th_3_android.gooding.data.SampleFeedData2
 import com.dnd_9th_3_android.gooding.model.feed.MyFeed
 import com.dnd_9th_3_android.gooding.model.feed.MyFeedList
 import com.dnd_9th_3_android.gooding.my.itemFeed.ItemMainFeedScreen
@@ -94,7 +95,7 @@ fun TimeLineScreen(
                 modifier = Modifier.size(dimensionResource(id = R.dimen.arrow_size))
             ){
                 Image(
-                    painter = painterResource(id = R.drawable.baseline_keyboard_arrow_down_24),
+                    painter = painterResource(id = R.drawable.arrow_bottom),
                     modifier = Modifier
                         .height(IntrinsicSize.Max)
                         .width(IntrinsicSize.Max),
@@ -107,34 +108,46 @@ fun TimeLineScreen(
             // 8월 데이터
             LazyColumn(modifier = Modifier.fillMaxSize()) {
                 // 임시 데이터 받기 !
-                RetrofitUtil.setUserToken(
-                    "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJST0xFX1VTRVIiLCJpYXQiOjE2OTI0MjkyMjcsImV4cCI6MTY5MjQzMTAyN30.eFrGY4_RZcSmFVee_cJ4IU9zaGGHe1A3YWoFbV4JvmJ-hp3xohT98vGf33M40eiv"
-                )
-                RetrofitUtil.userApiService.getMyRecords(1)
-                    .enqueue(object :Callback<ArrayList<MyFeed>>{
-                        override fun onResponse(
-                            call: Call<ArrayList<MyFeed>>,
-                            response: Response<ArrayList<MyFeed>>
-                        ) {
-                            if (response.isSuccessful){
-                                val dataList = response.body()!!
-                                Log.d("dataSEt",dataList.toString())
-                                items(dataList){ data->
-                                    ItemMainFeedScreen(feed = data, onDeleteView = {
-                                        showDeleteView = it
-                                    })
-                                }
-                            }else{
-                                Log.d("fail 22",response.errorBody()!!.string())
-                                Log.d("fail 22",response.message()!!.toString())
-                            }
-                        }
+//                RetrofitUtil.setUserToken(
+//                    "eyJhbGciOiJIUzM4NCJ9.eyJyb2xlIjoiUk9MRV9VU0VSIiwidXNlcklkIjoxLCJpYXQiOjE2OTI2MjgwNzksImV4cCI6MTY5MjYyOTg3OX0.icroV6DhM2s9wqfZL0S_uf28USyNyJiUHlsd8RDWB4jsrpQaIyoPPMT4zbEnIu2w"
+//                )
+//                RetrofitUtil.userApiService.getMyRecords(1)
+//                    .enqueue(object :Callback<ArrayList<MyFeed>>{
+//                        override fun onResponse(
+//                            call: Call<ArrayList<MyFeed>>,
+//                            response: Response<ArrayList<MyFeed>>
+//                        ) {
+//                            if (response.isSuccessful){
+////                                val dataList = response.body()!!
+////                                Log.d("dataSEt",dataList.toString())
+//                                val dataList = SampleFeedData2.sampleFeedList
+//                                items(dataList){ data->
+//                                    ItemMainFeedScreen(feed = data, onDeleteView = {
+//                                        showDeleteView = it
+//                                    })
+//                                }
+//                            }else{
+//                                Log.d("fail 22",response.errorBody()!!.string())
+//                                Log.d("fail 22",response.message()!!.toString())
+//                            }
+//                        }
+//
+//                        override fun onFailure(call: Call<ArrayList<MyFeed>>, t: Throwable) {
+//                            Log.d("fail data","load fail $t")
+//                        }
+//
+//                    })
 
-                        override fun onFailure(call: Call<ArrayList<MyFeed>>, t: Throwable) {
-                            Log.d("fail data","load fail $t")
-                        }
 
+                // 임시 데이터 받기 ///
+                val dataList = SampleFeedData2.sampleFeedList
+                items(dataList) { data ->
+                    ItemMainFeedScreen(feed = data, onDeleteView = {
+                        showDeleteView = it
                     })
+                }
+                // 임시 데이터 받기 ///
+
             }
         } else {
             // no user record

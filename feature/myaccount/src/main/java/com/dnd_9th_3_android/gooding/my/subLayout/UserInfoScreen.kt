@@ -5,7 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.model.user.UserInfo
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

@@ -29,8 +29,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.0"
@@ -88,8 +88,6 @@ dependencies {
     // colorful bar
     implementation ("com.github.SmartToolFactory:Compose-Colorful-Sliders:1.2.0")
 
-    // 색상 추출
-    implementation ("androidx.palette:palette-ktx:1.0.0")
 // module
     implementation(project(":core:model"))
     implementation(project(":core:data"))

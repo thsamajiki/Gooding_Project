@@ -1,14 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="secondary_1">#3CEFA3</color>
-    <color name="for_grada_1">#FF59D0</color>
-    <color name="box_strok_color">#3CEFA3</color>
-    <color name="blue_gray">#3E4049</color>
-    <color name="back_blue_gray">#1A3CEFA3</color>
-    <color name="tab_background">#282932</color>
-    <color name="blue_gray_2">#A4A6AA</color>
-    <color name="blue_gray_3">#75777B</color>
-    <color name="blue_gray_4">#575860</color>
-    <color name="blue_gray_6">#282932</color>
-    <color name="blue_gray_7">#1C1D27</color>
 </resources>
