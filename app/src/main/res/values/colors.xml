@@ -14,6 +14,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="transparent">#00000000</color>
+    <color name="half_transparent">#80000000</color>
 
     <!-- Grey -->
 
@@ -632,6 +633,7 @@
     <color name="blue_grey_800">#37474F</color>
 
     <color name="blue_grey_900">#263238</color>
+    <color name="warning">#ff5a6e</color>
 
     <!-- Blue Grey -->
 </resources>

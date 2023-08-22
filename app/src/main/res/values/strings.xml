@@ -84,5 +84,6 @@
     <string name="search_region_place">지역, 장소 검색</string>
     <string name="exit">나가기</string>
     <string name="recent_album_name">최근 항목</string>
-    <string name="limit_exceed_toast">이미지 및 영상은 최대 5개까지 선택할 수 있습니다.</string>​
+    <string name="limit_exceed_toast">이미지 및 영상은 최대 5개까지 선택할 수 있습니다.</string>
+    <string name="cover">표지</string>​
 </resources>

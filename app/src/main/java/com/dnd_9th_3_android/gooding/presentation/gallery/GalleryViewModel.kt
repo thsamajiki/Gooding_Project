@@ -38,6 +38,10 @@ class GalleryViewModel @Inject constructor(
     private val selectedAlbumName: Channel<String> = Channel()
     private val galleryLoadEvent = selectedAlbumName.receiveAsFlow()
 
+    private val _selectedItems = mutableListOf<GalleryFileUiData>()
+    val selectedItems: List<GalleryFileUiData>
+        get() = _selectedItems.toList() // 방어적 복사
+
     val imagePagingList: Flow<PagingData<GalleryFileUiData>> =
         galleryLoadEvent.flatMapLatest { albumName ->
             galleryRepository.getGalleryPagingList(albumName)
@@ -86,8 +90,6 @@ class GalleryViewModel @Inject constructor(
 //            }
     }
 
-    private val selectedItems = mutableListOf<GalleryFileUiData>()
-
     fun selectedGalleryImageItem(galleryFileUiData: GalleryFileUiData): Boolean {
         val isAlreadySelected = selectedItems.any { it.id == galleryFileUiData.id }
 
@@ -96,7 +98,7 @@ class GalleryViewModel @Inject constructor(
             galleryFileUiData.isSelected = false
             galleryFileUiData.selectedNumber = -1
 
-            selectedItems.remove(galleryFileUiData)
+            _selectedItems.remove(galleryFileUiData)
 
             selectedItems.forEach {
                 if (it.selectedNumber > prevSelectedNumber) {
@@ -111,7 +113,7 @@ class GalleryViewModel @Inject constructor(
                 galleryFileUiData.isSelected = true
                 galleryFileUiData.selectedNumber = selectedItems.size + 1
 
-                selectedItems.add(galleryFileUiData)
+                _selectedItems.add(galleryFileUiData)
                 true
             }
         }
