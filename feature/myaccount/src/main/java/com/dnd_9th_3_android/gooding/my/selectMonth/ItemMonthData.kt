@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.model.month.MonthData
 import com.dnd_9th_3_android.gooding.my.viewModel.TodayViewModel
 

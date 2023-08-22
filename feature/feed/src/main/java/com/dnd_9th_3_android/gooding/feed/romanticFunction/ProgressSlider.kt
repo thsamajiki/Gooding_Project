@@ -3,9 +3,7 @@ package com.dnd_9th_3_android.gooding.feed.romanticFunction
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -17,7 +15,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
-import androidx.palette.graphics.Palette
 
 import com.smarttoolfactory.slider.*
 import com.dnd_9th_3_android.gooding.core.data.R
@@ -31,30 +28,51 @@ fun ProgressSlider(
         offset : Offset,
     ) -> Unit,
 ) {
-//    val colorList = getRomanticGradientColor()
-//    val data by remember {
-//        mutableStateOf(Brush.horizontalGradient(colorList,currentValue))
-//    }
     ColorfulIconSlider(
         value = currentValue,
         onValueChange = { value, Offset->
             changeValue(value,Offset)
-            Log.d("value,off",value.toString()+","+Offset.toString())
         },
-        modifier = Modifier.background(Color.Transparent),
         valueRange = 0f..100f,
-        trackHeight = dimensionResource(id = R.dimen.padding_8),
         colors =   MaterialSliderDefaults.materialColors(
+            thumbColor = SliderBrushColor(
+                color = Color.Transparent
+            ),
             activeTrackColor = SliderBrushColor(
-                brush = getRomanticGradientColor2()
+                color = Color.Transparent
+            ),
+            disabledActiveTickColor  = SliderBrushColor(
+                color = Color.Transparent
+            ),
+            inactiveTrackColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            disabledInactiveTickColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            inactiveTickColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            activeTickColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            disabledActiveTrackColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            disabledInactiveTrackColor =  SliderBrushColor(
+                color = Color.Transparent
+            ),
+            disabledThumbColor =  SliderBrushColor(
+                color = Color.Transparent
             ),
         ),
     ){
+        // 스크롤 박스
         Text(
             text = "",
             modifier = Modifier
                 .background(Color.Transparent)
-                .size(30.dp),
+                .size(dimensionResource(id = R.dimen.size_44))
         )
     }
 }

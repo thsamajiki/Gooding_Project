@@ -14,7 +14,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.dnd_9th_3_android.gooding.data.SampleFeedData
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.model.feed.Feed
 import com.dnd_9th_3_android.gooding.model.feed.MyFeed
 

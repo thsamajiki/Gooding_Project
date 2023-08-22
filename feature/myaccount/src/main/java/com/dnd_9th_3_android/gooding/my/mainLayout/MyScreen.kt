@@ -28,7 +28,7 @@ import androidx.constraintlayout.compose.*
 import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.data.SampleUserData
 import com.dnd_9th_3_android.gooding.data.SwipingStates
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.my.BottomNaviLocator
 import com.dnd_9th_3_android.gooding.my.subLayout.BottomTabScreen
 import com.dnd_9th_3_android.gooding.my.subLayout.LevelScreen

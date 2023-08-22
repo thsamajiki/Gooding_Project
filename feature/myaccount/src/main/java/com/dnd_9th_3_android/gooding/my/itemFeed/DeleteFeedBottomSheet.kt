@@ -13,7 +13,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.sp
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.BoxText
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 import com.holix.android.bottomsheetdialog.compose.BottomSheetDialog
@@ -69,7 +69,7 @@ fun DeleteFeedBottomSheet(
                     }
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.baseline_close_24),
+                    painter = painterResource(id = R.drawable.close_button),
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(end = dimensionResource(id = R.dimen.padding_13)),

@@ -8,9 +8,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.dnd_9th_3_android.gooding.core.data.R
@@ -19,12 +23,16 @@ import com.dnd_9th_3_android.gooding.core.data.R
 @Composable
 fun BarInternalContent() {
     Row(
-        modifier = Modifier.fillMaxSize(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        modifier = Modifier
+            .fillMaxSize(),
+        verticalAlignment = Alignment.CenterVertically
     ){
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_18)))
+
+        //start image
         Box(
-            modifier = Modifier.size(dimensionResource(id = R.dimen.padding_24))
+            modifier = Modifier
+                .size(dimensionResource(id = R.dimen.padding_24))
         ){
             Image(
                 painter = painterResource(id = R.drawable.bar_start_image),
@@ -32,22 +40,28 @@ fun BarInternalContent() {
                 modifier = Modifier.fillMaxSize(),
             )   
         }
-        
-        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_20)))
+
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_16)))
 
         //bar
-        Image(
-            painter = painterResource(id = R.drawable.bar) ,
-            contentDescription = null,
+        CustomProgressBar(
             modifier = Modifier
-                .width(dimensionResource(id = R.dimen.bar_w))
-                .wrapContentHeight()
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.padding_24)))
+                .height(dimensionResource(id = R.dimen.size_5)),
+            width = dimensionResource(id = R.dimen.bar_w),
+            backgroundColor = Color.Transparent,
+            foregroundColor = Brush.horizontalGradient(
+                listOf(colorResource(id = R.color.blue_gray_5),colorResource(id = R.color.blue_gray_5))
+            ),
+            percent = 100,
+            isShownText = false
         )
 
-        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_20)))
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_16)))
 
         Box(
-            modifier = Modifier.size(dimensionResource(id = R.dimen.padding_24))
+            modifier = Modifier
+                .size(dimensionResource(id = R.dimen.padding_24))
         ){
             Image(
                 painter = painterResource(id = R.drawable.bar_end_image),
@@ -55,5 +69,7 @@ fun BarInternalContent() {
                 modifier = Modifier.fillMaxSize()
             )
         }
+
+        Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_16)))
     }
 }

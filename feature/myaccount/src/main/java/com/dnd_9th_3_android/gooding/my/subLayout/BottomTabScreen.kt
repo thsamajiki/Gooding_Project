@@ -19,7 +19,7 @@ import com.dnd_9th_3_android.gooding.my.mainTabLayout.TimeLineScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
-import com.dnd_9th_3_android.gooding.feature.my.R
+import com.dnd_9th_3_android.gooding.core.data.R
 
 
 private val pages = listOf("타임라인","저장")
@@ -55,7 +55,7 @@ fun BottomTabScreen(
             ) {
                 Image(
                     contentDescription = null,
-                    painter = painterResource(id = R.drawable.baseline_keyboard_arrow_down_24),
+                    painter = painterResource(id = R.drawable.arrow_bottom),
                     modifier = Modifier
                         .height(IntrinsicSize.Max)
                         .width(IntrinsicSize.Max)
