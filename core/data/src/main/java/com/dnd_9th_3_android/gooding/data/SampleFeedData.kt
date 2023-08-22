@@ -11,7 +11,7 @@ object SampleFeedData {
     val sampleFeedList = arrayListOf(
         Feed(
             "나의 첫 굳이데이 기록",
-            "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the ",
+            "rem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum has been ",
             10,
             "광안리 해수욕장",
             listOf(

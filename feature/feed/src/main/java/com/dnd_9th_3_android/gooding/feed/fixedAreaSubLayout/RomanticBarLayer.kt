@@ -1,6 +1,9 @@
 package com.dnd_9th_3_android.gooding.feed.itemFeed
 
 import android.util.Log
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Modifier
 import androidx.compose.foundation.background
@@ -41,6 +44,12 @@ fun RomanticBarLayer(
     val currentValue = remember {
         mutableStateOf(initBarData)
     }
+    // progress animation
+    val progressAnimDuration = 700
+    val progressAnimation by animateFloatAsState(
+        targetValue = currentValue.value,
+        animationSpec = tween(durationMillis = progressAnimDuration, easing = FastOutSlowInEasing)
+    )
     val currentOffset = remember {
         mutableStateOf(Offset(0f,0f))
     }
@@ -71,7 +80,7 @@ fun RomanticBarLayer(
                     color = colorResource(id = R.color.romantic_bar_color),
                     shape = RoundedCornerShape(dimensionResource(id = R.dimen.padding_16))
                 )
-                .blur(dimensionResource(id = R.dimen.size_60))
+                .blur(60.dp)
                 .coustomShadow(
                     color = colorResource(id = R.color.shadow_color_romantic),
                     offsetY = dimensionResource(id = R.dimen.padding_4),
@@ -89,7 +98,7 @@ fun RomanticBarLayer(
                         bottom = dimensionResource(id = R.dimen.padding_31)
                     )
             ){
-                ProgressGradient(currentValue.value,currentOffset.value)
+                ProgressGradient(progressAnimation,currentOffset.value)
             }
 
             // 투명 스크롤러 - 드래그 관리 !
@@ -115,6 +124,6 @@ fun RomanticBarLayer(
             }
         }
 
-        ProgressGraphic(progress = currentValue.value, offset = currentOffset.value) //현재 상태 아이콘
+        ProgressGraphic(progress = progressAnimation, offset = currentOffset.value) //현재 상태 아이콘
     }
 }

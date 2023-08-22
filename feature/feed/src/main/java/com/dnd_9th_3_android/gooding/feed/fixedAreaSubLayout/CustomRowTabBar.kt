@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.customRowTab.CustomText
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -52,6 +53,7 @@ fun CustomRowTabBar(
     fontUnSelectColor : Color,
     boxHeight : Dp
 ) {
+
     Row(
         modifier = Modifier
             .width(dimensionResource(id = R.dimen.tab_width))

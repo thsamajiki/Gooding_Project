@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.feed.layout.TopScrollBarLayer
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -19,7 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 @Composable
 fun FeedTopLayout(
     pageState: PagerState,
-    coroutineScope: CoroutineScope
+    coroutineScope: CoroutineScope,
 ) {
     // top Layout
     Box(
@@ -35,7 +36,7 @@ fun FeedTopLayout(
         Box(
             modifier = Modifier.align(Alignment.CenterStart)
         ) {
-            TopScrollBarLayer(pageState, coroutineScope)
+            TopScrollBarLayer(pageState, coroutineScope )
         }
 
         // search button

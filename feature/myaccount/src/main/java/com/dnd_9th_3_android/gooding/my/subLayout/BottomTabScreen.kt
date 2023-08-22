@@ -57,8 +57,7 @@ fun BottomTabScreen(
                     contentDescription = null,
                     painter = painterResource(id = R.drawable.arrow_bottom),
                     modifier = Modifier
-                        .height(IntrinsicSize.Max)
-                        .width(IntrinsicSize.Max)
+                        .fillMaxSize()
                 )
             }
             Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.padding_15)))
