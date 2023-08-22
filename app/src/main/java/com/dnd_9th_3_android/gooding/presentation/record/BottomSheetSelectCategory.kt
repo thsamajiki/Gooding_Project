@@ -84,10 +84,6 @@ class BottomSheetSelectCategory: BottomSheetDialogFragment() {
 
         }
 
-        binding.cvCategory11.setOnClickListener {
-
-        }
-
         binding.btnComplete.setOnClickListener {
 
             dismiss()
