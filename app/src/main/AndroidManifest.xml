@@ -61,13 +61,6 @@
         <activity android:name=".presentation.record.search.SearchGoodieDayPlaceActivity"
             android:exported="true" />
         <activity android:name=".presentation.record.Record01Activity"
-            android:exported="true" />
-        <activity android:name=".presentation.record.Record02Activity"
-            android:exported="false" />
-        <activity android:name=".presentation.gallery.GalleryActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -75,6 +68,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".presentation.record.Record02Activity"
+            android:exported="false" />
+        <activity android:name=".presentation.gallery.GalleryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
             android:name=".LoginActivity"
             android:exported="false"></activity>

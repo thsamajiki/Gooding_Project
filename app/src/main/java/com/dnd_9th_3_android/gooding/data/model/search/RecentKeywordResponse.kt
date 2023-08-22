@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class RecentFeedResponse(
     @SerializedName("id") val id: Int,
-    @SerializedName("content") val content: Int,
+    @SerializedName("content") val content: String,
 )
 
 fun RecentFeedResponse.toEntity(): RecentKeywordData {

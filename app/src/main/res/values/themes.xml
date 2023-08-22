@@ -9,4 +9,9 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="CustomSwitchCompat" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:thumb">@drawable/selector_thumb</item>
+        <item name="android:track">@drawable/selector_track</item>
+    </style>
 </resources>
