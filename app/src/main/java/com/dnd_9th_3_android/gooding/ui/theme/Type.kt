@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.data.theme
+package com.dnd_9th_3_android.gooding.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

@@ -16,12 +16,12 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.res.colorResource
 import com.dnd_9th_3_android.gooding.api.RetrofitUtil
 import com.dnd_9th_3_android.gooding.core.data.R
-import com.dnd_9th_3_android.gooding.data.theme.GoodingTheme
+import com.dnd_9th_3_android.gooding.ui.theme.GoodingTheme
 import com.dnd_9th_3_android.gooding.login.data.GoogleLoginInterface
 import com.dnd_9th_3_android.gooding.login.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
 import com.dnd_9th_3_android.gooding.login.LoginScreen
-import com.dnd_9th_3_android.gooding.login.SplashScreen
+//import com.dnd_9th_3_android.gooding.login.SplashScreen
 import com.dnd_9th_3_android.gooding.model.user.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.model.OAuthToken
