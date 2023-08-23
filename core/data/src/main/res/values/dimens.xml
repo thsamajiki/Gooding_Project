@@ -122,4 +122,10 @@
     <dimen name="line_1_padding">38dp</dimen>
     <dimen name="line_2_padding">54dp</dimen>
     <dimen name="line_3_padding">34dp</dimen>
+
+    <!--recommend-->
+    <dimen name="padding_119">119dp</dimen>
+    <dimen name="padding_19">19dp</dimen>
+    <dimen name="card_box_h">491dp</dimen>
+    <dimen name="card_box_w">322dp</dimen>
 </resources>
