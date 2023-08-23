@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import com.dnd_9th_3_android.gooding.databinding.FragmentMyGoodingBinding
 import com.dnd_9th_3_android.gooding.my.MyAccountScreen
 import com.dnd_9th_3_android.gooding.my.selectMonth.data.MonthPickerInterface
-import com.dnd_9th_3_android.gooding.ui.theme.GoodingTheme
+import com.dnd_9th_3_android.gooding.data.theme.GoodingTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

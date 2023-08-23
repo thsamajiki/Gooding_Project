@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.feed.romanticFunction
+package com.dnd_9th_3_android.gooding.data.customProgress
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

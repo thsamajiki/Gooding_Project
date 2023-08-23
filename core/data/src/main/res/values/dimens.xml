@@ -128,4 +128,32 @@
     <dimen name="padding_19">19dp</dimen>
     <dimen name="card_box_h">491dp</dimen>
     <dimen name="card_box_w">322dp</dimen>
+    
+    
+    <!--login-->
+    <dimen name="padding_101">101dp</dimen>
+    <dimen name="padding_264">264dp</dimen>
+    <dimen name="spl_image_w">158.62dp</dimen>
+    <dimen name="spl_image_h">177.4dp</dimen>
+    <dimen name="padding_113">113.dp</dimen>
+    <dimen name="padding_78">78dp</dimen>
+    <dimen name="size_135">135dp</dimen>
+    <dimen name="size_37">37dp</dimen>
+    <dimen name="padding_181">181dp</dimen>
+    <dimen name="padding_53_5">53.5dp</dimen>
+    <dimen name="size_47">47dp</dimen>
+    <dimen name="size_48">48dp</dimen>
+    <dimen name="size_324">324dp</dimen>
+    <dimen name="size_155">155dp</dimen>
+    <dimen name="full_w">360dp</dimen>
+    <dimen name="strock_1_5">1.5dp</dimen>
+    <dimen name="size_93">93dp</dimen>
+    <dimen name="size_278">278dp</dimen>
+    <dimen name="size_54">54dp</dimen>
+    <dimen name="size_215">215dp</dimen>
+    <dimen name="size_284_53">284.53dp</dimen>
+    <dimen name="size_263_68">263_68dp</dimen>
+    <dimen name="padding_107_96">107.96dp</dimen>
+    <dimen name="size_100">100dp</dimen>
+    <dimen name="size_5_37">5.37dp</dimen>
 </resources>

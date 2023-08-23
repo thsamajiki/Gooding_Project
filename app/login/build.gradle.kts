@@ -28,6 +28,12 @@ android {
             )
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
+    buildFeatures {
+        compose = true
+    }
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -63,4 +69,25 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.1.0"))
     implementation ("com.google.firebase:firebase-analytics-ktx")
     implementation ("com.google.firebase:firebase-auth-ktx")
+
+    // compose
+    val composeVersion = "1.4.3"
+    implementation("androidx.compose.material:material:$composeVersion")
+    implementation("androidx.compose.ui:ui:$composeVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    implementation ("androidx.compose.ui:ui-tooling:$composeVersion")
+    implementation ("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    // compose view model
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07")
+    // image ui
+    implementation ("io.coil-kt:coil-compose:1.3.2")
+    // compose navi
+    implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+
+    // module
+    implementation(project(":core:model"))
+    implementation(project(":core:data"))
+    implementation(project(":core:api"))
 }
