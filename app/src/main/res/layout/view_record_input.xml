@@ -7,51 +7,13 @@
     tools:layout_width="match_parent"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.dnd_9th_3_android.gooding.ui.component.RecordEditText
         android:id="@+id/input_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@color/tertiaryColor"
-        android:minHeight="136dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <EditText
-            android:id="@+id/input_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="28dp"
-            android:background="@color/transparent"
-            android:fontFamily="@font/pretendard_regular"
-            android:maxLength="100"
-            android:textColor="@color/white"
-            android:textCursorDrawable="@drawable/cursor_drawable"
-            android:textSize="14sp"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toTopOf="@id/text_count"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0"
-            tools:text="하하하하하ㅏ하하하" />
-
-        <TextView
-            android:id="@+id/text_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="14dp"
-            android:layout_marginBottom="13dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="0/100"
-            android:textColor="@color/blue_gray_4"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/warning"

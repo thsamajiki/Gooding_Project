@@ -5,15 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.setFragmentResult
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.BottomSheetDatePickerBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.Calendar
+import kotlin.time.Duration.Companion.milliseconds
 
 class BottomSheetDatePicker : BottomSheetDialogFragment() {
     private var _binding: BottomSheetDatePickerBinding? = null
     private val binding: BottomSheetDatePickerBinding
         get() = _binding!!
+
+    private var selectedDate = Calendar.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +39,15 @@ class BottomSheetDatePicker : BottomSheetDialogFragment() {
             val radius = resources.getDimension(R.dimen.bottom_sheet_radius)
             cornerRadii = floatArrayOf(radius, radius, radius, radius, 0f, 0f, 0f, 0f)
         }
+
+        binding.datePicker.maxDate = System.currentTimeMillis()
+
+        binding.datePicker.setOnDateChangeListener { calendarView, year, month, dayOfMonth ->
+            val calendar = Calendar.getInstance().apply {
+                set(year, month, dayOfMonth)
+            }
+            selectedDate = calendar
+        }
     }
 
     private fun setupListeners() {
@@ -43,22 +56,27 @@ class BottomSheetDatePicker : BottomSheetDialogFragment() {
         }
 
         binding.btnComplete.setOnClickListener {
-            val currentTime = Calendar.getInstance()
-            val year = currentTime.get(Calendar.YEAR)
-            val month = currentTime.get(Calendar.MONTH)
-            val day = currentTime.get(Calendar.DAY_OF_MONTH)
-
+            setFragmentResult(
+                REQUEST_KEY,
+                Bundle().apply {
+                    putLong(Result.DATE, selectedDate.timeInMillis)
+                }
+            )
 
             dismiss()
         }
     }
 
+    object Result {
+        const val DATE = "date"
+    }
+
     companion object {
+        const val REQUEST_KEY = "BottomSheetDatePicker"
+
         fun newInstance(): BottomSheetDatePicker =
             BottomSheetDatePicker().apply {
-                arguments = Bundle().apply {
-
-                }
+                arguments = Bundle()
             }
     }
 

@@ -1,35 +1,37 @@
 package com.dnd_9th_3_android.gooding.presentation.record
 
+import android.os.Parcelable
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dnd_9th_3_android.gooding.data.model.request.UploadRequest
-import com.dnd_9th_3_android.gooding.data.model.search.RequestUploadFeed
 import com.dnd_9th_3_android.gooding.data.model.search.RequestUploadFeed1
-import com.dnd_9th_3_android.gooding.data.repository.feed.UploadFeedRepository
+import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.io.File
 import javax.inject.Inject
 
+sealed class RecordGalleryItem {
+
+    data class File(
+        val galleryFileUiData: GalleryFileUiData
+    ) : RecordGalleryItem()
+
+    object AddButton : RecordGalleryItem()
+}
+
+
 @HiltViewModel
-class Record02ViewModel @Inject constructor(
-    private val uploadFeedRepository: UploadFeedRepository
-): ViewModel() {
+class Record01ViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle
+) : ViewModel() {
 
-    sealed class UiState {
-        object UploadFeedFailed : UiState()
-
-        object UploadFeedSuccess: UiState()
-
-        object Idle : UiState()
-    }
-
-    private val _uiState = MutableStateFlow<UiState>(UiState.Idle)
-    val uiState: StateFlow<UiState> = _uiState.asStateFlow()
+    private val _selectedFiles = MutableLiveData<List<RecordGalleryItem>>()
+    val selectedFiles: LiveData<List<RecordGalleryItem>>
+        get() = _selectedFiles
 
     val title: MutableLiveData<String> = MutableLiveData()
     val description: MutableLiveData<String> = MutableLiveData()
@@ -41,7 +43,39 @@ class Record02ViewModel @Inject constructor(
     val interestType: MutableLiveData<String> = MutableLiveData()
     val recordScore: MutableLiveData<Int> = MutableLiveData()
 
-    fun uploadFeed() {
+    init {
+        val initialSelectedFiles =
+            savedStateHandle.get<Array<Parcelable>>(KEY_SELECTED_FILES).orEmpty()
+                .toList() as List<GalleryFileUiData>
+
+        setSelectedFiles(initialSelectedFiles)
+    }
+
+    private fun setSelectedFiles(selectedFiles: List<GalleryFileUiData>) {
+        val addButtons: List<RecordGalleryItem> =
+            if (selectedFiles.size >= 5) emptyList() else listOf(RecordGalleryItem.AddButton)
+        _selectedFiles.value =
+            selectedFiles.map { RecordGalleryItem.File(it) } + addButtons
+    }
+
+    fun removeGalleryFileUiData(item: RecordGalleryItem) {
+        val newList = _selectedFiles.value.orEmpty().toMutableList().apply {
+            remove(item)
+        }
+        newList.firstOrNull()?.let {
+            if (it is RecordGalleryItem.File) {
+                it.galleryFileUiData.selectedNumber = 1
+            }
+        }
+
+        if (newList.any { it !is RecordGalleryItem.AddButton }) {
+            newList.add(RecordGalleryItem.AddButton)
+        }
+
+        _selectedFiles.value = newList
+    }
+
+    fun onSetFeedData() {
         val title = title.value
         val description = description.value
         val recordDate = recordDate.value
@@ -66,38 +100,19 @@ class Record02ViewModel @Inject constructor(
 
         viewModelScope.launch {
             kotlin.runCatching {
-//                uploadFeedRepository.uploadFeed(
-//                    RequestUploadFeed(
-//                    thumbnail = "",
-//                    thumbnailDirectory = "",
-//                    images = listOf(),
-//                    videos = listOf(),
-//                    oauthId = "",
-//                    uploadRequest = UploadRequest(
-//                        title = "",
-//                        description = "",
-//                        recordDate = "",
-//                        placeTitle = "",
-//                        placeLatitude = 0.0,
-//                        placeLongitude = 0.0,
-//                        recordOpen = 1,
-//                        recordScore = ""
-//                    )
-//                )
+
             }
                 .onSuccess {
-                    _uiState.value = UiState.UploadFeedSuccess
-                    Log.d("Record02ViewModel", "uploadFeed: $it")
+                    Log.d("Record01ViewModel", "onSetFeedData: $it")
                 }
                 .onFailure {
-                    _uiState.value = UiState.UploadFeedFailed
                     it.printStackTrace()
-                    Log.e("Record02ViewModel", "uploadFeed: $it", )
+                    Log.e("Record01ViewModel", "onSetFeedData: $it", )
                 }
         }
     }
 
     companion object {
-        const val KEY_UPLOAD_FEED_DATA = "uploadFeedData"
+        const val KEY_SELECTED_FILES = "selectedFiles"
     }
 }

@@ -15,7 +15,8 @@ import com.dnd_9th_3_android.gooding.databinding.ItemGalleryImageBinding
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 
 class GalleryFileListAdapter(
-    private val onClick: (GalleryFileUiData) -> Unit
+    private val onClick: (GalleryFileUiData) -> Unit,
+    private val isFullSelected: () -> Boolean,
 ) : PagingDataAdapter<GalleryFileUiData, GalleryFileListAdapter.GalleryFileItemViewHolder>(
     object : DiffUtil.ItemCallback<GalleryFileUiData>() {
         override fun areItemsTheSame(
@@ -38,7 +39,7 @@ class GalleryFileListAdapter(
         val binding =
             ItemGalleryImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return GalleryFileItemViewHolder(binding, onClick)
+        return GalleryFileItemViewHolder(binding, isFullSelected, onClick)
     }
 
     override fun onBindViewHolder(holder: GalleryFileItemViewHolder, position: Int) {
@@ -51,6 +52,7 @@ class GalleryFileListAdapter(
 
     class GalleryFileItemViewHolder(
         private val binding: ItemGalleryImageBinding,
+        private val isFullSelected: () -> Boolean,
         private val onClick: (GalleryFileUiData) -> Unit
     ) : RecyclerView.ViewHolder(binding.root) {
 
@@ -79,6 +81,8 @@ class GalleryFileListAdapter(
             binding.tvGalleryImageCount.isVisible = item.selectedNumber > 0
             binding.tvGalleryImageCount.text = item.selectedNumber.toString()
             binding.imageCover.isVisible = item.selectedNumber == 1
+
+            binding.dimView.isVisible = isFullSelected() && !item.isSelected
 
             binding.galleryImage = item
             binding.executePendingBindings()

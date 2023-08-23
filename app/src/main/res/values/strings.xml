@@ -14,11 +14,11 @@
     <string name="what_goodie_day_did_you_have">어떤 굳이데이를 보내셨나요?</string>
     <string name="setting_privacy">공개 여부 설정</string>
     <string name="making_my_record_public_can_show_other_people">기록을 공개하면, 다른 사람들도 나의 기록을 볼 수 있습니다.</string>
-    <string name="please_set_place">장소를 설정해주세요.</string>
+    <string name="please_set_place">장소를 설정해주세요. (선택)</string>
     <string name="goodie_day_place">활동 장소</string>
     <string name="goodie_day_date_hint">YY / MM / DD</string>
     <string name="goodie_day_date">활동 날짜</string>
-    <string name="please_write_your_goodie_day">어떤 굳이데이 활동을 했는지 작성해주세요.</string>
+    <string name="please_write_your_goodie_day">굳이데이 활동과 계기에 대해 작성해주세요.</string>
     <string name="please_write_title">제목을 입력해주세요.</string>
     <string name="very_little_romantic">낭만이긴 했어요</string>
     <string name="little_romantic">소소한 낭만이었어요</string>
@@ -71,7 +71,7 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="asterisk">*</string>
-    <string name="please_choose_category">카테고리를 선택해주세요.</string>
+    <string name="please_choose_category">카테고리를 선택해주세요. (선택)</string>
     <string name="goodie_day_category">활동 카테고리</string>
     <string name="please_search_goodie_day_place">굳이데이를 즐긴 장소를 검색해주세요.</string>
     <string name="title_select_date">활동 날짜 선택</string>
@@ -85,5 +85,7 @@
     <string name="exit">나가기</string>
     <string name="recent_album_name">최근 항목</string>
     <string name="limit_exceed_toast">이미지 및 영상은 최대 5개까지 선택할 수 있습니다.</string>
-    <string name="cover">표지</string>​
+    <string name="cover">표지</string>
+    <string name="add_file">사진 추가</string>
+    <string name="comma">,</string>​
 </resources>
