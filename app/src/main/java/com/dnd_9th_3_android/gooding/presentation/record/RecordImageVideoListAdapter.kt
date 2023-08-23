@@ -1,54 +1,145 @@
 package com.dnd_9th_3_android.gooding.presentation.record
 
+import android.graphics.drawable.GradientDrawable
+import android.net.Uri
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dnd_9th_3_android.gooding.databinding.ItemRecordImageVideoFileBinding
-import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
+import com.dnd_9th_3_android.gooding.databinding.ViewAddFileBinding
+import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 
 class RecordImageVideoListAdapter(
-    private val onClick: (GalleryFileUiData) -> Unit
-): ListAdapter<GalleryFileUiData, RecordImageVideoListAdapter.RecordImageVideoItemViewHolder>(
-    object : DiffUtil.ItemCallback<GalleryFileUiData>() {
-        override fun areItemsTheSame(oldItem: GalleryFileUiData, newItem: GalleryFileUiData): Boolean {
-            return oldItem.id == newItem.id
+    private val onClick: (RecordGalleryItem) -> Unit,
+    private val onClickDelete: (RecordGalleryItem) -> Unit,
+) : ListAdapter<RecordGalleryItem, RecordImageVideoListAdapter.RecordViewHolder>(
+    object : DiffUtil.ItemCallback<RecordGalleryItem>() {
+        override fun areItemsTheSame(
+            oldItem: RecordGalleryItem,
+            newItem: RecordGalleryItem
+        ): Boolean {
+            if (oldItem is RecordGalleryItem.File && newItem is RecordGalleryItem.File) {
+                return oldItem.galleryFileUiData.id == newItem.galleryFileUiData.id
+            }
+
+            return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: GalleryFileUiData, newItem: GalleryFileUiData): Boolean {
+        override fun areContentsTheSame(
+            oldItem: RecordGalleryItem,
+            newItem: RecordGalleryItem
+        ): Boolean {
             return oldItem == newItem
         }
     }
 ) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecordImageVideoItemViewHolder {
-        val binding =
-            ItemRecordImageVideoFileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return RecordImageVideoItemViewHolder(binding, onClick)
-    }
-
-    override fun onBindViewHolder(holder: RecordImageVideoItemViewHolder, position: Int) {
-        getItem(position).let {
-            if (it != null) {
-                holder.bind(it)
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): RecordViewHolder {
+        when (viewType) {
+            TYPE_ADD_BUTTON -> {
+                return RecordViewHolder.AddButton(
+                    ViewAddFileBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ), onClick
+                )
+            }
+            TYPE_FILE -> {
+                return RecordViewHolder.RecordImageVideo(
+                    ItemRecordImageVideoFileBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    ), onClick, onClickDelete
+                )
+            }
+            else -> {
+                throw IllegalArgumentException("Invalid view type")
             }
         }
     }
 
-    class RecordImageVideoItemViewHolder(
-        private val binding: ItemRecordImageVideoFileBinding,
-        private val onClick: (GalleryFileUiData) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) {
+    override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
+        getItem(position)?.let {
+            when (holder) {
+                is RecordViewHolder.AddButton -> holder.bind(it as RecordGalleryItem.AddButton)
+                is RecordViewHolder.RecordImageVideo -> holder.bind(it as RecordGalleryItem.File)
+            }
+        }
+    }
 
-        fun bind(item: GalleryFileUiData) {
-            binding.root.setOnClickListener {
-                onClick(item)
+    override fun getItemViewType(position: Int): Int {
+        return when (currentList[position]) {
+            RecordGalleryItem.AddButton -> TYPE_ADD_BUTTON
+            is RecordGalleryItem.File -> TYPE_FILE
+        }
+    }
+
+    companion object {
+        private const val TYPE_ADD_BUTTON = 0
+        private const val TYPE_FILE = 1
+    }
+
+    sealed class RecordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        class AddButton(
+            private val binding: ViewAddFileBinding,
+            private val onClick: (RecordGalleryItem) -> Unit,
+        ) : RecordViewHolder(binding.root) {
+
+            init {
+                binding.root.background = GradientDrawable().apply {
+                    cornerRadius = 2f.fromDpToPx().toFloat()
+                    setStroke(
+                        1.5f.fromDpToPx(),
+                        ContextCompat.getColor(
+                            itemView.context,
+                            com.dnd_9th_3_android.gooding.core.data.R.color.blue_gray_4
+                        )
+                    )
+                }
             }
 
-            binding.ivDeleteFile.setOnClickListener {
+            fun bind(item: RecordGalleryItem.AddButton) {
+                binding.root.setOnClickListener {
+                    onClick(item)
+                }
+            }
+        }
 
+
+        class RecordImageVideo(
+            private val binding: ItemRecordImageVideoFileBinding,
+            private val onClick: (RecordGalleryItem) -> Unit,
+            private val onClickDelete: (RecordGalleryItem) -> Unit,
+        ) : RecordViewHolder(binding.root) {
+
+            fun bind(item: RecordGalleryItem.File) {
+                binding.root.setOnClickListener {
+                    onClick(item)
+                }
+
+                binding.ivDeleteFile.setOnClickListener {
+                    onClickDelete(item)
+                }
+
+                val image = Uri.parse(item.galleryFileUiData.mediaData)
+
+                Glide.with(itemView.context)
+                    .load(image)
+                    .into(binding.ivRecordImageVideoFile)
+
+                binding.recordImageCover.isVisible = item.galleryFileUiData.selectedNumber == 1
             }
         }
     }

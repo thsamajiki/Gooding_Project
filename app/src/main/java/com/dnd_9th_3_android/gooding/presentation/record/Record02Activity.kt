@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.dnd_9th_3_android.gooding.R
+import com.dnd_9th_3_android.gooding.data.model.feed.UploadFeedData
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord02Binding
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
@@ -180,7 +181,13 @@ class Record02Activity : AppCompatActivity() {
     }
 
     companion object {
-        fun getIntent(context: Context) =
-            Intent(context, Record02Activity::class.java)
+        fun getIntent(context: Context,
+//                      uploadFeedData: UploadFeedData
+                    ) =
+            Intent(context, Record02Activity::class.java).apply {
+//                putExtra(Record02ViewModel.KEY_UPLOAD_FEED_DATA,
+//                    uploadFeedData
+//                )
+            }
     }
 }

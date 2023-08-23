@@ -138,7 +138,7 @@ class ServiceModule() {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request().newBuilder()
                 .header("Accept-Language", getLanguage())
-                .header("Authorization", "a244014544b5323246b6853ca1d8ca93")
+                .header("Authorization", "KakaoAK 66e15e5cd7fdce2de67e28ec53aad52a")
                 .build()
 
             return chain.proceed(request)

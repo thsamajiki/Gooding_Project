@@ -23,12 +23,14 @@ import com.dnd_9th_3_android.gooding.MyGoodingFragment
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityGalleryBinding
 import com.dnd_9th_3_android.gooding.presentation.record.Record01Activity
-import com.dnd_9th_3_android.gooding.ui.component.CenterToastView
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
+import com.dnd_9th_3_android.gooding.ui.component.CenterToastView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.seconds
+
+const val MAX_SELECT_IMAGE_COUNT = 5
 
 @AndroidEntryPoint
 class GalleryActivity : AppCompatActivity() {
@@ -92,7 +94,10 @@ class GalleryActivity : AppCompatActivity() {
 
     private fun initGalleryFileListRecyclerView(recyclerView: RecyclerView) {
         galleryFileListAdapter = GalleryFileListAdapter(
-            onClick = ::onClickGalleryImageItem
+            onClick = ::onClickGalleryImageItem,
+            isFullSelected = {
+                viewModel.selectedItems.size >= MAX_SELECT_IMAGE_COUNT
+            }
         )
 
         recyclerView.apply {
@@ -191,6 +196,7 @@ class GalleryActivity : AppCompatActivity() {
         binding.tvTitleAlbumType.text = folderName
         viewModel.updateAlbumName(folderName)
         binding.rvGalleryAlbumList.isGone = true
+        viewModel.resetSelectedItems()
     }
 
     private fun initViewModel() {
@@ -248,7 +254,7 @@ class GalleryActivity : AppCompatActivity() {
         }
 
         binding.tvNextStep.setOnClickListener {
-            val intent = Record01Activity.getIntent(this@GalleryActivity)
+            val intent = Record01Activity.getIntent(this@GalleryActivity, viewModel.selectedItems)
             startActivity(intent)
         }
     }

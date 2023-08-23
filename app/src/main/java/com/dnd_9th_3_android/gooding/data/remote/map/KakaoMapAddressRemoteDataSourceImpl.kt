@@ -7,7 +7,7 @@ import javax.inject.Inject
 class KakaoMapAddressRemoteDataSourceImpl @Inject constructor(
     private val kakaoMapService: KakaoMapService
 ) : KakaoMapAddressRemoteDataSource {
-    override suspend fun getKakaoMapAddress(keyword: String): List<KakaoMapResponse> {
+    override suspend fun getKakaoMapAddress(keyword: String): KakaoMapResponse {
         return kakaoMapService.getKakaoMapAddress(keyword)
     }
 }
