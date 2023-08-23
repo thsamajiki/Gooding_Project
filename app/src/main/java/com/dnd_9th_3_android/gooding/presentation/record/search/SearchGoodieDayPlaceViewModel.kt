@@ -1,9 +1,12 @@
 package com.dnd_9th_3_android.gooding.presentation.record.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
 import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapResponse
 import com.dnd_9th_3_android.gooding.data.repository.map.KakaoMapAddressRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,14 +18,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchGoodieDayPlaceViewModel @Inject constructor(
-    private val kakaoMapAddressRepository: KakaoMapAddressRepository,
+    private val kakaoMapAddressRepository: KakaoMapAddressRepository
 ) : ViewModel() {
 
     sealed class UiState {
         object SearchPlaceFailed : UiState()
 
         data class SearchPlaceSuccess(
-            val mapAddressList: List<KakaoMapResponse>,
+            val mapAddressList: List<KakaoMapDocuments>,
         ) : UiState()
 
         object Idle : UiState()
@@ -38,7 +41,7 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
     val emptyStateMessage: LiveData<String>
         get() = _emptyStateMessage
 
-    private val mapAddressList = mutableListOf<KakaoMapResponse>()
+    private val mapAddressList = mutableListOf<KakaoMapData>()
 
     fun searchPlace(query: String) {
         viewModelScope.launch {
@@ -46,9 +49,11 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
                 kakaoMapAddressRepository.getKakaoMapAddress(query)
             }
                 .onSuccess {
-                    mapAddressList.addAll(mapAddressList)
+                    Log.d("SearchGoodieDayPlaceViewModel", "searchPlace: $it")
+                    _uiState.value = UiState.SearchPlaceSuccess(it.documents)
                 }
                 .onFailure {
+                    Log.e("SearchGoodieDayPlaceViewModel", "searchPlace: $it")
                     it.printStackTrace()
                 }
         }

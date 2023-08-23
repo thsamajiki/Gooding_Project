@@ -31,6 +31,7 @@ import com.dnd_9th_3_android.gooding.data.model.search.SearchFeedData
 import com.dnd_9th_3_android.gooding.databinding.ActivitySearchFeedListBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemPopularKeywordBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemRecentKeywordBinding
+import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import kotlinx.coroutines.launch
@@ -82,7 +83,7 @@ class SearchFeedListActivity : AppCompatActivity() {
             layoutManager = LinearLayoutManager(context, HORIZONTAL, false)
             adapter = recentKeywordListAdapter
 
-            val spaceDecoration = HorizontalSpaceItemDecoration(25)
+            val spaceDecoration = HorizontalSpaceItemDecoration(8f.fromDpToPx())
             removeItemDecoration(object : DividerItemDecoration(this@SearchFeedListActivity, HORIZONTAL) {
 
             })
@@ -137,6 +138,12 @@ class SearchFeedListActivity : AppCompatActivity() {
         recyclerView.run {
             layoutManager = LinearLayoutManager(context)
             adapter = popularKeywordListAdapter
+
+            val spaceDecoration = VerticalSpaceItemDecoration(16f.fromDpToPx())
+            removeItemDecoration(object : DividerItemDecoration(this@SearchFeedListActivity, HORIZONTAL) {
+
+            })
+            addItemDecoration(spaceDecoration)
         }
 
         popularKeywordListAdapter.submitList(
@@ -148,6 +155,29 @@ class SearchFeedListActivity : AppCompatActivity() {
                 PopularKeywordData(4, "제주도", 15, 5)
             )
         )
+    }
+
+    // RecyclerView Item 간 간격 조정하기 위한 클래스
+    inner class VerticalSpaceItemDecoration(private val verticalSpaceWidth: Int) : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(
+            outRect: Rect,
+            view: View,
+            parent: RecyclerView,
+            state: RecyclerView.State
+        ) {
+            val position = parent.getChildAdapterPosition(view)
+            val count = state.itemCount
+
+            when (position) {
+                0 -> {
+                    outRect.bottom = 0
+                }
+                else -> {
+                    outRect.bottom = verticalSpaceWidth
+                }
+            }
+        }
     }
 
     private fun onClickPopularKeywordItem(keywordData: PopularKeywordData) {

@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapResponse
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
 import com.dnd_9th_3_android.gooding.databinding.ActivitySearchGoodieDayPlaceBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemKakaoMapPlaceBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,6 +59,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
         initRecyclerView(binding.rvPlaceList)
 
         if (binding.textEditSearchPlace.hasFocus()) {
+            binding.ivDelete.isGone = false
             binding.ivDelete.isVisible = true
         } else {
             binding.ivDelete.isGone = true
@@ -67,7 +68,6 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
         TedKeyboardObserver(this)
             .listen { isShow ->
                 val isItemEmpty = goodieDayPlaceListAdapter.itemCount == 0
-                binding.rvPlaceList.isInvisible = isShow || isItemEmpty
 //                binding.tvNothingFound.isVisible = !isShow && isItemEmpty
 
                 if (!isShow) {
@@ -87,7 +87,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
         }
     }
 
-    private fun onClickPlaceItem(kakaoMapResponse: KakaoMapResponse) {
+    private fun onClickPlaceItem(kakaoMapDocuments: KakaoMapDocuments) {
         // TODO: 주소 아이템 클릭하면 Record01Activity에 해당 주소가 반영되도록 하기
     }
 
@@ -97,7 +97,9 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
                 uiState.collect { state ->
                     when (state) {
                         is SearchGoodieDayPlaceViewModel.UiState.SearchPlaceSuccess -> {
-                            goodieDayPlaceListAdapter.submitList(state.mapAddressList)
+                            val mapAddressList = state.mapAddressList
+                            binding.tvPleaseSearchPlace.isVisible = mapAddressList.isEmpty()
+                            goodieDayPlaceListAdapter.submitList(mapAddressList)
                         }
 
                         is SearchGoodieDayPlaceViewModel.UiState.SearchPlaceFailed -> {
@@ -133,7 +135,6 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
             when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     val query = textView?.text.toString()
-                    binding.rvPlaceList.isGone = true
                     viewModel.searchPlace(query)
                     Log.d("query", "SearchGoodieDayPlaceActivity - initListeners: query - $query")
 
@@ -147,7 +148,6 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 
         binding.ivSearch.setOnClickListener {
             val query = binding.textEditSearchPlace.text.toString()
-            binding.rvPlaceList.isGone = true
             viewModel.searchPlace(query)
             Log.d("query", "SearchGoodieDayPlaceActivity - initListeners: query - $query")
 
@@ -171,53 +171,7 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
     }
 }
 
-class GoodieDayPlaceListAdapter(
-    private val onClick: (KakaoMapResponse) -> Unit,
-) : ListAdapter<KakaoMapResponse, GoodieDayPlaceListAdapter.GoodieDayPlaceViewHolder>(DiffCallback()) {
-    private val addressList = mutableListOf<KakaoMapResponse>()
 
-    class GoodieDayPlaceViewHolder(
-        val binding: ItemKakaoMapPlaceBinding,
-        private val onClick: (KakaoMapResponse) -> Unit,
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(mapData: KakaoMapResponse) {
-            binding.tvPlaceName.text = mapData.documents[0].placeName
-            binding.tvPlaceDetail.text = mapData.documents[0].addressName
-
-            binding.root.setOnClickListener {
-                onClick(mapData)
-            }
-        }
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoodieDayPlaceViewHolder {
-        val binding =
-            ItemKakaoMapPlaceBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        return GoodieDayPlaceViewHolder(binding, onClick)
-    }
-
-    override fun onBindViewHolder(holder: GoodieDayPlaceViewHolder, position: Int) {
-        val mapItem = currentList[position]
-
-        holder.bind(mapItem)
-    }
-
-    override fun getItemCount(): Int {
-        return currentList.size
-    }
-
-    private class DiffCallback : DiffUtil.ItemCallback<KakaoMapResponse>() {
-        override fun areItemsTheSame(oldItem: KakaoMapResponse, newItem: KakaoMapResponse): Boolean {
-            return oldItem.documents[0].id == newItem.documents[0].id
-        }
-
-        override fun areContentsTheSame(oldItem: KakaoMapResponse, newItem: KakaoMapResponse): Boolean {
-            return oldItem == newItem
-        }
-    }
-}
 
 
 

@@ -107,7 +107,7 @@ class GalleryViewModel @Inject constructor(
             }
             true
         } else {
-            if (selectedItems.size >= 5) {
+            if (selectedItems.size >= MAX_SELECT_IMAGE_COUNT) {
                 false
             } else {
                 galleryFileUiData.isSelected = true
@@ -117,5 +117,9 @@ class GalleryViewModel @Inject constructor(
                 true
             }
         }
+    }
+
+    fun resetSelectedItems() {
+        _selectedItems.clear()
     }
 }
