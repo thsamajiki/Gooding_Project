@@ -16,27 +16,27 @@ import androidx.compose.ui.unit.sp
 import com.dnd_9th_3_android.gooding.core.data.R
 import com.dnd_9th_3_android.gooding.data.contentLayout.pretendardBold
 
-@Composable
-fun BottomTextBox(
-    text : String,
-    textColor : Color,
-    backGroundColor : Color,
-) {
-    Box(
-        modifier = Modifier
-            .background(
-                color = backGroundColor,
-                shape = RoundedCornerShape(dimensionResource(id = R.dimen.padding_8))
-            )
-            .width(dimensionResource(id = R.dimen.size_324))
-            .height(dimensionResource(id = R.dimen.size_47)),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text =text,
-            color = textColor,
-            fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
-            fontFamily = pretendardBold
-        )
-    }
-}
+//@Composable
+//fun BottomTextBox(
+//    text : String,
+//    textColor : Color,
+//    backGroundColor : Color,
+//) {
+//    Box(
+//        modifier = Modifier
+//            .background(
+//                color = backGroundColor,
+//                shape = RoundedCornerShape(dimensionResource(id = R.dimen.padding_8))
+//            )
+//            .width(dimensionResource(id = R.dimen.size_324))
+//            .height(dimensionResource(id = R.dimen.size_47)),
+//        contentAlignment = Alignment.Center
+//    ) {
+//        Text(
+//            text =text,
+//            color = textColor,
+//            fontSize = dimensionResource(id = R.dimen.text_16_sp).value.sp,
+//            fontFamily = pretendardBold
+//        )
+//    }
+//}

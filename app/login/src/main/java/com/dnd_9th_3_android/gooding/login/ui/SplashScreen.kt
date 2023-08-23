@@ -16,50 +16,50 @@ import androidx.navigation.NavHostController
 import com.dnd_9th_3_android.gooding.core.data.R
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-
-@Composable
-fun SplashScreen(
-    navController: NavHostController
-) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ){
-
-        // 뒤로가기 제어
-        BackHandler(enabled = true, onBack = {})
-
-        // iamge box
-        Image(
-            painter = painterResource(id = R.drawable.gooding_splash_image),
-            contentDescription = null,
-            modifier = Modifier
-                .padding(
-                    start = dimensionResource(id = R.dimen.padding_101),
-                    top = dimensionResource(id = R.dimen.padding_264)
-                )
-                .width(dimensionResource(id = R.dimen.spl_image_w))
-                .height(dimensionResource(id = R.dimen.spl_image_h))
-        )
-
-        // text image
-        Image(
-            painterResource(id = R.drawable.gooding_splash_text),
-            contentDescription = null,
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(
-                    start = dimensionResource(id = R.dimen.padding_113),
-                    bottom = dimensionResource(id = R.dimen.padding_78)
-                )
-                .width(dimensionResource(id = R.dimen.size_135))
-                .height(dimensionResource(id = R.dimen.size_37))
-        )
-
-        val coroutineScope = rememberCoroutineScope()
-        coroutineScope.launch {
-            delay(1000)
-            navController.navigate("sosScreen")
-        }
-    }
-}
+//
+//@Composable
+//fun SplashScreen(
+//    navController: NavHostController
+//) {
+//    Box(
+//        modifier = Modifier
+//            .fillMaxSize()
+//    ){
+//
+//        // 뒤로가기 제어
+//        BackHandler(enabled = true, onBack = {})
+//
+//        // iamge box
+//        Image(
+//            painter = painterResource(id = R.drawable.gooding_splash_image),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .padding(
+//                    start = dimensionResource(id = R.dimen.padding_101),
+//                    top = dimensionResource(id = R.dimen.padding_264)
+//                )
+//                .width(dimensionResource(id = R.dimen.spl_image_w))
+//                .height(dimensionResource(id = R.dimen.spl_image_h))
+//        )
+//
+//        // text image
+//        Image(
+//            painterResource(id = R.drawable.gooding_splash_text),
+//            contentDescription = null,
+//            modifier = Modifier
+//                .align(Alignment.BottomCenter)
+//                .padding(
+//                    start = dimensionResource(id = R.dimen.padding_113),
+//                    bottom = dimensionResource(id = R.dimen.padding_78)
+//                )
+//                .width(dimensionResource(id = R.dimen.size_135))
+//                .height(dimensionResource(id = R.dimen.size_37))
+//        )
+//
+//        val coroutineScope = rememberCoroutineScope()
+//        coroutineScope.launch {
+//            delay(1000)
+//            navController.navigate("sosScreen")
+//        }
+//    }
+//}
