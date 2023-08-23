@@ -36,7 +36,7 @@ fun FeedTopLayout(
     ) {
         // top bar .. !
         Box(
-            modifier = Modifier.align(Alignment.CenterStart)
+            modifier = Modifier.align(Alignment.TopStart)
         ) {
             TopScrollBarLayer(pageState, coroutineScope )
         }
@@ -58,7 +58,7 @@ fun FeedTopLayout(
         // search button
         Box(
             Modifier
-                .align(Alignment.CenterEnd)
+                .align(Alignment.TopEnd)
                 .size(dimensionResource(id = R.dimen.padding_24))
                 .clickable {
                     goSearchActivity = true
