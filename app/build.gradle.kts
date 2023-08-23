@@ -162,6 +162,7 @@ dependencies {
     implementation(project(":app:login"))
     implementation(project(":core:api"))
     implementation(project(":core:model"))
+    implementation(project(":core:data"))
     implementation(project(":feature:feed"))
     implementation(project(":feature:myaccount"))
 }

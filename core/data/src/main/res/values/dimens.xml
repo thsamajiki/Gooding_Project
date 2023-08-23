@@ -128,4 +128,19 @@
     <dimen name="padding_19">19dp</dimen>
     <dimen name="card_box_h">491dp</dimen>
     <dimen name="card_box_w">322dp</dimen>
+    
+    
+    <!--login-->
+    <dimen name="padding_101">101dp</dimen>
+    <dimen name="padding_264">264dp</dimen>
+    <dimen name="spl_image_w">158.62dp</dimen>
+    <dimen name="spl_image_h">177.4dp</dimen>
+    <dimen name="padding_113">113.dp</dimen>
+    <dimen name="padding_78">78dp</dimen>
+    <dimen name="size_135">135dp</dimen>
+    <dimen name="size_37">37dp</dimen>
+    <dimen name="padding_181">181dp</dimen>
+    <dimen name="padding_53_5">53.5dp</dimen>
+    <dimen name="size_47">47dp</dimen>
+    <dimen name="size_324">324dp</dimen>
 </resources>

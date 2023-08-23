@@ -1,4 +1,4 @@
-package com.dnd_9th_3_android.gooding.ui.theme
+package com.dnd_9th_3_android.gooding.data.theme
 
 import androidx.compose.ui.graphics.Color
 

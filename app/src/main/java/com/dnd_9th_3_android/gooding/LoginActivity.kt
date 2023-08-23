@@ -8,10 +8,20 @@ import android.util.Log
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.res.colorResource
 import com.dnd_9th_3_android.gooding.api.RetrofitUtil
+import com.dnd_9th_3_android.gooding.core.data.R
+import com.dnd_9th_3_android.gooding.data.theme.GoodingTheme
 import com.dnd_9th_3_android.gooding.login.data.GoogleLoginInterface
 import com.dnd_9th_3_android.gooding.login.data.KaKaoLoginInterface
 import com.dnd_9th_3_android.gooding.databinding.ActivityLoginBinding
+import com.dnd_9th_3_android.gooding.login.LoginScreen
+import com.dnd_9th_3_android.gooding.login.SplashScreen
 import com.dnd_9th_3_android.gooding.model.user.AccessToken
 import com.google.firebase.auth.FirebaseAuth
 import com.kakao.sdk.auth.model.OAuthToken
@@ -31,7 +41,6 @@ class LoginActivity : AppCompatActivity() {
     // firebase
     private lateinit var launcher: ActivityResultLauncher<Intent>
     private lateinit var firebaseAuth: FirebaseAuth
-
 
     // kakao callback
     private val callback : (OAuthToken?,Throwable?) -> Unit = { token, error->
@@ -65,6 +74,18 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding  = ActivityLoginBinding.inflate(this@LoginActivity.layoutInflater)
+        binding.loginComposeView.apply{
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+            setContent {
+                GoodingTheme {
+                    Box(modifier = Modifier
+                        .fillMaxSize()
+                        .background(colorResource(id = R.color.blue_gray_7)))
+                    // main login
+                    { LoginScreen() }
+                }
+            }
+        }
         setContentView(binding.root)
 
         // init firebase
@@ -97,22 +118,22 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
             })
-
-        // kakao login button
-        binding.kakaoLogin.setOnClickListener {
-            if (!kaKaoLogin.checkLogin()){
-                kaKaoLogin.kaKaoLogin(this@LoginActivity,callback, loginCallback = {
-                    if (it==null){ //사용자 의도로 로그인 취소
-                        /// do
-                    }
-                })
-            }
-        }
-
-        // google login button
-        binding.googleLogin.setOnClickListener {
-            googleLogin.login(this@LoginActivity, getString(R.string.server_client_id), launcher)
-        }
+//
+//        // kakao login button
+//        binding.kakaoLogin.setOnClickListener {
+//            if (!kaKaoLogin.checkLogin()){
+//                kaKaoLogin.kaKaoLogin(this@LoginActivity,callback, loginCallback = {
+//                    if (it==null){ //사용자 의도로 로그인 취소
+//                        /// do
+//                    }
+//                })
+//            }
+//        }
+//
+//        // google login button
+//        binding.googleLogin.setOnClickListener {
+//            googleLogin.login(this@LoginActivity, getString(R.string.server_client_id), launcher)
+//        }
     }
 
     private fun loginUser(token:String){

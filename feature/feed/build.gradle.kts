@@ -10,7 +10,6 @@ android {
 
     defaultConfig {
         minSdk = 30
-        targetSdk = 34
         consumerProguardFiles("consumer-rules.pro")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
