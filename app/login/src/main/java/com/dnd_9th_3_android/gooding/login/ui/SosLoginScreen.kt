@@ -1,5 +1,6 @@
 package com.dnd_9th_3_android.gooding.login.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -14,10 +15,16 @@ import androidx.compose.material.Text
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 
 @Composable
-fun SosLoginScreen() {
+fun SosLoginScreen(
+    navController: NavHostController
+) {
     Box(modifier = Modifier.fillMaxSize()) {
+        // 뒤로가기 제어
+        BackHandler(enabled = true, onBack = {})
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier

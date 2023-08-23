@@ -18,6 +18,7 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.dp
 import com.dnd_9th_3_android.gooding.core.data.R
+import com.dnd_9th_3_android.gooding.data.customProgress.CustomProgressBar
 
 // 백 그라운드 뷰
 @Composable

@@ -16,5 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(): ViewModel(){
-
+    var userNickName : String = ""
+    var selectCategory =  ArrayList<Int>()
+    var progress  : Int = 33
 }

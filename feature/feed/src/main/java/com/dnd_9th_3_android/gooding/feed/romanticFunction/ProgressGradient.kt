@@ -14,6 +14,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.unit.Dp
 import com.dnd_9th_3_android.gooding.core.data.R
+import com.dnd_9th_3_android.gooding.data.customProgress.CustomProgressBar
+
 @Composable
 fun ProgressGradient(
     progress : Float,
