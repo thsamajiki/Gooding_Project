@@ -38,7 +38,6 @@
         android:theme="@style/Theme.Gooding.ActivityFullscreenNoCutout"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="a244014544b5323246b6853ca1d8ca93" /> <!-- kakao 로그인 액티비티 -->

@@ -1,11 +1,13 @@
 package com.dnd_9th_3_android.gooding.feed.fixedAreaSubLayout
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
@@ -39,19 +41,33 @@ fun FeedTopLayout(
             TopScrollBarLayer(pageState, coroutineScope )
         }
 
+
+        // search function
+        var goSearchActivity by remember {
+            mutableStateOf(false)
+        }
+        if (goSearchActivity){
+            // go search activity
+            val intent = Intent(
+                LocalContext.current.applicationContext,
+                Class.forName("com.dnd_9th_3_android.gooding.presentation.search_feed.SearchFeedListActivity")
+            )
+            LocalContext.current.startActivity(intent)
+            goSearchActivity = false
+        }
         // search button
         Box(
             Modifier
                 .align(Alignment.CenterEnd)
                 .size(dimensionResource(id = R.dimen.padding_24))
                 .clickable {
-                    // go search fragment
+                    goSearchActivity = true
                 }
         ){
             Image(
                 painterResource(id = R.drawable.search),
                 contentDescription = null,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
         }
     }
