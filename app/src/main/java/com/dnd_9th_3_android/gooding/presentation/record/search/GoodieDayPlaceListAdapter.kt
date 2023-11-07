@@ -7,6 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
 import com.dnd_9th_3_android.gooding.databinding.ItemKakaoMapPlaceBinding
+import kotlin.math.asin
+import kotlin.math.cos
+import kotlin.math.round
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 class GoodieDayPlaceListAdapter(
     private val onClick: (KakaoMapDocuments) -> Unit,
@@ -19,12 +24,41 @@ class GoodieDayPlaceListAdapter(
 
         fun bind(mapData: KakaoMapDocuments) {
             binding.tvPlaceName.text = mapData.placeName
-//            binding.tvPlaceDistance.text = mapData.distance
+            binding.tvPlaceDistance.text = formatDistance(
+                calculateDistance(
+                    mapData.currentLocation ?: return,
+                    Location(mapData.y?.toDoubleOrNull() ?: 0.0, mapData.x?.toDoubleOrNull() ?: 0.0)
+                )
+            )
             binding.tvPlaceAddress.text = mapData.addressName
 
             binding.root.setOnClickListener {
                 onClick(mapData)
             }
+        }
+
+        private fun calculateDistance(currentLocation: Location, targetLocation: Location): Double {
+            val earthRadiusKm = 6371.0
+
+            val deltaLatitude = Math.toRadians(targetLocation.latitude - currentLocation.latitude)
+            val deltaLongitude =
+                Math.toRadians(targetLocation.longitude - currentLocation.longitude)
+
+            val a = sin(deltaLatitude / 2) * sin(deltaLatitude / 2) +
+                    cos(Math.toRadians(currentLocation.latitude)) * cos(
+                Math.toRadians(
+                    targetLocation.latitude
+                )
+            ) *
+                    sin(deltaLongitude / 2) * sin(deltaLongitude / 2)
+            val c = 2 * asin(sqrt(a))
+
+            return earthRadiusKm * c
+        }
+
+        fun formatDistance(distance: Double): String {
+            val roundedDistance = round(distance * 10) / 10
+            return "$roundedDistance km"
         }
     }
 

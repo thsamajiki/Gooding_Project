@@ -1,13 +1,12 @@
 package com.dnd_9th_3_android.gooding.presentation.record.search
 
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapData
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapResponse
 import com.dnd_9th_3_android.gooding.data.repository.map.KakaoMapAddressRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -43,6 +42,8 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
 
     private val mapAddressList = mutableListOf<KakaoMapData>()
 
+    private val location = MutableStateFlow(Location(0.0, 0.0))
+
     fun searchPlace(query: String) {
         viewModelScope.launch {
             kotlin.runCatching {
@@ -50,12 +51,18 @@ class SearchGoodieDayPlaceViewModel @Inject constructor(
             }
                 .onSuccess {
                     Log.d("SearchGoodieDayPlaceViewModel", "searchPlace: $it")
-                    _uiState.value = UiState.SearchPlaceSuccess(it.documents)
+                    _uiState.value = UiState.SearchPlaceSuccess(it.documents.map {
+                        it.copy(currentLocation = location.value)
+                    })
                 }
                 .onFailure {
                     Log.e("SearchGoodieDayPlaceViewModel", "searchPlace: $it")
                     it.printStackTrace()
                 }
         }
+    }
+
+    fun setCurrentLocation(currentLocation: Location) {
+        location.value = currentLocation
     }
 }

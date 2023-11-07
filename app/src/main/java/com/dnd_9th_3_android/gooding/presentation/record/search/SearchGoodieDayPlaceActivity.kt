@@ -1,5 +1,8 @@
 package com.dnd_9th_3_android.gooding.presentation.record.search
 
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
+import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -12,6 +15,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
@@ -21,9 +25,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
 import com.dnd_9th_3_android.gooding.databinding.ActivitySearchGoodieDayPlaceBinding
 import com.dnd_9th_3_android.gooding.databinding.ItemKakaoMapPlaceBinding
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import gun0912.tedkeyboardobserver.TedKeyboardObserver
 import kotlinx.coroutines.launch
@@ -38,6 +43,22 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchGoodieDayPlaceBinding
     private lateinit var goodieDayPlaceListAdapter: GoodieDayPlaceListAdapter
     private val viewModel by viewModels<SearchGoodieDayPlaceViewModel>()
+
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+
+    @SuppressLint("MissingPermission")
+    private val locationPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                // 수락 후 동작
+                fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+                    val currentLocation = Location(latitude = it.latitude, longitude = it.longitude)
+                    viewModel.setCurrentLocation(currentLocation)
+                }
+            } else {
+                Toast.makeText(baseContext, "위치 권한을 수락해주세요.", Toast.LENGTH_SHORT).show()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +78,9 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
 
     private fun initView() {
         initRecyclerView(binding.rvPlaceList)
+
+        locationPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
 
         if (binding.textEditSearchPlace.hasFocus()) {
             binding.ivDelete.isGone = false
@@ -88,7 +112,12 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
     }
 
     private fun onClickPlaceItem(kakaoMapDocuments: KakaoMapDocuments) {
-        // TODO: 주소 아이템 클릭하면 Record01Activity에 해당 주소가 반영되도록 하기
+        val intent = Intent().apply {
+            putExtra("LOCATION", kakaoMapDocuments)
+        }
+
+        setResult(100, intent)
+        finish()
     }
 
     private fun initViewModel() {
@@ -170,17 +199,6 @@ class SearchGoodieDayPlaceActivity : AppCompatActivity() {
             Intent(context, SearchGoodieDayPlaceActivity::class.java)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 // 카카오맵 api

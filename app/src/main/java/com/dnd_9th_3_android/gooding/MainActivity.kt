@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.*
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import com.dnd_9th_3_android.gooding.databinding.ActivityMainBinding
 import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryActivity
@@ -16,15 +17,27 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
-    lateinit var bottomNavi : BottomNavigationView
+    lateinit var bottomNavi: BottomNavigationView
+
+    private val permissionLaunch =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            val isGranted = it.values.count { it } == 2
+
+            if (isGranted) {
+                val intent = GalleryActivity.getIntent(this@MainActivity)
+                startActivity(intent)
+            }
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // 화면 숨김 대응
         actionBar?.hide()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.insetsController?.hide(WindowInsets.Type.statusBars())
-            window.insetsController?.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        } else { // 30 이하 
+            window.insetsController?.systemBarsBehavior =
+                WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        } else { // 30 이하
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
             window.setFlags(
                 WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -39,6 +52,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         setupBottomNavigationView()
         bottomNavi = binding.bottomNavMain // invisibility 하기 위함
+
         if (savedInstanceState == null) {
             binding.bottomNavMain.selectedItemId = R.id.menu_feed
         }
@@ -49,7 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
         val prevFragment = supportFragmentManager.fragments.find {
             it.isVisible
         }
@@ -71,23 +84,23 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                     transaction.commit()
                 }
             }
+
             R.id.menu_record -> {
 //                val intent = GalleryActivity.getIntent(this@MainActivity)
 //                startActivity(intent)
-                if (checkStoragePermission()) {
-                    val intent = GalleryActivity.getIntent(this@MainActivity)
-                    startActivity(intent)
-                }
+                checkStoragePermission()
             }
+
             R.id.menu_my_gooding -> {
-                val myGoodingFragment = supportFragmentManager.fragments.find { it is MyGoodingFragment }
+                val myGoodingFragment =
+                    supportFragmentManager.fragments.find { it is MyGoodingFragment }
                 if (myGoodingFragment != null) {
                     supportFragmentManager.beginTransaction().show(myGoodingFragment).commit()
                 } else {
                     val transaction = supportFragmentManager.beginTransaction()
                         .add(binding.fcvMain.id, MyGoodingFragment.newInstance())
 
-                    transaction.addToBackStack(null )
+                    transaction.addToBackStack(null)
                     transaction.commit()
                 }
             }
@@ -96,28 +109,20 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         return true
     }
 
-    private fun checkStoragePermission(): Boolean {
+
+    private fun checkStoragePermission() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+            val imagePermission = Manifest.permission.READ_MEDIA_IMAGES
+            val videoPermission = Manifest.permission.READ_MEDIA_VIDEO
+
+            permissionLaunch.launch(arrayOf(imagePermission, videoPermission))
+            return
+        }
+
         val readPermission = Manifest.permission.READ_EXTERNAL_STORAGE
         val writePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE
 
-        return if (ActivityCompat.checkSelfPermission(
-                this,
-                readPermission
-            ) == PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this,
-                writePermission
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
-            true
-        } else {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(readPermission, writePermission),
-                PERMISSION_REQ_CODE
-            )
-            false
-        }
+        permissionLaunch.launch(arrayOf(readPermission, writePermission))
     }
 
     override fun onRequestPermissionsResult(

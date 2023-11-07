@@ -20,6 +20,9 @@ data class RequestUploadFeed1(
 
 data class RequestUploadFeed(
     val thumbnail: String,
+    val thumbnailDirectory: String,
     val images: List<File>,
-    val videos: List<File>
+    val videos: List<File>,
+    val oauthId: String,
+    val uploadRequest: RequestUploadFeed1
 )

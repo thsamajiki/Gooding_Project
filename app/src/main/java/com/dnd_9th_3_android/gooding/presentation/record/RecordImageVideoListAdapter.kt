@@ -1,6 +1,8 @@
 package com.dnd_9th_3_android.gooding.presentation.record
 
+import android.graphics.Bitmap
 import android.graphics.drawable.GradientDrawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dnd_9th_3_android.gooding.databinding.ItemRecordImageVideoFileBinding
 import com.dnd_9th_3_android.gooding.databinding.ViewAddFileBinding
+import com.dnd_9th_3_android.gooding.presentation.util.PathUtil
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 
 class RecordImageVideoListAdapter(
@@ -135,11 +138,35 @@ class RecordImageVideoListAdapter(
 
                 val image = Uri.parse(item.galleryFileUiData.mediaData)
 
-                Glide.with(itemView.context)
-                    .load(image)
-                    .into(binding.ivRecordImageVideoFile)
+                if (item.galleryFileUiData.mediaType == 1) {
+                    Glide.with(itemView.context)
+                        .load(image)
+                        .into(binding.ivRecordImageVideoFile)
+                } else {
+                    binding.root.context ?: return
+                    val thumbnail =
+                        getVideoThumbnail(PathUtil.getPath(binding.root.context, Uri.parse(item.galleryFileUiData.mediaData)) ?: return)
+
+                    Glide.with(itemView.context)
+                        .load(thumbnail)
+                        .into(binding.ivRecordImageVideoFile)
+                }
 
                 binding.recordImageCover.isVisible = item.galleryFileUiData.selectedNumber == 1
+            }
+
+
+            private fun getVideoThumbnail(videoPath: String): Bitmap? {
+                val retriever = MediaMetadataRetriever()
+
+                return runCatching {
+                    retriever.setDataSource(videoPath)
+                    retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST)
+                }.onFailure {
+                    it.printStackTrace()
+                }.also {
+                    retriever.release()
+                }.getOrNull()
             }
         }
     }

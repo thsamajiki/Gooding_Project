@@ -1,7 +1,10 @@
 package com.dnd_9th_3_android.gooding.presentation.gallery
 
+import android.graphics.Bitmap
 import android.graphics.drawable.GradientDrawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ItemGalleryImageBinding
+import com.dnd_9th_3_android.gooding.presentation.util.PathUtil
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 
 class GalleryFileListAdapter(
@@ -74,9 +78,19 @@ class GalleryFileListAdapter(
             binding.strokeView.isVisible = item.isSelected
             val image = Uri.parse(item.mediaData)
 
-            Glide.with(itemView.context)
-                .load(image)
-                .into(binding.ivGalleryImage)
+            if (item.mediaType == 1) {
+                Glide.with(itemView.context)
+                    .load(image)
+                    .into(binding.ivGalleryImage)
+            } else {
+                binding.root.context ?: return
+                val thumbnail =
+                    getVideoThumbnail(PathUtil.getPath(binding.root.context, Uri.parse(item.mediaData)) ?: return)
+
+                Glide.with(itemView.context)
+                    .load(thumbnail)
+                    .into(binding.ivGalleryImage)
+            }
 
             binding.tvGalleryImageCount.isVisible = item.selectedNumber > 0
             binding.tvGalleryImageCount.text = item.selectedNumber.toString()
@@ -86,6 +100,19 @@ class GalleryFileListAdapter(
 
             binding.galleryImage = item
             binding.executePendingBindings()
+        }
+
+        private fun getVideoThumbnail(videoPath: String): Bitmap? {
+            val retriever = MediaMetadataRetriever()
+
+            return runCatching {
+                retriever.setDataSource(videoPath)
+                retriever.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST)
+            }.onFailure {
+                it.printStackTrace()
+            }.also {
+                retriever.release()
+            }.getOrNull()
         }
     }
 }

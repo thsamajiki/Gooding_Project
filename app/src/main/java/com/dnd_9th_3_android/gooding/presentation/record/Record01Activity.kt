@@ -1,5 +1,7 @@
 package com.dnd_9th_3_android.gooding.presentation.record
 
+import com.dnd_9th_3_android.gooding.data.model.map.KakaoMapDocuments
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -12,19 +14,30 @@ import android.view.animation.Animation
 import android.view.animation.Transformation
 import android.view.inputmethod.InputMethodManager
 import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.dnd_9th_3_android.gooding.R
+
 import com.dnd_9th_3_android.gooding.databinding.ActivityRecord01Binding
+import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryActivity
 import com.dnd_9th_3_android.gooding.presentation.gallery.GalleryFileUiData
+import com.dnd_9th_3_android.gooding.presentation.record.search.Location
 import com.dnd_9th_3_android.gooding.presentation.record.search.SearchGoodieDayPlaceActivity
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
 
@@ -50,6 +63,7 @@ class Record01Activity : AppCompatActivity() {
         viewModel.selectedFiles.observe(this) {
             recordImageVideoListAdapter.submitList(it)
             recordImageVideoListAdapter.notifyDataSetChanged()
+            Log.e("ASDASDQWE", recordImageVideoListAdapter.currentList.toString())
         }
     }
 
@@ -124,13 +138,32 @@ class Record01Activity : AppCompatActivity() {
         }
     }
 
-    private fun onClickImageVideoItem(galleryFileUiData: RecordGalleryItem) {
+    private val imageSelectLaunch =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 
+        }
+
+    private fun onClickImageVideoItem(galleryFileUiData: RecordGalleryItem) {
+        val intent = Intent(this, GalleryActivity::class.java).apply {
+
+        }
+
+        startActivity(intent)
     }
 
     private fun onClickDeleteImageVideoItem(galleryFileUiData: RecordGalleryItem) {
         viewModel.removeGalleryFileUiData(galleryFileUiData)
     }
+
+    val addressSearchLaunch =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            it.data?.extras?.getParcelable<KakaoMapDocuments>("LOCATION")?.let {
+                binding.ivPlacePin.setImageDrawable(
+                    ContextCompat.getDrawable(this, R.drawable.icon_green_map_pin)
+                )
+                binding.tvSetPlaceGoodieDay.text = it.placeName
+            }
+        }
 
     private fun initListeners() {
         binding.ivArrowBack.setOnClickListener {
@@ -164,7 +197,7 @@ class Record01Activity : AppCompatActivity() {
 
         binding.cvPlaceGoodieDay.setOnClickListener {
             val intent = SearchGoodieDayPlaceActivity.getIntent(this@Record01Activity)
-            startActivity(intent)
+            addressSearchLaunch.launch(intent)
         }
 
         binding.cvCategoryGoodieDay.setOnClickListener {
