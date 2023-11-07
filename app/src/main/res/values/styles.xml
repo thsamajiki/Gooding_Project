@@ -35,4 +35,10 @@
         <item name="android:thumb">@drawable/selector_thumb</item>
         <item name="android:track">@drawable/selector_track</item>
     </style>
+    
+    <style name="BottomNavigationBarItemTextSize" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/pretendard_regular</item>
+        <item name="android:textFontWeight">600</item>
+    </style>
 </resources>

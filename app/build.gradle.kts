@@ -158,6 +158,9 @@ dependencies {
     // activity + compose
     implementation("androidx.activity:activity-compose: $composeVersion")
 
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+
     // module
     implementation(project(":app:login"))
     implementation(project(":core:api"))

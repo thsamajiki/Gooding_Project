@@ -62,6 +62,7 @@ class Record01ViewModel @Inject constructor(
         val newList = _selectedFiles.value.orEmpty().toMutableList().apply {
             remove(item)
         }
+
         newList.firstOrNull()?.let {
             if (it is RecordGalleryItem.File) {
                 it.galleryFileUiData.selectedNumber = 1

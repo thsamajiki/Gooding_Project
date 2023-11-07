@@ -1,11 +1,16 @@
 package com.dnd_9th_3_android.gooding.presentation.gallery
 
+import android.Manifest
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +28,7 @@ import com.dnd_9th_3_android.gooding.MyGoodingFragment
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.ActivityGalleryBinding
 import com.dnd_9th_3_android.gooding.presentation.record.Record01Activity
+import com.dnd_9th_3_android.gooding.presentation.record.Record01ViewModel
 import com.dnd_9th_3_android.gooding.presentation.util.fromDpToPx
 import com.dnd_9th_3_android.gooding.ui.component.CenterToastView
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +50,10 @@ class GalleryActivity : AppCompatActivity() {
 
     private var currentOpenedFragment: String = FEED_FRAGMENT
 
+    val permissionLaunch = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -52,6 +62,10 @@ class GalleryActivity : AppCompatActivity() {
 //        val view = binding.root
 //
 //        setContentView(view)
+
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.TIRAMISU) {
+            permissionLaunch.launch(Manifest.permission.READ_MEDIA_IMAGES)
+        }
 
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -122,9 +136,23 @@ class GalleryActivity : AppCompatActivity() {
     private fun onClickGalleryImageItem(galleryFileUiData: GalleryFileUiData) {
         val isSuccess = viewModel.selectedGalleryImageItem(galleryFileUiData)
         if (isSuccess) {
-            galleryFileListAdapter.notifyDataSetChanged()
+            galleryFileListAdapter.snapshot().mapIndexed { index, item ->
+                if (galleryFileUiData == item) {
+                    galleryFileListAdapter.notifyItemChanged(index)
+                }
+            }
+
+//            galleryFileListAdapter.notifyDataSetChanged()
         } else {
             showToast()
+        }
+
+        val isVideoSelected = viewModel.selectedItems.count { it.mediaType == 3 } >= 1
+
+        binding.tvBottomText.text = if (isVideoSelected) {
+            "영상은 초반 15초까지만 업로드 됩니다."
+        } else {
+            "최대 5개의 이미지 및 영상을 선택할 수 있습니다."
         }
 
         if (viewModel.selectedItems.isNotEmpty()) {
@@ -223,11 +251,16 @@ class GalleryActivity : AppCompatActivity() {
 
             lifecycleScope.launch {
                 imagePagingList.collect { data ->
+                    Record01ViewModel.KEY_SELECTED_FILES
                     galleryFileListAdapter.submitData(data)
                 }
             }
         }
     }
+
+//    val files by lazy {
+//        intent.extras.getParcelable(Record01ViewModel.KEY_SELECTED_FILES)
+//    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -282,5 +315,11 @@ class GalleryActivity : AppCompatActivity() {
 
         fun getIntent(context: Context) =
             Intent(context, GalleryActivity::class.java)
+
+        fun getIntent(context: Context, selectedFiles: List<GalleryFileUiData>) {
+            Intent(context, GalleryActivity::class.java).apply {
+                putExtra(Record01ViewModel.KEY_SELECTED_FILES, selectedFiles.toTypedArray())
+            }
+        }
     }
 }

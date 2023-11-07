@@ -65,7 +65,13 @@ class Record02ViewModel @Inject constructor(
         )
 
         viewModelScope.launch {
-            kotlin.runCatching {
+//            uploadFeedRepository.uploadFeed(
+//                RequestUploadFeed(
+//
+//                )
+//            )
+
+            runCatching {
 //                uploadFeedRepository.uploadFeed(
 //                    RequestUploadFeed(
 //                    thumbnail = "",

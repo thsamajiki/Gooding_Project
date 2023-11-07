@@ -10,6 +10,7 @@ import androidx.fragment.app.setFragmentResult
 import com.dnd_9th_3_android.gooding.R
 import com.dnd_9th_3_android.gooding.databinding.BottomSheetSelectCategoryBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.card.MaterialCardView
 import java.util.Calendar
 
 class BottomSheetSelectCategory: BottomSheetDialogFragment() {
@@ -152,6 +153,55 @@ class BottomSheetSelectCategory: BottomSheetDialogFragment() {
             )
 
             dismiss()
+        }
+    }
+
+    val selectColor by lazy {
+        ContextCompat.getColor(requireContext(), R.color.primaryColor)
+    }
+
+    val unSelectColor by lazy {
+        ContextCompat.getColor(requireContext(), R.color.tertiaryColor)
+    }
+
+    private fun activatedBtnComplete() {
+        binding.btnComplete.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_activated_background01)
+        binding.btnComplete.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+    }
+
+    private fun unActivatedBtnComplete() {
+        binding.btnComplete.background = ContextCompat.getDrawable(requireContext(), R.drawable.button_background01)
+        binding.btnComplete.setTextColor(ContextCompat.getColor(requireContext(), R.color.unactivatedColor))
+    }
+
+    private fun setCategory(view: MaterialCardView) {
+        val categories = listOf(
+            binding.cvCategory01,
+            binding.cvCategory02,
+            binding.cvCategory03,
+            binding.cvCategory04,
+            binding.cvCategory05,
+            binding.cvCategory06,
+            binding.cvCategory07,
+            binding.cvCategory08,
+            binding.cvCategory09,
+            binding.cvCategory10
+        )
+
+        categories.forEach {
+            if (view.id == it.id) { // 선택한 버튼일 경우
+                if (it.strokeColor == selectColor) {
+                    it.strokeColor = unSelectColor
+                    unActivatedBtnComplete()
+                } else {
+                    it.strokeColor = selectColor
+                    activatedBtnComplete()
+                }
+                return@forEach
+            }
+
+            it.strokeColor = unSelectColor
+            unActivatedBtnComplete()
         }
     }
 
